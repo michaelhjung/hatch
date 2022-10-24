@@ -23,9 +23,9 @@
 
 <!-- ABOUT THE PROJECT -->
 ## About The Project
-<!-- ![hatch-logo]
+![hatch-logo]
 
-[hatch-logo]: ./assets/hatch-logo.png -->
+[hatch-logo]: ./assets/hatch-logo.png
 
 <u><b>[Hatch](https://escape-hatch.herokuapp.com/)</b></u> is an original virtual escape room designed by Michael Jung. This project utilizes various topics and concepts learned throughout the App Academy bootcamp program and implements them as clues to advance in the game.
 
