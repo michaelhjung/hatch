@@ -15,9 +15,9 @@ class User(db.Model, UserMixin):
     hashed_password = db.Column(db.String(255), nullable=False)
     profile_pic = db.Column(db.String(255), nullable=False)
     secret_code = db.Column(db.String(255), nullable=False)
-    viz = db.ColumN(db.Integer, default=1)
-    won = db.ColumN(db.Boolean, default=False)
-    current_room = db.ColumN(db.Integer, default=1)
+    viz = db.Column(db.Integer, default=1)
+    won = db.Column(db.Boolean, default=False)
+    current_room = db.Column(db.Integer, default=1)
     created_at = db.Column(db.String(255), default=datetime.now)
     updated_at = db.Column(db.String(255), default=datetime.now, onupdate=datetime.now)
 
