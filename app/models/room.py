@@ -9,7 +9,6 @@ class Room(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
     progress_id = db.Column(db.Integer, nullable=False)
     name = db.Column(db.String(255), nullable=False)
-    img = db.Column(db.String(255), nullable=False)
     entered = db.Column(db.Boolean, default=False, nullable=False)
     created_at = db.Column(db.String(255), default=datetime.now)
     updated_at = db.Column(db.String(255), default=datetime.now, onupdate=datetime.now)
@@ -37,7 +36,6 @@ class Room(db.Model):
             'room_id': self.room_id,
             'progress_id': self.progress_id,
             'name': self.name,
-            'img': self.img,
             'entered': self.entered,
             'created_at': self.created_at,
             'updated_at': self.updated_at

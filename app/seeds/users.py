@@ -1,7 +1,6 @@
 from app.models import db, User
 
 
-# Adds a demo user, you can add other users here if you want
 def seed_users():
     master = User(
         first_name='Game',
@@ -25,6 +24,7 @@ def seed_users():
 
 
     db.session.add(master)
+    db.session.add(demo)
 
     db.session.commit()
 
