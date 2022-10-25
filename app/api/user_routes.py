@@ -58,14 +58,6 @@ def update_user(id):
 
     if form.data['viz'] and (form.data['viz'] < 1 or form.data['viz'] > 3):
         login_val_error["errors"]["viz"] = "Viz must be an integer between 1-3"
-    if form.data['str'] and (form.data['str'] < 1 or form.data['viz'] > 3):
-        login_val_error["errors"]["str"] = "Str must be an integer between 1-3"
-    if form.data['pickup_count'] and (form.data['pickup_count'] < 0 or type(form.data['pickup_count']) != int):
-        login_val_error["errors"]["pickup_count"] = "Pickup count must be a positive integer"
-    if form.data['drop_count'] and (form.data['drop_count'] < 0 or type(form.data['drop_count']) != int):
-        login_val_error["errors"]["drop_count"] = "Drop count must be a positive integer"
-    if form.data['clue_count'] and (form.data['clue_count'] < 0 or type(form.data['clue_count']) != int):
-        login_val_error["errors"]["clue_count"] = "Clue count must be a positive integer"
     if form.data['won'] and type(form.data['won']) != bool:
         login_val_error["errors"]["won"] = "Won must be a boolean"
     if form.data['current_room'] and (form.data['current_room'] < 1 or form.data['viz'] > 8):
@@ -77,14 +69,6 @@ def update_user(id):
     if form.validate_on_submit():
         if form.data['viz']:
             user.viz = form.data['viz']
-        if form.data['str']:
-            user.str = form.data['str']
-        if form.data['pickup_count']:
-            user.pickup_count = form.data['pickup_count']
-        if form.data['drop_count']:
-            user.drop_count = form.data['drop_count']
-        if form.data['clue_count']:
-            user.clue_count = form.data['clue_count']
         if form.data['won']:
             user.won = form.data['won']
         if form.data['current_room']:

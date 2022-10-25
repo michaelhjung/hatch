@@ -15,13 +15,9 @@ class User(db.Model, UserMixin):
     hashed_password = db.Column(db.String(255), nullable=False)
     profile_pic = db.Column(db.String(255), nullable=False)
     secret_code = db.Column(db.String(255), nullable=False)
-    viz = db.ColumN(db.Integer, default=1)
-    str = db.ColumN(db.Integer, default=1)
-    pickup_count = db.ColumN(db.Integer, default=0)
-    drop_count = db.ColumN(db.Integer, default=0)
-    clue_count = db.ColumN(db.Integer, default=0)
-    won = db.ColumN(db.Boolean, default=False)
-    current_room = db.ColumN(db.Integer, default=1)
+    viz = db.Column(db.Integer, default=1)
+    won = db.Column(db.Boolean, default=False)
+    current_room = db.Column(db.Integer, default=1)
     created_at = db.Column(db.String(255), default=datetime.now)
     updated_at = db.Column(db.String(255), default=datetime.now, onupdate=datetime.now)
 
@@ -48,39 +44,6 @@ class User(db.Model, UserMixin):
     # def viz(self):
     #     if self.viz < 3:
     #         self.viz += 1
-
-    # @property
-    # def str(self):
-    #     return self.str
-
-    # @str.setter
-    # def str(self):
-    #     if self.str < 20:
-    #         self.str += 1
-
-    # @property
-    # def pickup_count(self):
-    #     return self.pickup_count
-
-    # @viz.setter
-    # def pickup_count(self):
-    #     self.pickup_count += 1
-
-    # @property
-    # def drop_count(self):
-    #     return self.drop_count
-
-    # @drop_count.setter
-    # def drop_count(self):
-    #     self.drop_count += 1
-
-    # @property
-    # def clue_count(self):
-    #     return self.clue_count
-
-    # @clue_count.setter
-    # def clue_count(self):
-    #     self.clue_count += 1
 
     # @property
     # def won(self):
@@ -113,8 +76,6 @@ class User(db.Model, UserMixin):
             'email': self.email,
             'hashed_password': self.hashed_password,
             'profile_pic': self.profile_pic,
-            'drop_count': self.drop_count,
-            'clue_count': self.clue_count,
             'won': self.won,
             'current_room': self.current_room,
             'created_at': self.created_at,
