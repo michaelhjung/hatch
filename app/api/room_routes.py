@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify, request
 from flask_login import current_user, login_required
-from app.models import db, Room, EventLog, Item
+from app.models import db, Room, EventLog, Item, RoomImage
 from app.forms.room_forms import CreateRoomForm, UpdateRoomForm
 
 room_routes = Blueprint('rooms', __name__)
@@ -152,7 +152,6 @@ def update_room(id):
     return {'errors': validation_errors_to_error_messages(form.errors)}, 400
 
 
-
 # DELETE A ROOM
 @room_routes.route("/<int:id>", methods=['DELETE'])
 @login_required
@@ -171,3 +170,24 @@ def delete_room(id):
     db.session.delete(room_to_delete)
     db.session.commit()
     return { "message": "Successfully deleted", "status_code": 200 }
+
+
+# READ ALL ROOM IMAGES BY ROOM ID
+@room_routes.route("/<int:room_id>/images")
+@login_required
+def read_room_images(room_id):
+    """
+    Gets room images by id
+    """
+
+    curr_user = current_user.to_dict()
+    room = Room.query.get(room_id)
+    if not room:
+        return jsonify({ "message": "Room couldn't be found", "status_code": 404 }), 404
+    if curr_user.id != room['user_id']:
+        return jsonify({ "message": "Forbidden", "status_code": 403 }), 403
+
+    room_images_query = RoomImage.query.filter(RoomImage.room_id == room_id).all()
+    room_images = [img.to_dict() for img in room_images_query]
+
+    return jsonify({ "Images": room_images })

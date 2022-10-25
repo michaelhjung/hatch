@@ -18,6 +18,7 @@ class Room(db.Model):
     user = db.relationship('User', back_populates='room')
     eventlog = db.relationship('EventLog', back_populates='room')
     item = db.relationship('Item', back_populates='room')
+    room_image = db.relationship('RoomImage', back_populates='room')
 
 
     @property
