@@ -1,7 +1,6 @@
 from flask import Blueprint, jsonify, session, request
-from app.models import User, db
-from app.forms import LoginForm
-from app.forms import SignUpForm
+from app.models import db, User, EventLog, Item, Note
+from app.forms import LoginForm, SignUpForm
 from flask_login import current_user, login_user, logout_user, login_required
 from sqlalchemy import or_
 
@@ -28,7 +27,16 @@ def authenticate():
     Authenticates a user.
     """
     if current_user.is_authenticated:
-        return current_user.to_dict()
+        user = current_user.to_dict()
+
+        event_log_query = EventLog.query.filter(EventLog.user_id == user['id']).all()
+        user['Event_Logs'] = [log.to_dict() for log in event_log_query]
+        items_query = Item.query.filter(Item.user_id == user['id']).all()
+        user['Items'] = [item.to_dict() for item in items_query]
+        notes_query = Note.query.filter(Note.user_id == user['id']).all()
+        user['Notes'] = [note.to_dict() for note in notes_query]
+
+        return user
     return {'errors': ['Unauthorized']}
 
 

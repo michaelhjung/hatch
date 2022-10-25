@@ -3,11 +3,14 @@ from wtforms import StringField, IntegerField
 from wtforms.validators import DataRequired
 
 
-class CreateNoteForm(FlaskForm):
+class CreateEventLogForm(FlaskForm):
+    room_id = IntegerField('room_id', validators=[DataRequired()])
+    user_id = IntegerField('user_id')
     title = StringField('title', validators=[DataRequired()])
     body = StringField('body', validators=[DataRequired()])
 
 
-class UpdateNoteForm(FlaskForm):
+class UpdateEventLogForm(FlaskForm):
+    user_id = IntegerField('user_id')
     title = StringField('title', validators=[DataRequired()])
     body = StringField('body', validators=[DataRequired()])

@@ -7,7 +7,7 @@ class EventLog(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     room_id = db.Column(db.Integer, db.ForeignKey('rooms.id'))
-    user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'), default=None)
     title = db.Column(db.String(255), nullable=False)
     body = db.Column(db.String(255), nullable=False)
     created_at = db.Column(db.String(255), default=datetime.now)

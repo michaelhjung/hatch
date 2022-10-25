@@ -4,12 +4,12 @@ from wtforms.validators import DataRequired
 
 
 class CreateItemForm(FlaskForm):
-    name = StringField('user_id', validators=[DataRequired()])
-    serial_id = StringField('user_id', validators=[DataRequired()])
-    img = StringField('user_id', validators=[DataRequired()])
+    name = StringField('name', validators=[DataRequired()])
+    serial_id = StringField('serial_id', validators=[DataRequired()])
+    img = StringField('img', validators=[DataRequired()])
 
 
 class UpdateItemForm(FlaskForm):
-    name = StringField('user_id', validators=[DataRequired()])
-    serial_id = StringField('user_id', validators=[DataRequired()])
-    img = StringField('user_id', validators=[DataRequired()])
+    name = StringField('name', validators=[DataRequired()])
+    serial_id = StringField('serial_id', validators=[DataRequired()])
+    img = StringField('img', validators=[DataRequired()])
