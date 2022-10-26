@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { Redirect } from 'react-router-dom';
 import { signUp } from '../../store/session';
 import { Modal } from '../../context/Modal';
+import './AuthForms.css';
 
 export default function SignUpForm () {
     const [validationErrors, setValidationErrors] = useState([]);
@@ -73,13 +74,13 @@ export default function SignUpForm () {
                     id='login-modal'
                     onClose={() => setShowModal(false)}
                 >
-                    <form onSubmit={onSignUp}>
-                        <div>
+                    <form className='auth-form' onSubmit={onSignUp}>
+                        <div className='error-list'>
                             {validationErrors.map((error, ind) => (
-                                <div key={ind}>{error}</div>
+                                <div className='error-list-item' key={ind}>{error}</div>
                             ))}
                         </div>
-                        <div>
+                        <div className='form-field-container'>
                             <input
                                 type='text'
                                 name='firstName'
@@ -87,9 +88,10 @@ export default function SignUpForm () {
                                 onChange={e => setFirstName(e.target.value)}
                                 value={firstName}
                                 required={true}
+                                className='form-field-input'
                             ></input>
                         </div>
-                        <div>
+                        <div className='form-field-container'>
                             <input
                                 type='text'
                                 name='lastName'
@@ -97,9 +99,10 @@ export default function SignUpForm () {
                                 onChange={e => setLastName(e.target.value)}
                                 value={lastName}
                                 required={true}
+                                className='form-field-input'
                             ></input>
                         </div>
-                        <div>
+                        <div className='form-field-container'>
                             <input
                                 type='text'
                                 name='username'
@@ -107,9 +110,10 @@ export default function SignUpForm () {
                                 onChange={e => setUsername(e.target.value)}
                                 value={username}
                                 required={true}
+                                className='form-field-input'
                             ></input>
                         </div>
-                        <div>
+                        <div className='form-field-container'>
                             <input
                                 type='text'
                                 name='email'
@@ -117,9 +121,10 @@ export default function SignUpForm () {
                                 onChange={e => setEmail(e.target.value)}
                                 value={email}
                                 required={true}
+                                className='form-field-input'
                             ></input>
                         </div>
-                        <div>
+                        <div className='form-field-container'>
                             <input
                                 type='password'
                                 name='password'
@@ -127,19 +132,21 @@ export default function SignUpForm () {
                                 onChange={e => setPassword(e.target.value)}
                                 value={password}
                                 required={true}
+                                className='form-field-input'
                             ></input>
                         </div>
-                        <div>
+                        <div className='form-field-container'>
                             <input
                                 type='password'
                                 name='repeat_password'
                                 placeholder='confirm password'
                                 onChange={e => setRepeatPassword(e.target.value)}
                                 value={repeatPassword}
-                                required
+                                required={true}
+                                className='form-field-input'
                             ></input>
                         </div>
-                        <div>
+                        <div className='form-field-container'>
                             <input
                                 type='text'
                                 name='secretCode'
@@ -147,9 +154,10 @@ export default function SignUpForm () {
                                 onChange={e => setSecretCode(e.target.value)}
                                 value={secretCode}
                                 required={true}
+                                className='form-field-input'
                             ></input>
                         </div>
-                        <div>
+                        <div className='form-field-container'>
                             <input
                                 type='text'
                                 name='profilePic'
@@ -157,9 +165,10 @@ export default function SignUpForm () {
                                 onChange={e => setProfilePic(e.target.value)}
                                 value={profilePic}
                                 required={true}
+                                className='form-field-input'
                             ></input>
                         </div>
-                        <button type='submit'>Sign Up</button>
+                        <button className='submit-button' type='submit'>Sign Up</button>
                     </form>
                 </Modal>
             )}
