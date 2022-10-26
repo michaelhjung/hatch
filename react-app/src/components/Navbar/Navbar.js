@@ -1,6 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import LogoutButton from '../Auth2/LogoutButton';
+import LogoutButton from '../Auth/LogoutButton';
 
 export default function Navbar() {
     return (
