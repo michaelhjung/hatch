@@ -11,12 +11,12 @@ export default function Demo() {
     const demoLogin = async (e) => {
         e.preventDefault();
         await dispatch(login('demouser', 'username'));
-        alert(`Welcome ${user.username}`);
+        // alert(`Welcome, demouser.`);
     };
 
-    // if (user) {
-    //     return <Redirect to='/' />;
-    // }
+    if (user) {
+        return <Redirect to='/' />;
+    }
 
     return (
         <button
