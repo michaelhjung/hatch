@@ -7,6 +7,7 @@ export default function LoginForm () {
     const [validationErrors, setValidationErrors] = useState([]);
     const [credential, setCredential] = useState('');
     const [password, setPassword] = useState('');
+    // const [showModal, setShowModal] = useState(false);
     const user = useSelector(state => state.session.user);
     const dispatch = useDispatch();
 
