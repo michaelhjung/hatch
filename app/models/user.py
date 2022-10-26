@@ -74,7 +74,6 @@ class User(db.Model, UserMixin):
             'last_name': self.last_name,
             'username': self.username,
             'email': self.email,
-            'hashed_password': self.hashed_password,
             'profile_pic': self.profile_pic,
             'won': self.won,
             'current_room': self.current_room,

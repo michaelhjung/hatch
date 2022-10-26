@@ -37,7 +37,7 @@ def authenticate():
         user['Notes'] = [note.to_dict() for note in notes_query]
 
         return user
-    return {'errors': ['Unauthorized']}
+    return jsonify({ "message": "Forbidden - please log in", "status_code": 403 }), 403
 
 
 @auth_routes.route('/login', methods=['POST'])
@@ -127,15 +127,6 @@ def sign_up():
             password=form.data['password'],
             profile_pic=form.data['profile_pic'],
             secret_code=form.data['secret_code']
-            # viz=form.data['viz'],
-            # str=form.data['str'],
-            # pickup_count=form.data['pickup_count'],
-            # drop_count=form.data['drop_count'],
-            # clue_count=form.data['clue_count'],
-            # won=form.data['won'],
-            # current_room=form.data['current_room'],
-            # created_at=form.data['created_at'],
-            # updated_at=form.data['updated_at']
         )
         db.session.add(user)
         db.session.commit()

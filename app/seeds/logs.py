@@ -2,12 +2,12 @@ from app.models import db, EventLog
 
 
 def seed_logs():
-    testuserlog = EventLog(
-        room_id=None,
-        user_id=1,
-        title='Test User Event Log Title',
-        body='Test user event log body'
-    )
+    # testuserlog = EventLog(
+    #     room_id=None,
+    #     user_id=1,
+    #     title='Test User Event Log Title',
+    #     body='Test user event log body'
+    # )
     room1log1 = EventLog(
         room_id=1,
         user_id=None,
@@ -88,7 +88,7 @@ def seed_logs():
     )
 
 
-    db.session.add(testuserlog)
+    # db.session.add(testuserlog)
     db.session.add(room1log1)
     db.session.add(room1log2)
     db.session.add(room2log1)

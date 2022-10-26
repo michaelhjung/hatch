@@ -41,6 +41,8 @@ def create_note():
         login_val_error["errors"]["title"] = "Title is required"
     if not form.data['body']:
         login_val_error["errors"]["body"] = "Note body is required"
+    if len(login_val_error["errors"]) > 0:
+        return jsonify(login_val_error), 400
 
     if form.validate_on_submit():
         new_note = Note(
@@ -78,12 +80,13 @@ def read_note(id):
     """
 
     # curr_user = current_user.to_dict()
-    note = Note.query.get(id)
-    if not note:
+    note_query = Note.query.get(id)
+    if not note_query:
         return jsonify({ "message": "Note couldn't be found", "status_code": 404 }), 404
-    # if curr_user.id != note['user_id']:
+    # if curr_user['id'] != note['user_id']:
     #     return jsonify({ "message": "Forbidden", "status_code": 403 }), 403
-    return note.to_dict()
+    note = note_query.to_dict()
+    return note
 
 
 # UPDATE A NOTE
@@ -97,10 +100,11 @@ def update_note(id):
     form['csrf_token'].data = request.cookies['csrf_token']
 
     curr_user = current_user.to_dict()
-    note_to_update = Note.query.get(id)
-    if not note_to_update:
+    note_to_update_query = Note.query.get(id)
+    if not note_to_update_query:
         return jsonify({ "message": "Note couldn't be found", "status_code": 404 }), 404
-    if curr_user.id != note_to_update['user_id']:
+    note_to_update = note_to_update_query.to_dict()
+    if curr_user['id'] != note_to_update['user_id']:
         return jsonify({ "message": "Forbidden", "status_code": 403 }), 403
 
 
@@ -121,12 +125,12 @@ def update_note(id):
 
     if form.validate_on_submit():
         if form.data['title']:
-            note_to_update.title = form.data['title']
+            note_to_update_query.title = form.data['title']
         if form.data['body']:
-            note_to_update.body = form.data['body']
+            note_to_update_query.body = form.data['body']
 
         db.session.commit()
-        return note_to_update.to_dict()
+        return note_to_update_query.to_dict()
     return {'errors': validation_errors_to_error_messages(form.errors)}, 400
 
 
@@ -143,7 +147,7 @@ def delete_note(id):
     note_to_delete = Note.query.get(id)
     if not note_to_delete:
         return jsonify({ "message": "Note couldn't be found", "status_code": 404 }), 404
-    if curr_user.id != note_to_delete['user_id']:
+    if curr_user['id'] != note_to_delete.to_dict()['user_id']:
         return jsonify({ "message": "Forbidden", "status_code": 403 }), 403
 
     db.session.delete(note_to_delete)

@@ -6,11 +6,9 @@ from wtforms.validators import DataRequired
 class CreateRoomForm(FlaskForm):
     progress_id = IntegerField('progress_id', validators=[DataRequired()])
     name = StringField('name', validators=[DataRequired()])
-    img = StringField('img', validators=[DataRequired()])
 
 
 class UpdateRoomForm(FlaskForm):
     progress_id = IntegerField('progress_id', validators=[DataRequired()])
     name = StringField('name', validators=[DataRequired()])
-    img = StringField('img', validators=[DataRequired()])
     entered = BooleanField('entered', validators=[DataRequired()])

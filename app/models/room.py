@@ -20,20 +20,20 @@ class Room(db.Model):
     room_image = db.relationship('RoomImage', back_populates='room')
 
 
-    @property
-    def entered(self):
-        return self.entered
+    # @property
+    # def entered(self):
+    #     return self.entered
 
-    @entered.setter
-    def entered(self):
-        if self.entered == False:
-            self.entered == True
+    # @entered.setter
+    # def entered(self):
+    #     if self.entered == False:
+    #         self.entered == True
 
 
     def to_dict(self):
         return {
             'id': self.id,
-            'room_id': self.room_id,
+            'user_id': self.user_id,
             'progress_id': self.progress_id,
             'name': self.name,
             'entered': self.entered,
