@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import LoginForm from './components/Auth/LoginForm';
-import SignUpForm from './components/Auth/SignUpForm';
+import LoginForm from './components/auth/LoginForm';
+import SignUpForm from './components/auth/SignUpForm';
 import Navbar from './components/Navbar/Navbar';
-import ProtectedRoute from './components/Auth/ProtectedRoute';
+import ProtectedRoute from './components/auth/ProtectedRoute';
 import User from './components/User';
 import { authenticate } from './store/session';
-import Splash from './components/Hero';
+import Hero from './components/Hero';
 
 export default function App() {
     const [loaded, setLoaded] = useState(false);
@@ -30,7 +30,7 @@ export default function App() {
 
     return (
         <BrowserRouter>
-            <Splash />
+            <Hero />
 
 
             <Navbar />
