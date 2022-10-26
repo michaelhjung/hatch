@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import { login } from '../../store/session';
 import { Modal } from '../../context/Modal';
+import './AuthForms.css';
 
 export default function LoginForm () {
     const [validationErrors, setValidationErrors] = useState([]);
@@ -37,31 +38,33 @@ export default function LoginForm () {
                     id='login-modal'
                     onClose={() => setShowModal(false)}
                 >
-                    <form onSubmit={onLogin}>
-                        <div>
+                    <form className='auth-form' onSubmit={onLogin}>
+                        <div className='error-list'>
                             {validationErrors.map((error, ind) => (
-                                <div key={ind}>{error}</div>
+                                <div className='error-list-item' key={ind}>{error}</div>
                             ))}
                         </div>
-                        <div>
+                        <div className='form-field-container'>
                             <input
                                 name='credential'
                                 type='text'
                                 placeholder='Email or Username'
                                 value={credential}
                                 onChange={e => setCredential(e.target.value)}
+                                className='form-field-input'
                             />
                         </div>
-                        <div>
+                        <div className='form-field-container'>
                             <input
                                 name='password'
                                 type='password'
                                 placeholder='Password'
                                 value={password}
                                 onChange={e => setPassword(e.target.value)}
+                                className='form-field-input'
                             />
                         </div>
-                        <button type='submit'>Login</button>
+                        <button className='submit-button' type='submit'>Log In</button>
                     </form>
                 </Modal>
             )}
