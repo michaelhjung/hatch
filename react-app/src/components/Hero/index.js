@@ -1,5 +1,6 @@
 // import './Hero.css'
-import hero from '../../assets/imgs/watertight-door.jpg'
+import heroBg from '../../assets/imgs/watertight-door_door-bg.png';
+import heroWheel from '../../assets/imgs/watertight-door_wheel.png';
 
 export default function Hero() {
     return (

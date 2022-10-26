@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
 import { Redirect } from 'react-router-dom';
 import { signUp } from '../../store/session';
 
 export default function SignUpForm () {
-    const [errors, setErrors] = useState([]);
+    const [validationErrors, setValidationErrors] = useState([]);
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
     const [username, setUsername] = useState('');
@@ -21,10 +21,38 @@ export default function SignUpForm () {
         if (password === repeatPassword) {
             const data = await dispatch(signUp(firstName, lastName, username, email, password, profilePic, secretCode));
             if (data) {
-                setErrors(data)
+                setValidationErrors(Object.values(data));
             }
         }
     };
+
+    useEffect(() => {
+        const errors = [];
+        if (firstName.length > 12) errors.push("First name cannot exceed 12 characters.");
+        if (lastName.length > 12) errors.push("Last name cannot exceed 12 characters.");
+        if (username.length > 16) errors.push("Username cannot exceed 16 characters.");
+        if (email.length) {
+            const lastDotIndex = email.lastIndexOf('.');
+            const atSymbolIndex = email.indexOf('@');
+            const middleSection = email.slice(atSymbolIndex + 1, lastDotIndex)
+            const SYMBOLS = ['!', '@', "#", "$", "%", "^", "&", "*", "(", ")", "-", "_", "+", "=", ".", ":", ";", "'", '"', "?", ",", "<", ">", "?", "/", "\\", "|", "{", "}", "[", "]", "`", "~"];
+            if (!email.includes('@') ||
+                !email.includes('.') ||
+                email.split('@').length !== 2 ||
+                email.slice(lastDotIndex).length < 3 ||
+                email.slice(atSymbolIndex).length < 5) errors.push("Please provide a valid email address.");
+
+            if (middleSection) {
+                Object.values(middleSection).forEach(char => {
+                    if (!errors.includes("Please provide a valid email address.") && SYMBOLS.includes(char)) errors.push("Please provide a valid email address.");
+                });
+            }
+        }
+        if ((password.length && repeatPassword.length) && password !== repeatPassword) errors.push("Password confirmation must match.");
+        if (secretCode.length > 12) errors.push("Secret code cannot exceed 12 characters.");
+
+        setValidationErrors(errors);
+    }, [firstName, lastName, username, email, password, repeatPassword, profilePic, secretCode]);
 
     if (user) {
         return <Redirect to='/' />;
@@ -33,7 +61,7 @@ export default function SignUpForm () {
     return (
         <form onSubmit={onSignUp}>
             <div>
-                {errors.map((error, ind) => (
+                {validationErrors.map((error, ind) => (
                     <div key={ind}>{error}</div>
                 ))}
             </div>
