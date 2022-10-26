@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify, request
 from flask_login import current_user, login_required
-from app.models import db, EventLog
+from app.models import db, EventLog, Room
 from app.forms.eventlog_forms import CreateEventLogForm, UpdateEventLogForm
 
 eventlog_routes = Blueprint('logs', __name__)
@@ -43,9 +43,12 @@ def create_eventlog():
         login_val_error["errors"]["title"] = "Title is required"
     if not form.data['body']:
         login_val_error["errors"]["body"] = "Event log body is required"
+    if len(login_val_error["errors"]) > 0:
+        return jsonify(login_val_error), 400
 
     if form.validate_on_submit():
         new_log = EventLog(
+            user_id=form.data['user_id'],
             room_id=form.data['room_id'],
             title=form.data['title'],
             body=form.data['body']
@@ -79,6 +82,9 @@ def read_room_eventlogs(room_id):
     Gets all user's event logs
     """
 
+    room_query = Room.query.get(room_id)
+    if not room_query:
+        return jsonify({ "message": "Room couldn't be found", "status_code": 404 }), 404
     logs_query = EventLog.query.filter(EventLog.room_id == room_id).all()
     logs = [log.to_dict() for log in logs_query]
 
@@ -94,12 +100,13 @@ def read_eventlog(id):
     """
 
     curr_user = current_user.to_dict()
-    log = EventLog.query.get(id)
-    if not log:
+    log_query = EventLog.query.get(id)
+    if not log_query:
         return jsonify({ "message": "Event log couldn't be found", "status_code": 404 }), 404
-    if curr_user.id != log['user_id']:
-        return jsonify({ "message": "Forbidden", "status_code": 403 }), 403
-    return log.to_dict()
+    log = log_query.to_dict()
+    if curr_user['id'] != log['user_id']:
+        return jsonify({ "message": "Forbidden - You do not own this event log", "status_code": 403 }), 403
+    return log
 
 
 # UPDATE AN EVENT LOG
@@ -113,11 +120,12 @@ def update_eventlog(id):
     form['csrf_token'].data = request.cookies['csrf_token']
 
     curr_user = current_user.to_dict()
-    log_to_update = EventLog.query.get(id)
-    if not log_to_update:
+    log_to_update_query = EventLog.query.get(id)
+    if not log_to_update_query:
         return jsonify({ "message": "Event log couldn't be found", "status_code": 404 }), 404
-    if curr_user.id != log_to_update['user_id']:
-        return jsonify({ "message": "Forbidden", "status_code": 403 }), 403
+    log_to_update = log_to_update_query.to_dict()
+    if curr_user['id'] != log_to_update['user_id']:
+        return jsonify({ "message": "Forbidden - You do not own this event log", "status_code": 403 }), 403
 
 
     # BODY VALIDATIONS:
@@ -137,14 +145,14 @@ def update_eventlog(id):
 
     if form.validate_on_submit():
         if form.data['user_id']:
-            log_to_update.user_id = form.data['user_id']
+            log_to_update_query.user_id = form.data['user_id']
         if form.data['title']:
-            log_to_update.title = form.data['title']
+            log_to_update_query.title = form.data['title']
         if form.data['body']:
-            log_to_update.body = form.data['body']
+            log_to_update_query.body = form.data['body']
 
         db.session.commit()
-        return log_to_update.to_dict()
+        return log_to_update_query.to_dict()
     return {'errors': validation_errors_to_error_messages(form.errors)}, 400
 
 
@@ -161,7 +169,7 @@ def delete_eventlog(id):
     log_to_delete = EventLog.query.get(id)
     if not log_to_delete:
         return jsonify({ "message": "Event log couldn't be found", "status_code": 404 }), 404
-    if curr_user.id != log_to_delete['user_id']:
+    if curr_user['id'] != log_to_delete.to_dict()['user_id']:
         return jsonify({ "message": "Forbidden", "status_code": 403 }), 403
 
     db.session.delete(log_to_delete)

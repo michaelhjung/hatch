@@ -38,14 +38,18 @@ def create_room_img():
         "errors": {}
     }
 
-    if not form.data['room_id']:
-        login_val_error["errors"]["progress_id"] = "Room ID is required"
+    room_query = Room.query.get(form.data['room_id'])
+    print("ROOM QUERY =====>", room_query)
+    if not form.data['room_id'] or not room_query:
+        login_val_error["errors"]["room_id"] = "Room ID is required or Room with provided ID not found"
     if not form.data['name']:
         login_val_error["errors"]["name"] = "Name of room is required"
     if not form.data['img']:
         login_val_error["errors"]["img"] = "Room image url is required"
     if not form.data['order']:
         login_val_error["errors"]["order"] = "Order of room image is required"
+    if len(login_val_error["errors"]) > 0:
+        return jsonify(login_val_error), 400
 
     if form.validate_on_submit():
         new_room_img = RoomImage(
@@ -69,15 +73,19 @@ def read_room_img(room_img_id):
     """
 
     curr_user = current_user.to_dict()
-    room_img = RoomImage.query.get(room_img_id)
-    if not room_img:
+    room_img_query = RoomImage.query.get(room_img_id)
+    if not room_img_query:
         return jsonify({ "message": "Room Image couldn't be found", "status_code": 404 }), 404
 
-    room = Room.query.get(room_img['room_id'])
-    if curr_user.id != room['user_id']:
+    room_img = room_img_query.to_dict()
+    room_query = Room.query.get(room_img['room_id'])
+    if not room_query:
+        return jsonify({ "message": "Room couldn't be found", "status_code": 404 }), 404
+    room = room_query.to_dict()
+    if curr_user['id'] != room['user_id']:
         return jsonify({ "message": "Forbidden", "status_code": 403 }), 403
 
-    return room_img.to_dict()
+    return room_img
 
 
 # DELETE A ROOM IMAGE
@@ -93,8 +101,8 @@ def delete_room_img(room_img_id):
     if not room_img_to_delete:
         return jsonify({ "message": "Room couldn't be found", "status_code": 404 }), 404
 
-    room = Room.query.get(room_img_to_delete['room_id'])
-    if curr_user.id != room['user_id']:
+    room = Room.query.get(room_img_to_delete.to_dict()['room_id'])
+    if curr_user['id'] != room.to_dict()['user_id']:
         return jsonify({ "message": "Forbidden", "status_code": 403 }), 403
 
     db.session.delete(room_img_to_delete)

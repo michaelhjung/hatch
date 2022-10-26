@@ -43,6 +43,8 @@ def create_item():
         login_val_error["errors"]["serial_id"] = "Serial ID is required"
     if not form.data['img']:
         login_val_error["errors"]["img"] = "Image is required"
+    if len(login_val_error["errors"]) > 0:
+        return jsonify(login_val_error), 400
 
     if form.validate_on_submit():
         new_item = Item(
@@ -81,12 +83,13 @@ def read_item(id):
     """
 
     curr_user = current_user.to_dict()
-    item = Item.query.get(id)
-    if not item:
+    item_query = Item.query.get(id)
+    if not item_query:
         return jsonify({ "message": "Item couldn't be found", "status_code": 404 }), 404
-    if curr_user.id != item['user_id']:
-        return jsonify({ "message": "Forbidden", "status_code": 403 }), 403
-    return item.to_dict()
+    item = item_query.to_dict()
+    if curr_user['id'] != item['user_id']:
+        return jsonify({ "message": "Forbidden - You do not own this item", "status_code": 403 }), 403
+    return item
 
 
 # UPDATE AN ITEM
@@ -100,10 +103,11 @@ def update_item(id):
     form['csrf_token'].data = request.cookies['csrf_token']
 
     curr_user = current_user.to_dict()
-    item_to_update = Item.query.get(id)
-    if not item_to_update:
+    item_to_update_query = Item.query.get(id)
+    if not item_to_update_query:
         return jsonify({ "message": "Item couldn't be found", "status_code": 404 }), 404
-    if curr_user.id != item_to_update['user_id']:
+    item_to_update = item_to_update_query.to_dict()
+    if curr_user['id'] != item_to_update['user_id']:
         return jsonify({ "message": "Forbidden", "status_code": 403 }), 403
 
 
@@ -126,14 +130,14 @@ def update_item(id):
 
     if form.validate_on_submit():
         if form.data['name']:
-            item_to_update.name = form.data['name']
+            item_to_update_query.name = form.data['name']
         if form.data['serial_id']:
-            item_to_update.serial_id = form.data['serial_id']
+            item_to_update_query.serial_id = form.data['serial_id']
         if form.data['img']:
-            item_to_update.img = form.data['img']
+            item_to_update_query.img = form.data['img']
 
         db.session.commit()
-        return item_to_update.to_dict()
+        return item_to_update_query.to_dict()
     return {'errors': validation_errors_to_error_messages(form.errors)}, 400
 
 
@@ -150,7 +154,7 @@ def delete_item(id):
     item_to_delete = Item.query.get(id)
     if not item_to_delete:
         return jsonify({ "message": "Item couldn't be found", "status_code": 404 }), 404
-    if curr_user.id != item_to_delete['user_id']:
+    if curr_user['id'] != item_to_delete.to_dict()['user_id']:
         return jsonify({ "message": "Forbidden", "status_code": 403 }), 403
 
     db.session.delete(item_to_delete)

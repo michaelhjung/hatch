@@ -18,13 +18,6 @@ def validation_errors_to_error_messages(validation_errors):
     return errorMessages
 
 
-# @user_routes.route('/')
-# @login_required
-# def users():
-#     users = User.query.all()
-#     return {'users': [user.to_dict() for user in users]}
-
-
 @user_routes.route('/<int:id>')
 @login_required
 def user(id):
@@ -41,11 +34,12 @@ def update_user(id):
     form = UpdateUserForm()
     form['csrf_token'].data = request.cookies['csrf_token']
 
-    user = User.query.get(id)
+    user_query = User.query.get(id)
     curr_user = current_user.to_dict()
-    if not user:
+    if not user_query:
         return jsonify({ "message": "User couldn't be found", "status_code": 404 }), 404
-    if curr_user.id != user['id']:
+    user = user_query.to_dict()
+    if curr_user['id'] != user['id']:
         return jsonify({ "message": "Forbidden", "status_code": 403 }), 403
 
 
@@ -60,7 +54,7 @@ def update_user(id):
         login_val_error["errors"]["viz"] = "Viz must be an integer between 1-3"
     if form.data['won'] and type(form.data['won']) != bool:
         login_val_error["errors"]["won"] = "Won must be a boolean"
-    if form.data['current_room'] and (form.data['current_room'] < 1 or form.data['viz'] > 8):
+    if form.data['current_room'] and (form.data['current_room'] < 1 or form.data['current_room'] > 8):
         login_val_error["errors"]["current_room"] = "Current room must be an integer between 1-8"
     if len(login_val_error["errors"]) > 0:
         return jsonify(login_val_error), 400
@@ -68,11 +62,12 @@ def update_user(id):
 
     if form.validate_on_submit():
         if form.data['viz']:
-            user.viz = form.data['viz']
+            user_query.viz = form.data['viz']
         if form.data['won']:
-            user.won = form.data['won']
+            user_query.won = form.data['won']
         if form.data['current_room']:
-            user.current_room = form.data['current_room']
+            user_query.current_room = form.data['current_room']
 
         db.session.commit()
+        return user_query.to_dict()
     return {'errors': validation_errors_to_error_messages(form.errors)}, 400
