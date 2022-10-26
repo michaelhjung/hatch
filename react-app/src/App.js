@@ -13,8 +13,8 @@ export default function App() {
     const [loaded, setLoaded] = useState(false);
     const dispatch = useDispatch();
 
-    // testing purposes only:
-    const sessionUser = useSelector(state => state.session.user);
+    // // testing purposes only:
+    // const sessionUser = useSelector(state => state.session.user);
 
 
     useEffect(() => {
@@ -47,7 +47,7 @@ export default function App() {
                 <ProtectedRoute path='/' exact={true} >
                     <div>
                         <h1>My Home Page</h1>
-                        <h2>Welcome, {sessionUser.first_name} {sessionUser.last_name}</h2>
+                        {/* <h2>Welcome, {sessionUser.first_name} {sessionUser.last_name}</h2> */}
                     </div>
                 </ProtectedRoute>
             </Switch>
