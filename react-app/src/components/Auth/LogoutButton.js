@@ -8,5 +8,12 @@ export default function LogoutButton() {
         await dispatch(logout());
     };
 
-    return <button onClick={onLogout}>Logout</button>;
+    return (
+        <button
+            className='logout-button'
+            onClick={onLogout}
+        >
+            LOG OUT
+        </button>
+    )
 };

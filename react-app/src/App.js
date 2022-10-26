@@ -7,7 +7,7 @@ import Navbar from './components/Navbar/Navbar';
 import ProtectedRoute from './components/Auth/ProtectedRoute';
 import User from './components/User';
 import { authenticate } from './store/session';
-import Hero from './components/Hero';
+import Splash from './components/Splash';
 
 export default function App() {
     const [loaded, setLoaded] = useState(false);
@@ -30,10 +30,10 @@ export default function App() {
 
     return (
         <BrowserRouter>
-            <Hero />
+            <Splash />
 
 
-            <Navbar />
+            {/* <Navbar />
             <Switch>
                 <Route path='/login' exact={true}>
                     <LoginForm />
@@ -47,10 +47,9 @@ export default function App() {
                 <ProtectedRoute path='/' exact={true} >
                     <div>
                         <h1>My Home Page</h1>
-                        {/* <h2>Welcome, {sessionUser.first_name} {sessionUser.last_name}</h2> */}
                     </div>
                 </ProtectedRoute>
-            </Switch>
+            </Switch> */}
         </BrowserRouter>
     );
 }
