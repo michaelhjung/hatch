@@ -4,7 +4,7 @@ import { Redirect } from 'react-router-dom';
 import { login } from '../../store/session';
 
 export default function LoginForm () {
-    const [errors, setErrors] = useState([]);
+    const [validationErrors, setValidationErrors] = useState([]);
     const [credential, setCredential] = useState('');
     const [password, setPassword] = useState('');
     const user = useSelector(state => state.session.user);
@@ -14,7 +14,7 @@ export default function LoginForm () {
         e.preventDefault();
         const data = await dispatch(login(credential, password));
         if (data) {
-            setErrors(data);
+            setValidationErrors(Object.values(data));
         }
     };
 
@@ -25,12 +25,11 @@ export default function LoginForm () {
     return (
         <form onSubmit={onLogin}>
             <div>
-                {errors.map((error, ind) => (
+                {validationErrors.map((error, ind) => (
                     <div key={ind}>{error}</div>
                 ))}
             </div>
             <div>
-                <label htmlFor='credential'>Email or Username</label>
                 <input
                     name='credential'
                     type='text'
@@ -40,7 +39,6 @@ export default function LoginForm () {
                 />
             </div>
             <div>
-                <label htmlFor='password'>Password</label>
                 <input
                     name='password'
                     type='password'
@@ -48,8 +46,8 @@ export default function LoginForm () {
                     value={password}
                     onChange={e => setPassword(e.target.value)}
                 />
-                <button type='submit'>Login</button>
             </div>
+            <button type='submit'>Login</button>
         </form>
     );
 };
