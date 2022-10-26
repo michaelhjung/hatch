@@ -72,7 +72,18 @@ export default function SignUpForm () {
             {showModal && (
                 <Modal
                     id='login-modal'
-                    onClose={() => setShowModal(false)}
+                    onClose={() => {
+                            setFirstName('');
+                            setLastName('');
+                            setUsername('');
+                            setEmail('');
+                            setPassword('');
+                            setRepeatPassword('');
+                            setProfilePic('');
+                            setSecretCode('');
+                            setShowModal(false)
+                        }
+                    }
                 >
                     <form className='auth-form' onSubmit={onSignUp}>
                         <div className='error-list'>
@@ -80,7 +91,6 @@ export default function SignUpForm () {
                                 <div className='error-list-item' key={ind}>{error}</div>
                             ))}
                         </div>
-                        <div className='form-field-container'>
                             <input
                                 type='text'
                                 name='firstName'
@@ -88,10 +98,8 @@ export default function SignUpForm () {
                                 onChange={e => setFirstName(e.target.value)}
                                 value={firstName}
                                 required={true}
-                                className='form-field-input'
+                                className='form-field-input first-field-input'
                             ></input>
-                        </div>
-                        <div className='form-field-container'>
                             <input
                                 type='text'
                                 name='lastName'
@@ -101,8 +109,6 @@ export default function SignUpForm () {
                                 required={true}
                                 className='form-field-input'
                             ></input>
-                        </div>
-                        <div className='form-field-container'>
                             <input
                                 type='text'
                                 name='username'
@@ -112,8 +118,6 @@ export default function SignUpForm () {
                                 required={true}
                                 className='form-field-input'
                             ></input>
-                        </div>
-                        <div className='form-field-container'>
                             <input
                                 type='text'
                                 name='email'
@@ -123,8 +127,6 @@ export default function SignUpForm () {
                                 required={true}
                                 className='form-field-input'
                             ></input>
-                        </div>
-                        <div className='form-field-container'>
                             <input
                                 type='password'
                                 name='password'
@@ -134,8 +136,6 @@ export default function SignUpForm () {
                                 required={true}
                                 className='form-field-input'
                             ></input>
-                        </div>
-                        <div className='form-field-container'>
                             <input
                                 type='password'
                                 name='repeat_password'
@@ -145,8 +145,6 @@ export default function SignUpForm () {
                                 required={true}
                                 className='form-field-input'
                             ></input>
-                        </div>
-                        <div className='form-field-container'>
                             <input
                                 type='text'
                                 name='secretCode'
@@ -156,8 +154,6 @@ export default function SignUpForm () {
                                 required={true}
                                 className='form-field-input'
                             ></input>
-                        </div>
-                        <div className='form-field-container'>
                             <input
                                 type='text'
                                 name='profilePic'
@@ -165,9 +161,8 @@ export default function SignUpForm () {
                                 onChange={e => setProfilePic(e.target.value)}
                                 value={profilePic}
                                 required={true}
-                                className='form-field-input'
+                                className='form-field-input last-field-input'
                             ></input>
-                        </div>
                         <button className='submit-button' type='submit'>Sign Up</button>
                     </form>
                 </Modal>

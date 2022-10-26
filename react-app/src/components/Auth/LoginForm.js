@@ -36,7 +36,12 @@ export default function LoginForm () {
             {showModal && (
                 <Modal
                     id='login-modal'
-                    onClose={() => setShowModal(false)}
+                    onClose={() => {
+                            setCredential('')
+                            setPassword('')
+                            setShowModal(false)
+                        }
+                    }
                 >
                     <form className='auth-form' onSubmit={onLogin}>
                         <div className='error-list'>
@@ -44,26 +49,22 @@ export default function LoginForm () {
                                 <div className='error-list-item' key={ind}>{error}</div>
                             ))}
                         </div>
-                        <div className='form-field-container'>
-                            <input
-                                name='credential'
-                                type='text'
-                                placeholder='Email or Username'
-                                value={credential}
-                                onChange={e => setCredential(e.target.value)}
-                                className='form-field-input'
-                            />
-                        </div>
-                        <div className='form-field-container'>
-                            <input
-                                name='password'
-                                type='password'
-                                placeholder='Password'
-                                value={password}
-                                onChange={e => setPassword(e.target.value)}
-                                className='form-field-input'
-                            />
-                        </div>
+                        <input
+                            name='credential'
+                            type='text'
+                            placeholder='Email or Username'
+                            value={credential}
+                            onChange={e => setCredential(e.target.value)}
+                            className='form-field-input first-field-input'
+                        />
+                        <input
+                            name='password'
+                            type='password'
+                            placeholder='Password'
+                            value={password}
+                            onChange={e => setPassword(e.target.value)}
+                            className='form-field-input last-field-input'
+                        />
                         <button className='submit-button' type='submit'>Log In</button>
                     </form>
                 </Modal>
