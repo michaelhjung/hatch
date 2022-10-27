@@ -27,7 +27,6 @@ export default function CreateNoteForm({ add }) {
         catch (res) {
             // setValidationErrors(Object.values(data));
             console.log("ANY ERRORS?", res);
-            console.log("ANY ERRORS? .JSON()", res.json());
         }
     }
 

@@ -20,6 +20,8 @@
 /* FORMS */
 .create-note-form,
 .update-note-form,
+.create-item-form,
+.update-item-form,
 .auth-form {
     display: flex;
     flex-direction: column;
@@ -75,11 +77,13 @@
 
 
 /* PROFILE PIC PREVIEW */
-.profile-pic-prev-container {
+.profile-pic-prev-container,
+.item-img-prev-container {
     margin-top: 10px;
 }
 
-.profile-pic-preview {
+.profile-pic-preview,
+.item-img-preview {
     object-fit: cover;
     width: 150px;
     height: 150px;
