@@ -14,6 +14,10 @@
     align-items: center;
 }
 
+.splash-logo-container {
+    margin-left: 20px;
+}
+
 .welcome-title {
     color: #D9D9D9;
     margin: 35px 0px;

@@ -2,6 +2,7 @@ import './Game.css';
 import { Redirect } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import ProfileButton from '../Profile/ProfileButton';
+import Notes from '../Notes';
 
 export default function Game() {
     const user = useSelector(state => state.session.user);
@@ -16,9 +17,11 @@ export default function Game() {
             <section className='top'>
                 <ProfileButton user={user} />
             </section>
-            <section className='items'>ITEMS</section>
+            <section className='notes'>
+                <Notes user={user} />
+            </section>
             <section className='rooms'>ROOM</section>
-            <section className='notes'>NOTES</section>
+            <section className='items'>ITEMS</section>
             <section className='logs'>LOGS</section>
         </main>
     )
