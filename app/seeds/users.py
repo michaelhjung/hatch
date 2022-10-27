@@ -8,7 +8,7 @@ def seed_users():
         username='gamemaster',
         email='gamemaster@user.io',
         password='michaeljung',
-        profile_pic='https://bit.ly/3gJiENx',
+        profile_pic='https://bit.ly/3TGJiFD',
         secret_code='dr_doom'
     )
 
@@ -18,7 +18,7 @@ def seed_users():
         username='demouser',
         email='demouser@aa.io',
         password='username',
-        profile_pic='https://bit.ly/3zb8KL6',
+        profile_pic='https://bit.ly/3W44xTp',
         secret_code='secret_code'
     )
 
