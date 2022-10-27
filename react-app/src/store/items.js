@@ -67,6 +67,7 @@ export const updateItem = (itemId, itemData) => async dispatch => {
         dispatch(_updateItem(updatedItem));
         return updatedItem;
     }
+    console.log(response);
 }
 
 

@@ -30,12 +30,8 @@ export default function Notes() {
                 {userNotes && (
                     Object.values(userNotes).map(note => (
                         <div className='note-container'>
-                            {/* <div className='note-card'>
-                                <span className='note-title'>{note.title}</span>
-                            </div> */}
                             <ReadNote note={note} />
                             <div className='note-icons-container'>
-                                {/* <img className='update-icon' src={pencil} alt="update" /> */}
                                 <UpdateNoteForm pencil={pencil} note={note} />
                                 <DeleteNoteButton trash={trash} note={note} />
                             </div>

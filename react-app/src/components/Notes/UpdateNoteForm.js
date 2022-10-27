@@ -5,7 +5,7 @@ import { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux'
 import * as noteActions from '../../store/notes';
 
-export default function UpdateNoteForm({ user, note, pencil }) {
+export default function UpdateNoteForm({ note, pencil }) {
     const [validationErrors, setValidationErrors] = useState([]);
     const [title, setTitle] = useState(note.title || '');
     const [body, setBody] = useState(note.body || '');
@@ -15,7 +15,21 @@ export default function UpdateNoteForm({ user, note, pencil }) {
     useEffect(() => {
         setTitle(note.title);
         setBody(note.body);
+
+        return () => {
+            setTitle('');
+            setBody('');
+        }
     }, [showModal]);
+
+    useEffect(() => {
+        const errors = [];
+
+        if (title.length && (title.length < 2 || title.length > 12)) errors.push("Note title must be between 2-12 characters.");
+        if (body.length && (body.length < 2 || body.length > 250)) errors.push("Note body must be between 2-250 characters.");
+
+        setValidationErrors(errors);
+    }, [title, body]);
 
     const submitHandler = async (e) => {
         e.preventDefault();
@@ -32,18 +46,8 @@ export default function UpdateNoteForm({ user, note, pencil }) {
         catch (res) {
             // setValidationErrors(Object.values(data));
             console.log("ANY ERRORS?", res);
-            console.log("ANY ERRORS? .JSON()", res.json());
         }
     }
-
-    useEffect(() => {
-        const errors = [];
-
-        if (title.length && (title.length < 2 || title.length > 12)) errors.push("Note title must be between 2-12 characters.");
-        if (body.length && (body.length < 2 || body.length > 250)) errors.push("Note body must be between 2-250 characters.");
-
-        setValidationErrors(errors);
-    }, [title, body]);
 
 
     return (

@@ -1,14 +1,14 @@
-import './Notes.css'
+import './Items.css'
 import { useDispatch } from 'react-redux'
-import * as noteActions from '../../store/notes';
+import * as itemActions from '../../store/items';
 
-export default function DeleteNoteButton({ note, trash }) {
+export default function DeleteItemButton({ item, trash }) {
     const dispatch = useDispatch();
 
     const submitHandler = async (e) => {
         e.preventDefault();
         try {
-            const deleteNoteMsg = await dispatch(noteActions.deleteNote(note.id));
+            const deleteItemMsg = await dispatch(itemActions.deleteItem(item.id));
         }
 
         catch (res) {
