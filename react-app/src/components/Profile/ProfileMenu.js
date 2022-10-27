@@ -2,18 +2,13 @@ import { useDispatch } from 'react-redux';
 import { logout } from '../../store/session';
 import x from '../../assets/icons/x.svg';
 
-export default function ProfileMenu({ user, showProfileMenu, setShowProfileMenu }) {
+export default function ProfileMenu({ user, showProfileMenu, setShowProfileMenu, closeMenu }) {
     const dispatch = useDispatch()
     const onLogout = async (e) => {
         e.preventDefault();
         setShowProfileMenu(false);
         await dispatch(logout());
     };
-
-    const closeMenu = (e) => {
-        e.preventDefault();
-        setShowProfileMenu(false);
-    }
 
 
     return (
