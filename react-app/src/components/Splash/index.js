@@ -34,7 +34,7 @@ export default function Splash() {
                             <h1 className='welcome-title'>Welcome, {user.username}.</h1>
                         </div>
                         <div>
-                            <button className='room-1-button' onClick={() => history.push('/play')}>Enter Room 1</button>
+                            <button className='room-1-button' onClick={() => history.push('/play')}>ENTER ROOM 1</button>
                             <LogoutButton />
                         </div>
                     </>
