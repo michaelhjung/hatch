@@ -17,7 +17,8 @@
 }
 
 
-/* LOGIN & SIGNUP FORMS */
+/* FORMS */
+.create-note-form,
 .auth-form {
     display: flex;
     flex-direction: column;
@@ -32,6 +33,7 @@
     transition: box-shadow 0.7s ease-out;
     font-size: 1.1rem;
     text-align: center;
+    width: 400px;
 }
 
 .form-field-input:focus {
@@ -54,6 +56,22 @@
     border-bottom-right-radius: 6px;
 }
 
+.req-text {
+    margin-top: 10px;
+    font-weight: 600;
+}
+
+.form-field-textarea {
+    height: 255px;
+    resize: none;
+    overflow-y: auto;
+    /* line-height: 22px;
+    white-space: pre-wrap;
+    word-break: break-word;
+    outline: none;
+    border: none; */
+}
+
 
 /* PROFILE PIC PREVIEW */
 .profile-pic-prev-container {
@@ -74,7 +92,7 @@
 .submit-button {
     padding: 20px 50px;
     margin-top: 20px;
-    width: 350px;
+    width: 400px;
     border-radius: 6px;
     border: none;
     background-color: #c1b2aba7;

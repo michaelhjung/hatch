@@ -1,5 +1,6 @@
 .game-container {
     height: 100vh;
+    max-height: 100vh;
     min-width: 1000px;
     background-color: #333;
     display: grid;
@@ -12,6 +13,7 @@
       'notes rooms rooms rooms items'
       'notes logs logs logs items'
       'notes logs logs logs items';
+    padding: 10px;
 }
 
 .top,
@@ -29,8 +31,9 @@
 }
 .notes {
     grid-area: notes;
-    border: 1px solid maroon;
-
+    border: 1px solid #3F3F3F;
+    padding: 20px;
+    max-width: 550px;
 }
 .rooms {
     grid-area: rooms;

@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import { login } from '../../store/session';
 import { Modal } from '../../context/Modal';
-import './AuthForms.css';
+import '../Forms.css';
 
 export default function LoginForm () {
     const [validationErrors, setValidationErrors] = useState([]);
@@ -71,7 +71,11 @@ export default function LoginForm () {
                             onChange={e => setPassword(e.target.value)}
                             className='form-field-input last-field-input'
                         />
-                        <button className='submit-button' type='submit'>Log In</button>
+                        <button
+                            className='submit-button'
+                            type='submit'
+                            disabled={validationErrors.length}
+                        >Log In</button>
                     </form>
                 </Modal>
             )}
