@@ -28,14 +28,14 @@
     grid-area: top;
     border: 1px solid blue;
     position: relative;
-    min-height: 150px;
+    height: 125px;
 }
 .notes {
     grid-area: notes;
     border: 2px solid #3F3F3F;
     padding: 20px;
-    max-width: 550px;
-    max-height: 100vh;
+    max-width: 525px;
+    height: 100vh;
     overflow-y: auto;
 }
 .rooms {
@@ -44,7 +44,11 @@
 }
 .items {
     grid-area: items;
-    border: 1px solid green;
+    border: 2px solid #3F3F3F;
+    padding: 20px;
+    max-width: 525px;
+    height: 100vh;
+    overflow-y: auto;
 }
 .logs {
     grid-area: logs;
