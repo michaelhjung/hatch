@@ -60,6 +60,7 @@ export default function CreateNoteForm({ user, add }) {
                     }
                 >
                     <form className='create-note-form' onSubmit={submitHandler}>
+                        <span className='create-note-title'>Make a Note</span>
                         {validationErrors.length > 0 && (
                             <div className='error-list'>
                                 {validationErrors.map((error, ind) => (

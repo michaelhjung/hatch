@@ -115,3 +115,11 @@
     transform: scale(1.04);
     opacity: 0.85;
 }
+
+
+/* NOTES SPECIFIC */
+.create-note-title,
+.update-note-title {
+    font-size: 2rem;
+    margin-bottom: 12px;
+}

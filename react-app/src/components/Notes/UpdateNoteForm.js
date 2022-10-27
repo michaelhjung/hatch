@@ -5,7 +5,7 @@ import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
 import * as noteActions from '../../store/notes';
 
-export default function UpdateNoteForm({ user, note, pencil, userNotes }) {
+export default function UpdateNoteForm({ user, note, pencil }) {
     const [validationErrors, setValidationErrors] = useState([]);
     const [title, setTitle] = useState(note.title || '');
     const [body, setBody] = useState(note.body || '');
@@ -65,6 +65,7 @@ export default function UpdateNoteForm({ user, note, pencil, userNotes }) {
                     }
                 >
                     <form className='update-note-form' onSubmit={submitHandler}>
+                        <span className='update-note-title'>Update Your Note</span>
                         {validationErrors.length > 0 && (
                             <div className='error-list'>
                                 {validationErrors.map((error, ind) => (

@@ -28,12 +28,15 @@
     grid-area: top;
     border: 1px solid blue;
     position: relative;
+    min-height: 150px;
 }
 .notes {
     grid-area: notes;
     border: 1px solid #3F3F3F;
     padding: 20px;
     max-width: 550px;
+    max-height: 100vh;
+    overflow-y: auto;
 }
 .rooms {
     grid-area: rooms;
