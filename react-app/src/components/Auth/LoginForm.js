@@ -20,6 +20,9 @@ export default function LoginForm () {
             setValidationErrors(Object.values(data));
         }
         else {
+            setCredential('');
+            setPassword('');
+            setValidationErrors([]);
             setShowModal(false);
         }
     };
@@ -39,16 +42,19 @@ export default function LoginForm () {
                     onClose={() => {
                             setCredential('')
                             setPassword('')
+                            setValidationErrors([]);
                             setShowModal(false)
                         }
                     }
                 >
                     <form className='auth-form' onSubmit={onLogin}>
-                        <div className='error-list'>
-                            {validationErrors.map((error, ind) => (
-                                <div className='error-list-item' key={ind}>{error}</div>
-                            ))}
-                        </div>
+                        {validationErrors.length > 0 && (
+                            <div className='error-list'>
+                                {validationErrors.map((error, ind) => (
+                                    <div className='error-list-item' key={ind}>{error}</div>
+                                ))}
+                            </div>
+                        )}
                         <input
                             name='credential'
                             type='text'

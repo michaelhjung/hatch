@@ -27,6 +27,15 @@ export default function SignUpForm () {
                 setValidationErrors(Object.values(data));
             }
             else {
+                setFirstName('');
+                setLastName('');
+                setUsername('');
+                setEmail('');
+                setPassword('');
+                setRepeatPassword('');
+                setProfilePic('');
+                setSecretCode('');
+                setValidationErrors([]);
                 setShowModal(false);
             }
         }
@@ -34,9 +43,10 @@ export default function SignUpForm () {
 
     useEffect(() => {
         const errors = [];
-        if (firstName.length > 12) errors.push("First name cannot exceed 12 characters.");
-        if (lastName.length > 12) errors.push("Last name cannot exceed 12 characters.");
-        if (username.length > 16) errors.push("Username cannot exceed 16 characters.");
+
+        if (firstName.length && (firstName.length < 2 || firstName.length > 12)) errors.push("First name must be between 2-12 characters.");
+        if (lastName.length && (lastName.length < 2 || lastName.length > 12)) errors.push("Last name must be between 2-12 characters.");
+        if (username.length && (username.length < 4 || username.length > 16)) errors.push("Username must be between 4-16 characters.");
         if (email.length) {
             const lastDotIndex = email.lastIndexOf('.');
             const atSymbolIndex = email.indexOf('@');
@@ -54,8 +64,9 @@ export default function SignUpForm () {
                 });
             }
         }
+        if (password.length && (password.length < 6 || password.length > 20)) errors.push("Password must be between 6-20 characters.");
         if ((password.length && repeatPassword.length) && password !== repeatPassword) errors.push("Password confirmation must match.");
-        if (secretCode.length > 12) errors.push("Secret code cannot exceed 12 characters.");
+        if (secretCode.length && secretCode.length < 4 || secretCode.length > 12) errors.push("Secret code must be between 4-12 characters.");
 
         setValidationErrors(errors);
     }, [firstName, lastName, username, email, password, repeatPassword, profilePic, secretCode]);
@@ -81,16 +92,19 @@ export default function SignUpForm () {
                             setRepeatPassword('');
                             setProfilePic('');
                             setSecretCode('');
+                            setValidationErrors([]);
                             setShowModal(false)
                         }
                     }
                 >
                     <form className='auth-form' onSubmit={onSignUp}>
-                        <div className='error-list'>
-                            {validationErrors.map((error, ind) => (
-                                <div className='error-list-item' key={ind}>{error}</div>
-                            ))}
-                        </div>
+                        {validationErrors.length > 0 && (
+                            <div className='error-list'>
+                                {validationErrors.map((error, ind) => (
+                                    <div className='error-list-item' key={ind}>{error}</div>
+                                ))}
+                            </div>
+                        )}
                             <input
                                 type='text'
                                 name='firstName'
