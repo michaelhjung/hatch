@@ -1,6 +1,45 @@
 .game-container {
-    border: 5px solid red;
     height: 100vh;
     min-width: 1000px;
-    background-color: aqua;
+    background-color: #333;
+    display: grid;
+    gap: 15px;
+    grid-template-areas:
+      'top top top top top'
+      'notes rooms rooms rooms items'
+      'notes rooms rooms rooms items'
+      'notes rooms rooms rooms items'
+      'notes rooms rooms rooms items'
+      'notes logs logs logs items'
+      'notes logs logs logs items';
+}
+
+.top,
+.notes,
+.rooms,
+.items,
+.logs {
+    border-radius: 6px;
+}
+
+.top {
+    grid-area: top;
+    border: 1px solid blue;
+    position: relative;
+}
+.notes {
+    grid-area: notes;
+    border: 1px solid maroon;
+}
+.rooms {
+    grid-area: rooms;
+    border: 1px solid pink;
+}
+.items {
+    grid-area: items;
+    border: 1px solid green;
+}
+.logs {
+    grid-area: logs;
+    border: 1px solid burlywood;
 }

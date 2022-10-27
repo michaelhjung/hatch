@@ -1,5 +1,6 @@
 import './Splash.css'
 import { useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import logo from '../../assets/imgs/hatch-logo.png';
 import heroBg from '../../assets/imgs/watertight-door_door-bg.png';
 import heroWheel from '../../assets/imgs/watertight-door_wheel.png';
@@ -10,6 +11,7 @@ import Demo from './Demo';
 
 export default function Splash() {
     const user = useSelector(state => state.session.user);
+    const history = useHistory();
 
     return (
         <main className='hero-splash-container'>
@@ -31,7 +33,10 @@ export default function Splash() {
                         <div>
                             <h1 className='welcome-title'>Welcome, {user.username}.</h1>
                         </div>
-                        <LogoutButton />
+                        <div>
+                            <button className='room-1-button' onClick={() => history.push('/play')}>Enter Room 1</button>
+                            <LogoutButton />
+                        </div>
                     </>
                 )}
                 <Demo />
