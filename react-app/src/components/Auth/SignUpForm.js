@@ -82,7 +82,7 @@ export default function SignUpForm () {
             </button>
             {showModal && (
                 <Modal
-                    id='login-modal'
+                    className='signup-modal'
                     onClose={() => {
                             setFirstName('');
                             setLastName('');

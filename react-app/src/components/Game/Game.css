@@ -25,6 +25,7 @@
 .top {
     grid-area: top;
     border: 1px solid blue;
+    position: relative;
 }
 .notes {
     grid-area: notes;

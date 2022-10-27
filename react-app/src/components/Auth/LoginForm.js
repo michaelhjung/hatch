@@ -38,7 +38,7 @@ export default function LoginForm () {
             </button>
             {showModal && (
                 <Modal
-                    id='login-modal'
+                    className='login-modal'
                     onClose={() => {
                             setCredential('')
                             setPassword('')
