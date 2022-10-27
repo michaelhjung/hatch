@@ -14,12 +14,12 @@
     padding: 10px 0px;
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
+    justify-content: flex-start;
 }
 
 .note-container {
     width: 125px;
-    margin: 0px 15px 30px;
+    margin: 0px 15px 40px;
 }
 
 .note-title {
