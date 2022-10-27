@@ -55,6 +55,21 @@
 }
 
 
+/* PROFILE PIC PREVIEW */
+.profile-pic-prev-container {
+    margin-top: 10px;
+}
+
+.profile-pic-preview {
+    object-fit: cover;
+    width: 150px;
+    height: 150px;
+    border-radius: 4px;
+    margin: 10px 0px;
+    display: block;
+}
+
+
 /* SUMBIT BUTTON */
 .submit-button {
     padding: 20px 50px;
