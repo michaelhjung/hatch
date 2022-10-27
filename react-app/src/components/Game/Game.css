@@ -1,0 +1,6 @@
+.game-container {
+    border: 5px solid red;
+    height: 100vh;
+    min-width: 1000px;
+    background-color: aqua;
+}
