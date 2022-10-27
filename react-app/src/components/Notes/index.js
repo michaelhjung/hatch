@@ -3,6 +3,7 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import * as noteActions from '../../store/notes';
 import CreateNoteForm from './CreateNoteForm';
+import UpdateNoteForm from './UpdateNoteForm';
 import DeleteNoteButton from './DeleteNoteButton';
 import add from '../../assets/icons/add-item.svg';
 import pencil from '../../assets/icons/pencil.svg';
@@ -34,7 +35,8 @@ export default function Notes({ user }) {
                                 <span className='note-title'>{note.title}</span>
                             </div>
                             <div className='note-icons-container'>
-                                <img className='update-icon' src={pencil} alt="update" />
+                                {/* <img className='update-icon' src={pencil} alt="update" /> */}
+                                <UpdateNoteForm pencil={pencil} note={note} userNotes={userNotes} />
                                 <DeleteNoteButton trash={trash} note={note} />
                             </div>
                         </div>

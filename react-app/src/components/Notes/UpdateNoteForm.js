@@ -5,10 +5,10 @@ import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
 import * as noteActions from '../../store/notes';
 
-export default function CreateNoteForm({ user, add }) {
+export default function UpdateNoteForm({ user, note, pencil, userNotes }) {
     const [validationErrors, setValidationErrors] = useState([]);
-    const [title, setTitle] = useState('');
-    const [body, setBody] = useState('');
+    const [title, setTitle] = useState(note.title || '');
+    const [body, setBody] = useState(note.body || '');
     const [showModal, setShowModal] = useState(false);
     const dispatch = useDispatch();
 
@@ -16,11 +16,16 @@ export default function CreateNoteForm({ user, add }) {
     //     return <Redirect to='/' />;
     // }
 
+    useEffect(() => {
+        setTitle(note.title);
+        setBody(note.body);
+    }, [showModal]);
+
     const submitHandler = async (e) => {
         e.preventDefault();
         try {
-            const newNote = await dispatch(noteActions.createNote({ title, body }));
-            if (newNote) {
+            const updatedNote = await dispatch(noteActions.updateNote(note.id, { title, body }));
+            if (updatedNote) {
                 setTitle('');
                 setBody('');
                 setValidationErrors([]);
@@ -47,10 +52,10 @@ export default function CreateNoteForm({ user, add }) {
 
     return (
         <>
-            <img className='add-icon' src={add} alt="add" width='50px' onClick={() => setShowModal(true)} />
+            <img className='update-icon' src={pencil} alt="update" onClick={() => setShowModal(true)} />
             {showModal && (
                 <Modal
-                    className='create-note-modal'
+                    className='update-note-modal'
                     onClose={() => {
                             setTitle('');
                             setBody('');
@@ -59,7 +64,7 @@ export default function CreateNoteForm({ user, add }) {
                         }
                     }
                 >
-                    <form className='create-note-form' onSubmit={submitHandler}>
+                    <form className='update-note-form' onSubmit={submitHandler}>
                         {validationErrors.length > 0 && (
                             <div className='error-list'>
                                 {validationErrors.map((error, ind) => (
@@ -91,7 +96,7 @@ export default function CreateNoteForm({ user, add }) {
                             className='submit-button'
                             type='submit'
                             disabled={validationErrors.length}
-                        >Create Note</button>
+                        >Update Note</button>
                     </form>
                 </Modal>
             )}

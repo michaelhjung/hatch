@@ -19,6 +19,7 @@
 
 /* FORMS */
 .create-note-form,
+.update-note-form,
 .auth-form {
     display: flex;
     flex-direction: column;
