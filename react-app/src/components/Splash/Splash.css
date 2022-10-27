@@ -1,11 +1,11 @@
 .hero-splash-container {
-    border: 5px solid red;
+    /* border: 5px solid red; */
     height: 100vh;
     min-width: 1000px;
 }
 
 .splash-container {
-    border: 5px solid blue;
+    /* border: 5px solid blue; */
     background-color: #333;
     height: 100%;
     display: flex;

@@ -8,6 +8,8 @@ import ProtectedRoute from './components/Auth/ProtectedRoute';
 import User from './components/User';
 import { authenticate } from './store/session';
 import Splash from './components/Splash';
+import Footer from './components/Footer';
+import Game from './components/Game';
 
 export default function App() {
     const [loaded, setLoaded] = useState(false);
@@ -30,8 +32,15 @@ export default function App() {
 
     return (
         <BrowserRouter>
-            <Splash />
-
+            <Switch>
+                <Route exact path='/'>
+                    <Splash />
+                </Route>
+                <Route exact path='/play'>
+                    <Game />
+                </Route>
+            </Switch>
+            <Footer />
 
             {/* <Navbar />
             <Switch>
