@@ -19,7 +19,7 @@ export default function Game() {
                 <ProfileButton user={user} />
             </section>
             <section className='notes'>
-                <Notes user={user} />
+                <Notes />
             </section>
             <section className='rooms'>ROOM</section>
             <section className='items'>ITEMS</section>

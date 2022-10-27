@@ -32,7 +32,7 @@
 }
 .notes {
     grid-area: notes;
-    border: 1px solid #3F3F3F;
+    border: 2px solid #3F3F3F;
     padding: 20px;
     max-width: 550px;
     max-height: 100vh;
