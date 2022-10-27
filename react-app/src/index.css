@@ -6,3 +6,16 @@
     margin: 0;
     padding: 0;
 }
+
+*::-webkit-scrollbar {
+    width: 6px;
+}
+
+*::-webkit-scrollbar-track {
+    background: #222;
+}
+
+*::-webkit-scrollbar-thumb {
+    background-color: #555;
+    border-radius: 20px;
+}

@@ -11,7 +11,7 @@ import pencil from '../../assets/icons/pencil.svg';
 import trash from '../../assets/icons/trash.svg';
 import x from '../../assets/icons/x.svg';
 
-export default function Notes({ user }) {
+export default function Notes() {
     const dispatch = useDispatch();
     const userNotes = useSelector(state => state.notes);
 
