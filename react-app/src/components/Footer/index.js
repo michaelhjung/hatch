@@ -7,14 +7,17 @@ import favicon from '../../assets/icons/favicon.png';
 
 export default function Footer() {
     const url = useLocation().pathname;
+    console.log("URL", url);
 
     useEffect(() => {
-        const footer = document.querySelector('.footer');
-        if (url !== '/') footer.classList.toggle('fixed');
+        const footer = document.getElementById('footer');
+        if (url === '/') footer.setAttribute('class', 'fixed');
+        if (url !== '/') footer.removeAttribute('class', 'fixed');
+
     }, [url]);
 
     return (
-        <footer className='footer fixed'>
+        <footer id='footer' >
             <div className='footer-copyright-wrapper'>
                 <span className='footer-copyright'>
                     Copyright ©2022 Michael Jung. Hatch is an original virtual escape room designed by <a className='michael-linkedin' href='https://www.linkedin.com/in/michael-h-jung/' target='_blank' rel='noreferrer'>Michael Jung</a>.

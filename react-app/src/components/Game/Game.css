@@ -30,6 +30,7 @@
 .notes {
     grid-area: notes;
     border: 1px solid maroon;
+
 }
 .rooms {
     grid-area: rooms;

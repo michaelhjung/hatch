@@ -4,6 +4,7 @@ import { Redirect } from 'react-router-dom';
 import { signUp } from '../../store/session';
 import { Modal } from '../../context/Modal';
 import './AuthForms.css';
+import wanted from '../../assets/icons/wanted.svg';
 
 export default function SignUpForm () {
     const [validationErrors, setValidationErrors] = useState([]);
@@ -177,6 +178,12 @@ export default function SignUpForm () {
                                 required={true}
                                 className='form-field-input last-field-input'
                             ></input>
+                            {profilePic && (
+                                <div className='profile-pic-prev-container'>
+                                    <span>Profile Picture Preview:</span>
+                                    <img className='profile-pic-preview' src={profilePic} alt="avatar" onError={e => e.target.src=wanted} />
+                                </div>
+                            )}
                         <button className='submit-button' type='submit'>Sign Up</button>
                     </form>
                 </Modal>
