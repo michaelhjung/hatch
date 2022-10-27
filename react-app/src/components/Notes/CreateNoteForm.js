@@ -2,19 +2,15 @@ import './Notes.css'
 import '../Forms.css';
 import { Modal } from '../../context/Modal';
 import { useState, useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import * as noteActions from '../../store/notes';
 
-export default function CreateNoteForm({ user, add }) {
+export default function CreateNoteForm({ add }) {
     const [validationErrors, setValidationErrors] = useState([]);
     const [title, setTitle] = useState('');
     const [body, setBody] = useState('');
     const [showModal, setShowModal] = useState(false);
     const dispatch = useDispatch();
-
-    // if (!user) {
-    //     return <Redirect to='/' />;
-    // }
 
     const submitHandler = async (e) => {
         e.preventDefault();
