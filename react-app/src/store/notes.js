@@ -105,7 +105,7 @@ const notesReducer = (state = initialState, action) => {
         case READ_NOTES:
             newState = { ...state };
             const userNotes = {};
-            action.payload.forEach(note => userNotes[note.id] = note);
+            action.payload.Notes.forEach(note => userNotes[note.id] = note);
             newState = userNotes;
             // console.log("NEWSTATE AFTER READ_NOTES ACTION:", newState);
             return newState;

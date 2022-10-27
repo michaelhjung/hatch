@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { Redirect } from 'react-router-dom';
 import { signUp } from '../../store/session';
 import { Modal } from '../../context/Modal';
-import './AuthForms.css';
+import '../Forms.css';
 import wanted from '../../assets/icons/wanted.svg';
 
 export default function SignUpForm () {
@@ -109,82 +109,89 @@ export default function SignUpForm () {
                             <input
                                 type='text'
                                 name='firstName'
-                                placeholder='first name'
+                                placeholder='first name*'
                                 onChange={e => setFirstName(e.target.value)}
                                 value={firstName}
                                 required={true}
                                 className='form-field-input first-field-input'
-                            ></input>
+                            />
                             <input
                                 type='text'
                                 name='lastName'
-                                placeholder='last name'
+                                placeholder='last name*'
                                 onChange={e => setLastName(e.target.value)}
                                 value={lastName}
                                 required={true}
                                 className='form-field-input'
-                            ></input>
+                            />
                             <input
                                 type='text'
                                 name='username'
-                                placeholder='username'
+                                placeholder='username*'
                                 onChange={e => setUsername(e.target.value)}
                                 value={username}
                                 required={true}
                                 className='form-field-input'
-                            ></input>
+                            />
                             <input
                                 type='text'
                                 name='email'
-                                placeholder='email'
+                                placeholder='email*'
                                 onChange={e => setEmail(e.target.value)}
                                 value={email}
                                 required={true}
                                 className='form-field-input'
-                            ></input>
+                            />
                             <input
                                 type='password'
                                 name='password'
-                                placeholder='password'
+                                placeholder='password*'
                                 onChange={e => setPassword(e.target.value)}
                                 value={password}
                                 required={true}
                                 className='form-field-input'
-                            ></input>
+                            />
                             <input
                                 type='password'
                                 name='repeat_password'
-                                placeholder='confirm password'
+                                placeholder='confirm password*'
                                 onChange={e => setRepeatPassword(e.target.value)}
                                 value={repeatPassword}
                                 required={true}
                                 className='form-field-input'
-                            ></input>
+                            />
                             <input
                                 type='text'
                                 name='secretCode'
-                                placeholder='secret code (for in game)'
+                                placeholder='secret code (for in-game)*'
                                 onChange={e => setSecretCode(e.target.value)}
                                 value={secretCode}
                                 required={true}
                                 className='form-field-input'
-                            ></input>
+                            />
                             <input
                                 type='text'
                                 name='profilePic'
-                                placeholder='profile picture url'
+                                placeholder='profile picture url*'
                                 onChange={e => setProfilePic(e.target.value)}
                                 value={profilePic}
                                 required={true}
                                 className='form-field-input last-field-input'
-                            ></input>
+                            />
+                            {(firstName.length === 0 || lastName.length === 0 || username.length === 0 || email.length === 0 || password.length === 0 || repeatPassword.length === 0 || secretCode.length === 0 || profilePic.length === 0) && (
+                                <small className='req-text' >*All fields are required.</small>
+                            )}
                             {profilePic && (
                                 <div className='profile-pic-prev-container'>
                                     <span>Profile Picture Preview:</span>
                                     <img className='profile-pic-preview' src={profilePic} alt="avatar" onError={e => e.target.src=wanted} />
                                 </div>
                             )}
-                        <button className='submit-button' type='submit'>Sign Up</button>
+                        <button
+                            className='submit-button'
+                            type='submit'
+                            disabled={validationErrors.length}
+                        >Sign Up</button>
                     </form>
                 </Modal>
             )}
