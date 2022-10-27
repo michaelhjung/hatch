@@ -1,3 +1,23 @@
+/* ERROR LIST */
+.error-list {
+    color: rgb(159, 0, 0);
+    font-weight: 600;
+    background-color: rgba(153, 8, 8, 0.351);
+    padding: 15px;
+    border-radius: 6px;
+    margin-bottom: 10px;
+}
+
+.error-list-item {
+    margin-bottom: 5px;
+}
+
+.error-list-item:last-child {
+    margin-bottom: 0px;
+}
+
+
+/* LOGIN & SIGNUP FORMS */
 .auth-form {
     display: flex;
     flex-direction: column;
@@ -7,19 +27,21 @@
 
 .form-field-input {
     padding: 20px 75px;
-    /* border-radius: 6px; */
     border: none;
-    /* margin-bottom: 5px; */
     box-shadow: 1px 1px 6px 0px #333;
     transition: box-shadow 0.7s ease-out;
-    font-size: 1.2rem;
+    font-size: 1.1rem;
+    text-align: center;
 }
 
-
 .form-field-input:focus {
-    /* outline: 2px solid #333; */
     outline: none;
     box-shadow: 1px 1px 22px 0px #333;
+}
+
+.form-field-input::placeholder {
+    color: #999;
+    opacity: 0.6;
 }
 
 .first-field-input {
@@ -35,7 +57,7 @@
 .submit-button {
     padding: 20px 50px;
     margin-top: 20px;
-    width: 360px;
+    width: 350px;
     border-radius: 6px;
     border: none;
     background-color: #c1b2aba7;
@@ -43,7 +65,7 @@
     cursor: pointer;
     transition: box-shadow 0.7s ease-out;
     transition: transform 1s ease-out;
-    font-size: 1.2rem;
+    font-size: 1.1rem;
 }
 
 .submit-button:hover {
