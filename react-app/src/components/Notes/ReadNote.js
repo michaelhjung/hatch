@@ -1,6 +1,6 @@
 import './Notes.css';
 import { Modal } from '../../context/Modal';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 
 export default function ReadNote({ note }) {
     const [showModal, setShowModal] = useState(false);

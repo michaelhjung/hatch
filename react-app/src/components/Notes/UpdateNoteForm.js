@@ -2,7 +2,7 @@ import './Notes.css'
 import '../Forms.css';
 import { Modal } from '../../context/Modal';
 import { useState, useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import * as noteActions from '../../store/notes';
 
 export default function UpdateNoteForm({ user, note, pencil }) {
@@ -11,10 +11,6 @@ export default function UpdateNoteForm({ user, note, pencil }) {
     const [body, setBody] = useState(note.body || '');
     const [showModal, setShowModal] = useState(false);
     const dispatch = useDispatch();
-
-    // if (!user) {
-    //     return <Redirect to='/' />;
-    // }
 
     useEffect(() => {
         setTitle(note.title);
