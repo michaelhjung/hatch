@@ -59,19 +59,19 @@ def seed_logs():
     room5_log2 = EventLog(
         room_id=5,
         user_id=None,
-        title='The Bat Cave - Event',
+        title='The Bat Cave - Event 1',
         body='A bat flew into you.'
     )
     room5_log3 = EventLog(
         room_id=5,
         user_id=None,
-        title='The Bat Cave - Event',
+        title='The Bat Cave - Event 2',
         body='Another bat flew into you.'
     )
     room5_log4 = EventLog(
         room_id=5,
         user_id=None,
-        title='The Bat Cave - Event',
+        title='The Bat Cave - Event 3',
         body='A third bat flew into you. This one dropped a note.'
     )
     room6_log1 = EventLog(

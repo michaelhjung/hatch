@@ -28,7 +28,7 @@ export default function App() {
                 <Route exact path='/'>
                     <Splash />
                 </Route>
-                <Route exact path='/play'>
+                <Route path='/play'>
                     <Game />
                 </Route>
             </Switch>
