@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux';
 import ProfileButton from '../Profile/ProfileButton';
 import Notes from '../Notes';
 import Items from '../Items';
+import Rooms from '../Rooms';
 
 export default function Game() {
     const user = useSelector(state => state.session.user);
@@ -21,7 +22,9 @@ export default function Game() {
             <section className='notes'>
                 <Notes />
             </section>
-            <section className='rooms'>ROOM</section>
+            <section className='rooms'>
+                <Rooms />
+            </section>
             <section className='items'>
                 <Items />
             </section>

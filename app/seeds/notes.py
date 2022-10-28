@@ -12,10 +12,16 @@ def seed_notes():
         title='Hello, Demo User',
         body='Feel free to create, read, update, or delete notes!'
     )
+    test_note3 = Note(
+        user_id=2,
+        title='Items',
+        body='Also feel free to create, read, update, or delete items on the right!'
+    )
 
 
     db.session.add(test_note)
     db.session.add(test_note2)
+    db.session.add(test_note3)
 
     db.session.commit()
 
