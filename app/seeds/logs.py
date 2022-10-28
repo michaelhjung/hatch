@@ -44,11 +44,23 @@ def seed_logs():
         title='The Locked Door - Observing New Room',
         body='I found a door, but it\'s locked... Looks like it wants a very specific key...'
     )
+    room3_log2 = EventLog(
+        room_id=3,
+        user_id=None,
+        title='The Locked Door - Key',
+        body='You made the right key! Nice...'
+    )
     room4_log1 = EventLog(
         room_id=4,
         user_id=None,
         title='The Empty Room - Observing New Room',
         body='There\'s a hole in the ceiling, but how do I get up there? Maybe I can make something...'
+    )
+    room4_log2 = EventLog(
+        room_id=4,
+        user_id=None,
+        title='The Empty Room - The Right Tool',
+        body='Nice job again, let\'s get out of here...'
     )
     room5_log1 = EventLog(
         room_id=5,
@@ -107,7 +119,9 @@ def seed_logs():
     db.session.add(room2_log2)
     db.session.add(room2_log3)
     db.session.add(room3_log1)
+    db.session.add(room3_log2)
     db.session.add(room4_log1)
+    db.session.add(room4_log2)
     db.session.add(room5_log1)
     db.session.add(room5_log2)
     db.session.add(room5_log3)

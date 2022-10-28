@@ -1,5 +1,6 @@
 import './Rooms.css';
 import { useEffect, useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { Modal } from '../../context/Modal';
 // import * as roomActions from '../../store/rooms';
@@ -13,11 +14,16 @@ import keySvg from '../../assets/icons/key.svg';
 
 export default function Rooms({ user, url, userRooms }) {
     const dispatch = useDispatch();
+    const history = useHistory();
     const [showIntro, setShowIntro] = useState(true);
     const [showBottleEvent, setShowBottleEvent] = useState(false);
     const [showRoom2Intro, setShowRoom2Intro] = useState(true);
     const [showFooterEvent, setShowFooterEvent] = useState(false);
     const [showRoom2Note, setShowRoom2Note] = useState(false);
+    const [showRoom3Intro, setShowRoom3Intro] = useState(true);
+    const [showRoom3CorrectKey, setShowRoom3CorrectKey] = useState(false);
+
+
 
     // -------------------- ROOM 1 GAME LOGIC: -------------------- //
     const vizHandler = async (e) => {
@@ -61,6 +67,7 @@ export default function Rooms({ user, url, userRooms }) {
     }
 
 
+
     // -------------------- ROOM 2 GAME LOGIC: -------------------- //
     const closeRoom2Intro = () => {
         // CLOSE MODAL:
@@ -102,8 +109,32 @@ export default function Rooms({ user, url, userRooms }) {
     }
 
 
-    // -------------------- ROOM 3 GAME LOGIC: -------------------- //
 
+    // -------------------- ROOM 3 GAME LOGIC: -------------------- //
+    const closeRoom3Intro = () => {
+        // CLOSE MODAL:
+        setShowRoom3Intro(false);
+
+        // UPDATE USER LOG HISTORY:
+        const room3log1id = userRooms['3'].Event_Logs[0].id;
+        dispatch(logActions.updateLog(room3log1id, { user_id: user.id }));
+    }
+    useEffect(() => {
+        // CHECK IF USER HAS CORRECT ITEM MADE:
+        if (user.Items) {
+            user.Items.forEach(item => {
+                if (item.serial_id === "B0A9J19M") setShowRoom3CorrectKey(true);
+            });
+        }
+    }, [user.Items]);
+    const closeRoom3CorrectKey = () => {
+        // UPDATE USER LOG HISTORY:
+        const room3log2id = userRooms['3'].Event_Logs[1].id;
+        dispatch(logActions.updateLog(room3log2id, { user_id: user.id }));
+
+        // REDIRECT USER TO NEW ROOM:
+        history.push('/play/nwgjJHTaYys');
+    }
 
 
     // -------------------- ROOM 4 GAME LOGIC: -------------------- //
@@ -144,6 +175,9 @@ export default function Rooms({ user, url, userRooms }) {
                     )}
                 </>
             )}
+
+
+
             {url === '/play/sewer' && userRooms['2'] && (
                 <>
                     <img className='room-img' src={userRooms['2'].Images[0].img} alt="room2" />
@@ -181,24 +215,67 @@ export default function Rooms({ user, url, userRooms }) {
                     )}
                 </>
             )}
+
+
+
             {url === '/play/AKDzZV7xMuQ' && userRooms['3'] && (
-                <img className='room-img' src={userRooms['3'].Images[0].img} alt="room3" />
+                <>
+                    <img className='room-img' src={userRooms['3'].Images[0].img} alt="room3" />
+                    {showRoom3Intro && (
+                        <Modal
+                            className='room-3-intro-modal'
+                            onClose={closeRoom3Intro}
+                        >
+                            <div className='event-popup'>
+                                I found a door, but it's locked... Looks like it wants a very specific key...
+                            </div>
+                        </Modal>
+                    )}
+                    {showRoom3CorrectKey && (
+                        <Modal
+                            className='room-3-intro-modal'
+                            onClose={closeRoom3CorrectKey}
+                        >
+                            <div className='event-popup'>
+                                You made the right key! Nice...
+                            </div>
+                        </Modal>
+                    )}
+                </>
             )}
+
+
+
             {url === '/play/nwgjJHTaYys' && userRooms['4'] && (
                 <img className='room-img' src={userRooms['4'].Images[0].img} alt="room4" />
             )}
+
+
+
             {url === '/play/cSI7QDhHLW8' && userRooms['5'] && (
                 <img className='room-img' src={userRooms['5'].Images[0].img} alt="room5" />
             )}
+
+
+
             {url === '/play/3RA7Y6eJ2bE' && userRooms['6'] && (
                 <img className='room-img' src={userRooms['6'].Images[0].img} alt="room6" />
             )}
+
+
+
             {url === '/play/jhNmKd74tEA' && userRooms['7'] && (
                 <img className='room-img' src={userRooms['7'].Images[0].img} alt="room7" />
             )}
+
+
+
             {url === '/play/gUpht2fDiqo' && userRooms['8'] && (
                 <img className='room-img' src={userRooms['8'].Images[0].img} alt="room8" />
             )}
+
+
+
             {url !== '/play' &&
              url !== '/play/sewer' &&
              url !== '/play/AKDzZV7xMuQ' &&
