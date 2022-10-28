@@ -28,6 +28,9 @@
     grid-area: top;
     position: relative;
     height: 125px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
 }
 .notes {
     grid-area: notes;
