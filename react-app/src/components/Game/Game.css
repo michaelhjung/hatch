@@ -1,7 +1,7 @@
 .game-container {
     height: 100vh;
-    max-height: 100vh;
-    min-width: 1000px;
+    width: 100%;
+    /* min-width: 1000px; */
     background-color: #333;
     display: grid;
     gap: 15px;
@@ -28,6 +28,7 @@
     grid-area: top;
     position: relative;
     height: 125px;
+    /* height: 100%; */
     display: flex;
     justify-content: center;
     align-items: flex-end;
@@ -36,12 +37,16 @@
     grid-area: notes;
     border: 2px solid #3F3F3F;
     padding: 20px;
+    min-width: 360px;
     max-width: 525px;
+    /* width: 100vh; */
+    /* width: 360px; */
     overflow-y: auto;
 }
 .rooms {
     grid-area: rooms;
-    min-width: 800px;
+    min-width: 1080px;
+    width: 100%;
     border-radius: 6px;
     overflow: hidden;
     position: relative;
@@ -50,10 +55,14 @@
     grid-area: items;
     border: 2px solid #3F3F3F;
     padding: 20px;
+    min-width: 360px;
     max-width: 525px;
+    /* width: 100vh; */
+    /* width: 360px; */
     overflow-y: auto;
 }
 .logs {
     grid-area: logs;
     border: 1px solid burlywood;
+    width: 100%;
 }

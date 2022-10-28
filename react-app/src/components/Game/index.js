@@ -30,8 +30,8 @@ export default function Game() {
     return (
         <main className='game-container'>
             <section className='top'>
-                <ProfileButton user={user} />
                 <RoomTitle url={url} userRooms={userRooms} />
+                <ProfileButton user={user} />
             </section>
             <section className='notes'>
                 <Notes />
