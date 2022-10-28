@@ -18,7 +18,7 @@ def seed_users():
         username='demouser',
         email='demouser@aa.io',
         password='username',
-        profile_pic='https://bit.ly/3DclVN8',
+        profile_pic='https://bit.ly/3U0JyPx',
         secret_code='secret_code'
     )
 
