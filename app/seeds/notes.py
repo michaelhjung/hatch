@@ -5,12 +5,12 @@ def seed_notes():
     test_note = Note(
         user_id=1,
         title='Hello, Game Master',
-        body='This is where you can write notes.'
+        body='Feel free to create, read, update, or delete notes!'
     )
     test_note2 = Note(
         user_id=2,
         title='Hello, Demo User',
-        body='This is where you can write notes.'
+        body='Feel free to create, read, update, or delete notes!'
     )
 
 
