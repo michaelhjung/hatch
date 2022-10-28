@@ -21,6 +21,19 @@
 }
 
 /* ROOM 1 */
+.intro-story {
+    font-size: 1.5rem;
+    padding: 40px;
+    color: #333;
+}
+
+.event-popup {
+    display: flex;
+    justify-content: center;
+    font-size: 1.3rem;
+    margin: 20px 80px;
+}
+
 #blurry {
     filter: blur(10px);
 }
@@ -44,4 +57,18 @@
 
 .rub-eyes-button:hover {
     opacity: 1;
+}
+
+.bottle {
+    width: 10px;
+    height: 10px;
+    background-color: none;
+    position: absolute;
+    bottom: 15%;
+    left: 30%;
+}
+
+.bottle:hover {
+    box-shadow: 0px 0px 12px 1px #D9D9D9;
+    cursor: pointer;
 }

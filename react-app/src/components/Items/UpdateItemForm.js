@@ -24,7 +24,7 @@ export default function UpdateItemForm({ item, pencil }) {
             setSerialId('');
             setImg('');
         }
-    }, [showModal]);
+    }, [showModal, item.name, item.serial_id, item.img]);
 
     useEffect(() => {
         const errors = [];

@@ -1,12 +1,18 @@
 import './Rooms.css';
+import { useState } from 'react';
 import { useDispatch } from 'react-redux';
+import { Modal } from '../../context/Modal';
 // import * as roomActions from '../../store/rooms';
-// import * as logActions from '../../store/logs';
+import * as logActions from '../../store/logs';
 import * as sessionActions from '../../store/session';
+import * as noteActions from '../../store/notes';
+import * as itemActions from '../../store/items';
 import wrongRoom from '../../assets/imgs/wrong-room.png';
 
 export default function Rooms({ user, url, userRooms }) {
     const dispatch = useDispatch();
+    const [showIntro, setShowIntro] = useState(true);
+    const [showBottleEvent, setShowBottleEvent] = useState(false);
     // let userLogs = user.Event_Logs;
     // console.log("USER LOGS:", userLogs);
 
@@ -52,27 +58,77 @@ export default function Rooms({ user, url, userRooms }) {
         e.preventDefault();
         const roomImg = document.querySelector('.room-img');
         const rubEyesButton = document.querySelector('.rub-eyes-button');
-        if (user.viz <= 3) {
-            // console.log("USER VIZ BEFORE UPDATE:", userViz);
+        if (user.viz < 3) {
             await dispatch(sessionActions.updateUser(user.id, { viz: user.viz + 1} ));
+        }
+        roomImg.removeAttribute('id');
+        rubEyesButton.setAttribute('id', 'hidden');
+    }
 
-            roomImg.removeAttribute('id');
-            rubEyesButton.setAttribute('id', 'hidden');
+    const closeIntro = () => {
+        // CLOSE MODAL:
+        setShowIntro(false);
 
-        } else {
-            console.log("USER VIZ IS 3 OR GREATER...");
+        // UPDATE USER LOG HISTORY:
+        const room1log1id = userRooms['1'].Event_Logs[0].id;
+        dispatch(logActions.updateLog(room1log1id, { user_id: user.id }));
+        // dispatch(logActions.readLogs());
+    }
+
+    const bottleClick = () => setShowBottleEvent(true);
+    const closeBottleEvent = async () => {
+        // CLOSE MODAL:
+        setShowBottleEvent(false);
+
+        // UPDATE USER LOG HISTORY:
+        const room1log2id = userRooms['1'].Event_Logs[1].id;
+        dispatch(logActions.updateLog(room1log2id, { user_id: user.id }));
+
+        // CREATE NOTE WITH ROOM 2 KEY:
+        if (user.Notes) {
+            const userNotes = Object.values(user.Notes);
+            let hasNote = false;
+            userNotes.forEach(note => {
+                if (note.body === "https://escape-hatch.herokuapp.com/play/sewer") hasNote = true;
+            })
+            if (!hasNote) {
+                await dispatch(noteActions.createNote({ title: "A Back Door", body: "https://escape-hatch.herokuapp.com/play/sewer" }));
+            }
         }
     }
 
 
-    if (!userRooms) return null;
 
+    if (!userRooms) return null;
     return (
         <>
             {url === '/play' && userRooms['1'] && (
                 <>
                     <img className='room-img' id='blurry' src={userRooms['1'].Images[0].img} alt="room1" />
                     <button className='rub-eyes-button' onClick={vizHandler}>Rub Eyes</button>
+                    {showIntro && (
+                        <Modal
+                            className='intro-story-modal'
+                            onClose={closeIntro}
+                        >
+                            <div className='intro-story'>
+                                You are a genius mechanical/software engineer multi-billionaire and weapons manufacturer, hired by the federal government. Unfortunately, you have been kidnapped by a terrorist group who are forcing you to create weapons of mass destruction for them. They offer you unlimited resources to be able to create these weapons. Use this to your advantage to find a way to escape! You can write, read, update, and delete notes on your left and same thing for items on the right. Good luck!
+                            </div>
+                        </Modal>
+                    )}
+                    {user.Event_Logs && user.Event_Logs.length >= 1 && (
+                        <div className='bottle' onClick={bottleClick}></div>
+                    )}
+                    {showBottleEvent && (
+                        <Modal
+                            className='bottle-event-modal'
+                            onClose={closeBottleEvent}
+                        >
+                            <div className='event-popup'>
+                                You found a bottle on the ground. There's a note inside... It says "Check your pockets."
+                            </div>
+                        </Modal>
+                    )}
                 </>
             )}
             {url === '/play/sewer' && userRooms['2'] && (

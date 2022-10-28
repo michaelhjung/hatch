@@ -1,0 +1,39 @@
+.all-logs-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: #D9D9D9;
+    overflow-y: auto;
+    position: absolute;
+    padding: 20px 0px;
+}
+
+.logs-header {
+    font-size: 2.5rem;
+    font-weight: 600;
+    width: 50%;
+    text-align: center;
+    padding-bottom: 10px;
+    border-bottom: 1px dotted #666;
+}
+
+.log-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 25px 0px;
+    border-bottom: 1px dotted #666;
+    width: 50%;
+}
+
+.log-title {
+    margin-bottom: 10px;
+    font-size: 1.3rem;
+}
+
+.log-body {
+    font-size: 1.1rem;
+    text-align: justify;
+}
