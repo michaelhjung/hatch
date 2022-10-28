@@ -5,6 +5,7 @@ import ProfileButton from '../Profile/ProfileButton';
 import Notes from '../Notes';
 import Items from '../Items';
 import Rooms from '../Rooms';
+import EventLogs from '../EventLogs';
 
 export default function Game() {
     const user = useSelector(state => state.session.user);
@@ -28,7 +29,9 @@ export default function Game() {
             <section className='items'>
                 <Items />
             </section>
-            <section className='logs'>LOGS</section>
+            <section className='logs'>
+                <EventLogs />
+            </section>
         </main>
     )
 }
