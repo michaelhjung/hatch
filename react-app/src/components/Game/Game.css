@@ -26,7 +26,6 @@
 
 .top {
     grid-area: top;
-    border: 1px solid blue;
     position: relative;
     height: 125px;
 }
@@ -35,7 +34,6 @@
     border: 2px solid #3F3F3F;
     padding: 20px;
     max-width: 525px;
-    height: 100vh;
     overflow-y: auto;
 }
 .rooms {
@@ -47,7 +45,6 @@
     border: 2px solid #3F3F3F;
     padding: 20px;
     max-width: 525px;
-    height: 100vh;
     overflow-y: auto;
 }
 .logs {
