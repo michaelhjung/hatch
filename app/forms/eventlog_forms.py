@@ -12,5 +12,5 @@ class CreateEventLogForm(FlaskForm):
 
 class UpdateEventLogForm(FlaskForm):
     user_id = IntegerField('user_id')
-    title = StringField('title', validators=[DataRequired()])
-    body = StringField('body', validators=[DataRequired()])
+    title = StringField('title')
+    body = StringField('body')

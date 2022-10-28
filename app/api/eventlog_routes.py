@@ -124,23 +124,23 @@ def update_eventlog(id):
     if not log_to_update_query:
         return jsonify({ "message": "Event log couldn't be found", "status_code": 404 }), 404
     log_to_update = log_to_update_query.to_dict()
-    if curr_user['id'] != log_to_update['user_id']:
-        return jsonify({ "message": "Forbidden - You do not own this event log", "status_code": 403 }), 403
+    # if curr_user['id'] != log_to_update['user_id']:
+    #     return jsonify({ "message": "Forbidden - You do not own this event log", "status_code": 403 }), 403
 
 
-    # BODY VALIDATIONS:
-    login_val_error = {
-        "message": "Validation error",
-        "status_code": 400,
-        "errors": {}
-    }
+    # # BODY VALIDATIONS:
+    # login_val_error = {
+    #     "message": "Validation error",
+    #     "status_code": 400,
+    #     "errors": {}
+    # }
 
-    if not form.data['title']:
-        login_val_error["errors"]["title"] = "Title is required"
-    if not form.data['body']:
-        login_val_error["errors"]["body"] = "Note body is required"
-    if len(login_val_error["errors"]) > 0:
-        return jsonify(login_val_error), 400
+    # if not form.data['title']:
+    #     login_val_error["errors"]["title"] = "Title is required"
+    # if not form.data['body']:
+    #     login_val_error["errors"]["body"] = "Note body is required"
+    # if len(login_val_error["errors"]) > 0:
+    #     return jsonify(login_val_error), 400
 
 
     if form.validate_on_submit():

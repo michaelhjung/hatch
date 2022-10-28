@@ -20,7 +20,7 @@ export default function UpdateNoteForm({ note, pencil }) {
             setTitle('');
             setBody('');
         }
-    }, [showModal]);
+    }, [showModal, note.title, note.body]);
 
     useEffect(() => {
         const errors = [];

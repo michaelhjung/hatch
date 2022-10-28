@@ -17,8 +17,14 @@ export default function EventLogs({ user }) {
     if (!userLogs) return null;
 
     return (
-        <div>
-            LOGS
+        <div className='all-logs-container'>
+            <span className='logs-header'>event logs 🎬</span>
+            {userLogs && Object.values(userLogs).map(log => (
+                <div className='log-container'>
+                    <div className='log-title'>{log.title}:</div>
+                    <div className='log-body'>{log.body}</div>
+                </div>
+            ))}
         </div>
     )
 }
