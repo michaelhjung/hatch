@@ -75,6 +75,7 @@ class User(db.Model, UserMixin):
             'username': self.username,
             'email': self.email,
             'profile_pic': self.profile_pic,
+            'viz': self.viz,
             'won': self.won,
             'current_room': self.current_room,
             'created_at': self.created_at,

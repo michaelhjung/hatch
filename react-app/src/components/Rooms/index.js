@@ -4,7 +4,7 @@ import { useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import * as roomActions from '../../store/rooms';
 
-export default function Rooms() {
+export default function Rooms({ user }) {
     const url = useLocation().pathname;
     const dispatch = useDispatch();
     const userRooms = useSelector(state => state.rooms)

@@ -23,7 +23,7 @@ export default function Game() {
                 <Notes />
             </section>
             <section className='rooms'>
-                <Rooms />
+                <Rooms user={user} />
             </section>
             <section className='items'>
                 <Items />
