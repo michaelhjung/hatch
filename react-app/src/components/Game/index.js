@@ -22,11 +22,8 @@ export default function Game() {
         return () => dispatch(roomActions.clearData());
     }, [dispatch]);
 
-    if (!user) {
-        // alert('You must be logged in to play.');
-        return Redirect('/');
-    }
 
+    if (!user) return Redirect('/');
     return (
         <main className='game-container'>
             <section className='top'>

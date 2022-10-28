@@ -13,47 +13,8 @@ export default function Rooms({ user, url, userRooms }) {
     const dispatch = useDispatch();
     const [showIntro, setShowIntro] = useState(true);
     const [showBottleEvent, setShowBottleEvent] = useState(false);
-    // let userLogs = user.Event_Logs;
-    // console.log("USER LOGS:", userLogs);
 
-    // // TODO: LOGIC FOR UPDATING EVENT LOGS TO ADD USER ID:
-    // if (Object.values(userRooms)) {
-    //     if (url === '/play' && userRooms['1']) {
-    //         const roomLogs = userRooms['1'].Event_Logs;
-    //         // console.log("ROOM LOGS:", roomLogs);
-
-    //     }
-    //     if (url === '/play/sewer' && userRooms['2']) {
-    //         const roomLogs = userRooms['2'].Event_Logs;
-
-    //     }
-    //     if (url === '/play/AKDzZV7xMuQ' && userRooms['3']) {
-    //         const roomLogs = userRooms['3'].Event_Logs;
-
-    //     }
-    //     if (url === '/play/nwgjJHTaYys' && userRooms['4']) {
-    //         const roomLogs = userRooms['4'].Event_Logs;
-
-    //     }
-    //     if (url === '/play/cSI7QDhHLW8' && userRooms['5']) {
-    //         const roomLogs = userRooms['5'].Event_Logs;
-
-    //     }
-    //     if (url === '/play/3RA7Y6eJ2bE' && userRooms['6']) {
-    //         const roomLogs = userRooms['6'].Event_Logs;
-
-    //     }
-    //     if (url === '/play/jhNmKd74tEA' && userRooms['7']) {
-    //         const roomLogs = userRooms['7'].Event_Logs;
-
-    //     }
-    //     if (url === '/play/gUpht2fDiqo' && userRooms['8']) {
-    //         const roomLogs = userRooms['8'].Event_Logs;
-
-    //     }
-    // }
-
-    // ROOM 1 GAME LOGIC:
+    // -------------------- ROOM 1 GAME LOGIC: -------------------- //
     const vizHandler = async (e) => {
         e.preventDefault();
         const roomImg = document.querySelector('.room-img');
@@ -72,7 +33,6 @@ export default function Rooms({ user, url, userRooms }) {
         // UPDATE USER LOG HISTORY:
         const room1log1id = userRooms['1'].Event_Logs[0].id;
         dispatch(logActions.updateLog(room1log1id, { user_id: user.id }));
-        // dispatch(logActions.readLogs());
     }
 
     const bottleClick = () => setShowBottleEvent(true);
@@ -97,6 +57,11 @@ export default function Rooms({ user, url, userRooms }) {
         }
     }
 
+    // -------------------- ROOM 2 GAME LOGIC: -------------------- //
+
+
+    // -------------------- ROOM 3 GAME LOGIC: -------------------- //
+
 
 
     if (!userRooms) return null;
@@ -106,6 +71,7 @@ export default function Rooms({ user, url, userRooms }) {
                 <>
                     <img className='room-img' id='blurry' src={userRooms['1'].Images[0].img} alt="room1" />
                     <button className='rub-eyes-button' onClick={vizHandler}>Rub Eyes</button>
+                    <div className='bottle' onClick={bottleClick}></div>
                     {showIntro && (
                         <Modal
                             className='intro-story-modal'
@@ -115,9 +81,6 @@ export default function Rooms({ user, url, userRooms }) {
                                 You are a genius mechanical/software engineer multi-billionaire and weapons manufacturer, hired by the federal government. Unfortunately, you have been kidnapped by a terrorist group who are forcing you to create weapons of mass destruction for them. They offer you unlimited resources to be able to create these weapons. Use this to your advantage to find a way to escape! You can write, read, update, and delete notes on your left and same thing for items on the right. Good luck!
                             </div>
                         </Modal>
-                    )}
-                    {user.Event_Logs && user.Event_Logs.length >= 1 && (
-                        <div className='bottle' onClick={bottleClick}></div>
                     )}
                     {showBottleEvent && (
                         <Modal

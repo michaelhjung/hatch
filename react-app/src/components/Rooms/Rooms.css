@@ -60,8 +60,9 @@
 }
 
 .bottle {
-    width: 10px;
-    height: 10px;
+    width: 8px;
+    height: 30px;
+    border-radius: 15px;
     background-color: none;
     position: absolute;
     bottom: 15%;
