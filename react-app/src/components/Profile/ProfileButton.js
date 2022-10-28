@@ -1,5 +1,5 @@
 import './Profile.css';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import ProfileMenu from './ProfileMenu';
 
 export default function ProfileButton({ user }) {

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
-import ProtectedRoute from './components/Auth/ProtectedRoute';
+import { useDispatch } from 'react-redux';
+// import ProtectedRoute from './components/Auth/ProtectedRoute';
 import { authenticate } from './store/session';
 import Splash from './components/Splash';
 import Footer from './components/Footer';

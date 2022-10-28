@@ -10,7 +10,7 @@ export default function ReadItem({ item }) {
         <>
             <div className='item-card' onClick={() => setShowModal(true)}>
                 <span className='item-title'>{item.name}</span>
-                <img className='item-card-img' src={item.img} onError={e => e.target.src=tools} />
+                <img className='item-card-img' src={item.img} alt="item" onError={e => e.target.src=tools} />
             </div>
             {showModal && (
                 <Modal
@@ -22,7 +22,7 @@ export default function ReadItem({ item }) {
                             {item.name}
                         </div>
                         <div className='item-img-container'>
-                            <img className='item-details-img' src={item.img} onError={e => e.target.src=tools} />
+                            <img className='item-details-img' src={item.img} alt="item" onError={e => e.target.src=tools} />
                         </div>
                         <div className='item-details-serialid'>
                             serial id#: {item.serial_id}

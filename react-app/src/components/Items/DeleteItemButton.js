@@ -8,13 +8,12 @@ export default function DeleteItemButton({ item, trash }) {
     const submitHandler = async (e) => {
         e.preventDefault();
         try {
-            const deleteItemMsg = await dispatch(itemActions.deleteItem(item.id));
+            await dispatch(itemActions.deleteItem(item.id));
         }
 
         catch (res) {
             // setValidationErrors(Object.values(data));
             console.log("ANY ERRORS?", res);
-            console.log("ANY ERRORS? .JSON()", res.json());
         }
     }
 

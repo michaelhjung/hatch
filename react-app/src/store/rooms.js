@@ -1,4 +1,4 @@
-import { csrfFetch } from './csrf';
+// import { csrfFetch } from './csrf';
 
 /* ----------------------------- ACTION TYPES: ----------------------------- */
 const READ_ROOMS = '/rooms/READ_ROOMS';
@@ -71,12 +71,12 @@ export const updateRoom = (roomId, roomData) => async dispatch => {
 
 
 /* -------------------------------- DELETE: -------------------------------- */
-const _deleteRoom = (roomId) => ({
+const _deleteRoom = (roomProgressId) => ({
     type: DELETE_ROOM,
-    payload: roomId
+    payload: roomProgressId
 });
 
-export const deleteRoom = (roomId) => async dispatch => {
+export const deleteRoom = (roomId, roomProgressId) => async dispatch => {
     const response = await fetch(`/api/rooms/${roomId}`, {
         method: 'DELETE'
     });
@@ -84,7 +84,7 @@ export const deleteRoom = (roomId) => async dispatch => {
     if (response.ok) {
         const successMessage = await response.json();
         // console.log("DELETE SUCCESS MSG AFTER FETCH:", successMessage);
-        dispatch(_deleteRoom(roomId));
+        dispatch(_deleteRoom(roomProgressId));
         return successMessage;
     }
 }
@@ -105,18 +105,18 @@ const roomsReducer = (state = initialState, action) => {
         case READ_ROOMS:
             newState = { ...state };
             const userRooms = {};
-            action.payload.Rooms.forEach(room => userRooms[room.id] = room);
+            action.payload.Rooms.forEach(room => userRooms[room.progress_id] = room);
             newState = userRooms;
             // console.log("NEWSTATE AFTER READ_ROOMS ACTION:", newState);
             return newState;
         case CREATE_ROOM:
             newState = { ...state };
-            newState[action.payload.id] = action.payload;
+            newState[action.payload.progress_id] = action.payload;
             // console.log("NEWSTATE AFTER CREATE_ROOM ACTION:", newState);
             return newState;
         case UPDATE_ROOM:
             newState = { ...state };
-            newState[action.payload.id] = action.payload;
+            newState[action.payload.progress_id] = action.payload;
             // console.log("NEWSTATE AFTER UPDATE_ROOM ACTION:", newState);
             return newState;
         case DELETE_ROOM:

@@ -38,8 +38,9 @@
 }
 .rooms {
     grid-area: rooms;
-    border: 1px solid pink;
     min-width: 800px;
+    border-radius: 6px;
+    overflow: hidden;
     position: relative;
 }
 .items {
