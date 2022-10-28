@@ -1,5 +1,5 @@
 import './Rooms.css';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { Modal } from '../../context/Modal';
 // import * as roomActions from '../../store/rooms';
@@ -8,11 +8,16 @@ import * as sessionActions from '../../store/session';
 import * as noteActions from '../../store/notes';
 import * as itemActions from '../../store/items';
 import wrongRoom from '../../assets/imgs/wrong-room.png';
+import keySvg from '../../assets/icons/key.svg';
+
 
 export default function Rooms({ user, url, userRooms }) {
     const dispatch = useDispatch();
     const [showIntro, setShowIntro] = useState(true);
     const [showBottleEvent, setShowBottleEvent] = useState(false);
+    const [showRoom2Intro, setShowRoom2Intro] = useState(true);
+    const [showFooterEvent, setShowFooterEvent] = useState(false);
+    const [showRoom2Note, setShowRoom2Note] = useState(false);
 
     // -------------------- ROOM 1 GAME LOGIC: -------------------- //
     const vizHandler = async (e) => {
@@ -25,7 +30,6 @@ export default function Rooms({ user, url, userRooms }) {
         roomImg.removeAttribute('id');
         rubEyesButton.setAttribute('id', 'hidden');
     }
-
     const closeIntro = () => {
         // CLOSE MODAL:
         setShowIntro(false);
@@ -34,7 +38,6 @@ export default function Rooms({ user, url, userRooms }) {
         const room1log1id = userRooms['1'].Event_Logs[0].id;
         dispatch(logActions.updateLog(room1log1id, { user_id: user.id }));
     }
-
     const bottleClick = () => setShowBottleEvent(true);
     const closeBottleEvent = async () => {
         // CLOSE MODAL:
@@ -57,10 +60,57 @@ export default function Rooms({ user, url, userRooms }) {
         }
     }
 
+
     // -------------------- ROOM 2 GAME LOGIC: -------------------- //
+    const closeRoom2Intro = () => {
+        // CLOSE MODAL:
+        setShowRoom2Intro(false);
+
+        // UPDATE USER LOG HISTORY:
+        const room2log1id = userRooms['2'].Event_Logs[0].id;
+        dispatch(logActions.updateLog(room2log1id, { user_id: user.id }));
+    }
+    const snakeClick = () => setShowFooterEvent(true);
+    const closeFooterEvent = () => {
+        // CLOSE MODAL:
+        setShowFooterEvent(false);
+
+        // UPDATE USER LOG HISTORY:
+        const room2log2id = userRooms['2'].Event_Logs[1].id;
+        dispatch(logActions.updateLog(room2log2id, { user_id: user.id }));
+
+        // CREATE LINK IN FOOTER:
+        const footerContacts = document.querySelector('.footer-contact');
+        const keyLink = document.createElement('a');
+        keyLink.setAttribute('class', 'keyForRoom3 footer-links');
+        keyLink.setAttribute('href', 'https://escape-hatch.herokuapp.com/play/AKDzZV7xMuQ');
+        const keyImg = document.createElement('img');
+        keyImg.setAttribute('class', 'footer-icons');
+        keyImg.setAttribute('src', keySvg);
+        keyImg.setAttribute('alt', "key");
+        keyLink.appendChild(keyImg);
+        footerContacts.appendChild(keyLink);
+    }
+    const room2NoteClick = () => setShowRoom2Note(true);
+    const closeRoom2NoteEvent = () => {
+        // CLOSE MODAL:
+        setShowRoom2Note(false);
+
+        // UPDATE USER LOG HISTORY:
+        const room2log3id = userRooms['2'].Event_Logs[2].id;
+        dispatch(logActions.updateLog(room2log3id, { user_id: user.id }));
+    }
 
 
     // -------------------- ROOM 3 GAME LOGIC: -------------------- //
+
+
+
+    // -------------------- ROOM 4 GAME LOGIC: -------------------- //
+    // -------------------- ROOM 5 GAME LOGIC: -------------------- //
+    // -------------------- ROOM 6 GAME LOGIC: -------------------- //
+    // -------------------- ROOM 7 GAME LOGIC: -------------------- //
+    // -------------------- ROOM 8 GAME LOGIC: -------------------- //
 
 
 
@@ -95,7 +145,41 @@ export default function Rooms({ user, url, userRooms }) {
                 </>
             )}
             {url === '/play/sewer' && userRooms['2'] && (
-                <img className='room-img' src={userRooms['2'].Images[0].img} alt="room2" />
+                <>
+                    <img className='room-img' src={userRooms['2'].Images[0].img} alt="room2" />
+                    <div className='room-2-note' onClick={room2NoteClick}></div>
+                    <div className='snake' onClick={snakeClick}></div>
+                    {showRoom2Intro && (
+                        <Modal
+                            className='room-2-intro-modal'
+                            onClose={closeRoom2Intro}
+                        >
+                            <div className='event-popup'>
+                                "An underground sewage system... smart. Now to keep looking around..."
+                            </div>
+                        </Modal>
+                    )}
+                    {showFooterEvent && (
+                        <Modal
+                            className='bottle-event-modal'
+                            onClose={closeFooterEvent}
+                        >
+                            <div className='event-popup'>
+                                "Gross, did I feel something crawling on my feet?"
+                            </div>
+                        </Modal>
+                    )}
+                    {showRoom2Note && (
+                        <Modal
+                            className='room-2-note-event-modal'
+                            onClose={closeRoom2NoteEvent}
+                        >
+                            <div className='event-popup'>
+                                A note... it says, "serial id: BA09JM19"
+                            </div>
+                        </Modal>
+                    )}
+                </>
             )}
             {url === '/play/AKDzZV7xMuQ' && userRooms['3'] && (
                 <img className='room-img' src={userRooms['3'].Images[0].img} alt="room3" />

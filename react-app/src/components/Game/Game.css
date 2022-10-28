@@ -65,5 +65,7 @@
     grid-area: logs;
     border: 1px solid #3F3F3F;
     width: 100%;
+    height: 100%;
+    overflow-y: auto;
     position: relative;
 }

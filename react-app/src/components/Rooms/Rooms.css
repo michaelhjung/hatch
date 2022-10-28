@@ -20,7 +20,7 @@
     transition: filter 1s ease;
 }
 
-/* ROOM 1 */
+/* ========== ROOM 1 ========== */
 .intro-story {
     font-size: 1.5rem;
     padding: 40px;
@@ -72,4 +72,34 @@
 .bottle:hover {
     box-shadow: 0px 0px 12px 1px #D9D9D9;
     cursor: pointer;
+}
+
+
+/* ========== ROOM 2 ========== */
+.room-2-note {
+    width: 40px;
+    height: 40px;
+    background-color: #C1B2AB;
+    border-radius: 6px;
+    opacity: 0.4;
+    position: absolute;
+    right: 10%;
+    top: 45%;
+}
+.room-2-note:hover {
+    box-shadow: 0px 0px 12px 1px #D9D9D9;
+}
+
+.snake {
+    width: 10px;
+    height: 70px;
+    border-radius: 15px;
+    background-color: none;
+    position: absolute;
+    bottom: 2%;
+    left: 50%;
+}
+
+.snake:hover {
+    box-shadow: 0px 0px 12px 1px #D9D9D9;
 }
