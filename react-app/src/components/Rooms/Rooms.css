@@ -4,3 +4,12 @@
     height: 100%;
     object-fit: cover;
 }
+
+
+
+/* ROOM HEADERS */
+.room-header {
+    font-size: 3rem;
+    font-weight: 600;
+    color: #D9D9D9;
+}

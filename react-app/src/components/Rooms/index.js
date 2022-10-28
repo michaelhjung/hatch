@@ -1,48 +1,47 @@
 import './Rooms.css';
 import { useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import * as roomActions from '../../store/rooms';
 import * as logActions from '../../store/logs';
 import wrongRoom from '../../assets/imgs/wrong-room.png';
 
-export default function Rooms({ user }) {
-    const url = useLocation().pathname;
+export default function Rooms({ user, url, userRooms }) {
     const dispatch = useDispatch();
-    const userRooms = useSelector(state => state.rooms);
     let userLogs = user.Event_Logs;
-    console.log("USER LOGS:", userLogs);
-
-    useEffect(() => {
-        dispatch(roomActions.readRooms());
-
-        return () => dispatch(roomActions.clearData());
-    }, [dispatch]);
-
+    // console.log("USER LOGS:", userLogs);
 
     if (Object.values(userRooms)) {
-        if (url === '/play') {
+        if (url === '/play' && userRooms['1']) {
+            const roomLogs = userRooms['1'].Event_Logs;
+            console.log("ROOM LOGS:", roomLogs);
 
         }
-        if (url === '/play/sewer') {
+        if (url === '/play/sewer' && userRooms['2']) {
+            const roomLogs = userRooms['2'].Event_Logs;
 
         }
-        if (url === '/play/AKDzZV7xMuQ') {
+        if (url === '/play/AKDzZV7xMuQ' && userRooms['3']) {
+            const roomLogs = userRooms['3'].Event_Logs;
 
         }
-        if (url === '/play/nwgjJHTaYys') {
+        if (url === '/play/nwgjJHTaYys' && userRooms['4']) {
+            const roomLogs = userRooms['4'].Event_Logs;
 
         }
-        if (url === '/play/cSI7QDhHLW8') {
+        if (url === '/play/cSI7QDhHLW8' && userRooms['5']) {
+            const roomLogs = userRooms['5'].Event_Logs;
 
         }
-        if (url === '/play/3RA7Y6eJ2bE') {
+        if (url === '/play/3RA7Y6eJ2bE' && userRooms['6']) {
+            const roomLogs = userRooms['6'].Event_Logs;
 
         }
-        if (url === '/play/jhNmKd74tEA') {
+        if (url === '/play/jhNmKd74tEA' && userRooms['7']) {
+            const roomLogs = userRooms['7'].Event_Logs;
 
         }
-        if (url === '/play/gUpht2fDiqo') {
+        if (url === '/play/gUpht2fDiqo' && userRooms['8']) {
+            const roomLogs = userRooms['8'].Event_Logs;
 
         }
     }

@@ -121,9 +121,11 @@
 }
 
 
-/* NOTES SPECIFIC */
+/* NOTES & ITEMS SPECIFIC */
 .create-note-title,
-.update-note-title {
+.update-note-title,
+.create-item-name,
+.update-item-name {
     font-size: 2rem;
     margin-bottom: 12px;
 }
