@@ -137,7 +137,7 @@ export default function Rooms({ user, url, userRooms }) {
         setShowRoom3Note(false);
 
         // UPDATE USER LOG HISTORY:
-        const room3log2id = userRooms['2'].Event_Logs[1].id;
+        const room3log2id = userRooms['3'].Event_Logs[1].id;
         dispatch(logActions.updateLog(room3log2id, { user_id: user.id }));
     }
 
