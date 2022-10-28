@@ -8,13 +8,12 @@ export default function DeleteNoteButton({ note, trash }) {
     const submitHandler = async (e) => {
         e.preventDefault();
         try {
-            const deleteNoteMsg = await dispatch(noteActions.deleteNote(note.id));
+            await dispatch(noteActions.deleteNote(note.id));
         }
 
         catch (res) {
             // setValidationErrors(Object.values(data));
             console.log("ANY ERRORS?", res);
-            console.log("ANY ERRORS? .JSON()", res.json());
         }
     }
 

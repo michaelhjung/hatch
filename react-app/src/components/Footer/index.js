@@ -3,7 +3,6 @@ import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import github from '../../assets/icons/github.svg';
 import linkedin from '../../assets/icons/linkedin.svg';
-import favicon from '../../assets/icons/favicon.png';
 
 export default function Footer() {
     const url = useLocation().pathname;

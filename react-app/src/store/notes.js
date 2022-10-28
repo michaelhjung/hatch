@@ -1,4 +1,4 @@
-import { csrfFetch } from './csrf';
+// import { csrfFetch } from './csrf';
 
 /* ----------------------------- ACTION TYPES: ----------------------------- */
 const READ_NOTES = '/notes/READ_NOTES';

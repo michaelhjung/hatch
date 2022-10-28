@@ -14,8 +14,6 @@ export default function UpdateItemForm({ item, pencil }) {
     const [showModal, setShowModal] = useState(false);
     const dispatch = useDispatch();
 
-    console.log("ITEM:", item);
-
     useEffect(() => {
         setName(item.name);
         setSerialId(item.serial_id);

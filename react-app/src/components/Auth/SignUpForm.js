@@ -67,7 +67,7 @@ export default function SignUpForm () {
         }
         if (password.length && (password.length < 6 || password.length > 20)) errors.push("Password must be between 6-20 characters.");
         if ((password.length && repeatPassword.length) && password !== repeatPassword) errors.push("Password confirmation must match.");
-        if (secretCode.length && secretCode.length < 4 || secretCode.length > 12) errors.push("Secret code must be between 4-12 characters.");
+        if (secretCode.length && (secretCode.length < 4 || secretCode.length > 12)) errors.push("Secret code must be between 4-12 characters.");
 
         setValidationErrors(errors);
     }, [firstName, lastName, username, email, password, repeatPassword, profilePic, secretCode]);
