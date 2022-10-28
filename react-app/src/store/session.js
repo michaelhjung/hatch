@@ -1,6 +1,7 @@
 // constants
 const SET_USER = 'session/SET_USER';
 const REMOVE_USER = 'session/REMOVE_USER';
+const UPDATE_USER = 'session/UPDATE_USER';
 
 const setUser = (user) => ({
     type: SET_USER,
@@ -101,12 +102,44 @@ export const signUp = (first_name, last_name, username, email, password, profile
     }
 }
 
+/* -------------------------------- UPDATE: -------------------------------- */
+const _updateUser = (updatedUser) => ({
+    type: UPDATE_USER,
+    payload: updatedUser
+});
+
+export const updateUser = (userId, userData) => async dispatch => {
+    const response = await fetch(`/api/users/${userId}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(userData)
+    });
+
+    if (response.ok) {
+        const updatedUser = await response.json();
+        // console.log("UPDATED ITEM DATA AFTER FETCH:", updatedItem);
+        dispatch(_updateUser(updatedUser));
+        return updatedUser;
+    }
+    console.log(response);
+}
+
+
+/* ---------------------------- USERS REDUCER: ---------------------------- */
+
 export default function reducer(state = initialState, action) {
     switch (action.type) {
         case SET_USER:
             return { user: action.payload }
         case REMOVE_USER:
             return { user: null }
+        case UPDATE_USER:
+            let newState = { ...state };
+            newState.viz = action.payload.viz;
+            newState.won = action.payload.won;
+            newState.current_room = action.payload.current_room;
+            // console.log("NEWSTATE AFTER UPDATE_USER ACTION:", newState);
+            return newState;
         default:
             return state;
     }
