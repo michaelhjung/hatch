@@ -1,7 +1,7 @@
 import './Rooms.css';
 import { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Modal } from '../../context/Modal';
 // import * as roomActions from '../../store/rooms';
 import * as logActions from '../../store/logs';
@@ -15,6 +15,7 @@ import keySvg from '../../assets/icons/key.svg';
 export default function Rooms({ user, url, userRooms }) {
     const dispatch = useDispatch();
     const history = useHistory();
+    const userItems = useSelector(state => state.items);
     const [showIntro, setShowIntro] = useState(true);
     const [showBottleEvent, setShowBottleEvent] = useState(false);
     const [showRoom2Intro, setShowRoom2Intro] = useState(true);
@@ -121,12 +122,14 @@ export default function Rooms({ user, url, userRooms }) {
     }
     useEffect(() => {
         // CHECK IF USER HAS CORRECT ITEM MADE:
-        if (user.Items) {
+        console.log("ITEM MADE");
+
             user.Items.forEach(item => {
-                if (item.serial_id === "B0A9J19M") setShowRoom3CorrectKey(true);
+                console.log("==>item:", item);
+                if (item.serial_id === "B0A9J19M" && item.img === "https://bit.ly/3fkBytZ") setShowRoom3CorrectKey(true);
             });
-        }
-    }, [user.Items]);
+
+    }, [dispatch, userItems]);
     const closeRoom3CorrectKey = () => {
         // UPDATE USER LOG HISTORY:
         const room3log2id = userRooms['3'].Event_Logs[1].id;
@@ -135,6 +138,7 @@ export default function Rooms({ user, url, userRooms }) {
         // REDIRECT USER TO NEW ROOM:
         history.push('/play/nwgjJHTaYys');
     }
+
 
 
     // -------------------- ROOM 4 GAME LOGIC: -------------------- //
@@ -209,7 +213,7 @@ export default function Rooms({ user, url, userRooms }) {
                             onClose={closeRoom2NoteEvent}
                         >
                             <div className='event-popup'>
-                                A note... it says, "serial id: BA09JM19"
+                                A note... it says, "serial id: BA09JM19, url: https://bit.ly/3fkBytZ"
                             </div>
                         </Modal>
                     )}

@@ -36,7 +36,7 @@ def seed_logs():
         room_id=2,
         user_id=None,
         title='The Sewer - Found Note',
-        body='A note... it says, "serial id: BA09JM19"'
+        body='A note... it says, "serial id: BA09JM19, url: https://bit.ly/3fkBytZ"'
     )
     room3_log1 = EventLog(
         room_id=3,
