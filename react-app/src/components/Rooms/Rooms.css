@@ -1,15 +1,47 @@
-.room-img {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-
-
 /* ROOM HEADERS */
 .room-header {
     font-size: 3rem;
     font-weight: 600;
     color: #D9D9D9;
+}
+
+/* GENERAL TAGS: */
+#hidden {
+    display: none;
+}
+
+
+/* GENERAL ROOM IMGS */
+.room-img {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: filter 1s ease;
+}
+
+/* ROOM 1 */
+#blurry {
+    filter: blur(10px);
+}
+
+.rub-eyes-button {
+    position: absolute;
+    padding: 20px 50px;
+    margin-top: 20px;
+    width: 200px;
+    border-radius: 6px;
+    border: none;
+    background-color: #333;
+    box-shadow: 1px 1px 4px 0px #333;
+    cursor: pointer;
+    transition: opacity 0.5s ease-out;
+    opacity: 0.5;
+    font-size: 1.1rem;
+    top: 40%;
+    left: 40%;
+}
+
+.rub-eyes-button:hover {
+    opacity: 1;
 }
