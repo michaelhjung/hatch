@@ -7,7 +7,6 @@ import favicon from '../../assets/icons/favicon.png';
 
 export default function Footer() {
     const url = useLocation().pathname;
-    console.log("URL", url);
 
     useEffect(() => {
         const footer = document.getElementById('footer');

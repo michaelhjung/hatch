@@ -39,6 +39,8 @@
 .rooms {
     grid-area: rooms;
     border: 1px solid pink;
+    min-width: 800px;
+    position: relative;
 }
 .items {
     grid-area: items;
