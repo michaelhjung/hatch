@@ -123,11 +123,9 @@ export default function Rooms({ user, url, userRooms }) {
     }
     useEffect(() => {
         // CHECK IF USER HAS CORRECT ITEM MADE:
-        console.log("ITEM MADE");
             if (userItems) {
                 Object.values(userItems).forEach(item => {
-                    console.log("==>item:", item);
-                    if (item.serial_id === "B0A9J19M" && item.img === "https://bit.ly/3fkBytZ") setShowRoom3CorrectKey(true);
+                    if (item.serial_id === "BA09JM19" && item.img === "https://bit.ly/3fkBytZ") setShowRoom3CorrectKey(true);
                 });
             }
     }, [dispatch, userItems]);
