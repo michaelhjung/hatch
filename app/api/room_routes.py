@@ -72,6 +72,8 @@ def read_user_rooms():
         room['Event_Logs'] = [log.to_dict() for log in event_log_query]
         items_query = Item.query.filter(Item.room_id == room['id']).all()
         room['Items'] = [item.to_dict() for item in items_query]
+        images_query = RoomImage.query.filter(RoomImage.room_id == room['id']).all()
+        room['Images'] = [img.to_dict() for img in images_query]
 
     return jsonify({ "Rooms": rooms })
 
