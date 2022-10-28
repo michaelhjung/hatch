@@ -2,12 +2,12 @@ from app.models import db, EventLog
 
 
 def seed_logs():
-    back_story = EventLog(
-        room_id=1,
-        user_id=None,
-        title='The Background',
-        body='You are a genius mechanicical/software engineer multi-billionaire and weapons manufacturer, hired by the federal government. Unfortunately, you have been kidnapped by a terrorist group who are forcing you to create weapons of mass destruction for them. They offer you unlimited resources to be able to create these weapons. Use this to your advantage to create "items" and find a way to escape!'
-    )
+    # back_story = EventLog(
+    #     room_id=1,
+    #     user_id=None,
+    #     title='The Background',
+    #     body='You are a genius mechanicical/software engineer multi-billionaire and weapons manufacturer, hired by the federal government. Unfortunately, you have been kidnapped by a terrorist group who are forcing you to create weapons of mass destruction for them. They offer you unlimited resources to be able to create these weapons. Use this to your advantage to create "items" and find a way to escape!'
+    # )
     room1_log1 = EventLog(
         room_id=1,
         user_id=None,
@@ -100,7 +100,7 @@ def seed_logs():
     )
 
 
-    db.session.add(back_story)
+    # db.session.add(back_story)
     db.session.add(room1_log1)
     db.session.add(room1_log2)
     db.session.add(room2_log1)
