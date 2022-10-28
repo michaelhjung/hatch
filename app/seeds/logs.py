@@ -36,7 +36,7 @@ def seed_logs():
         room_id=2,
         user_id=None,
         title='The Sewer - Found Note',
-        body='A note... it says, "serial id: BA09JM19, url: https://bit.ly/3fkBytZ"'
+        body='A note... it says, "serial id: BA09JM19"'
     )
     room3_log1 = EventLog(
         room_id=3,
@@ -45,6 +45,12 @@ def seed_logs():
         body='I found a door, but it\'s locked... Looks like it wants a very specific key...'
     )
     room3_log2 = EventLog(
+        room_id=2,
+        user_id=None,
+        title='The Locked Door - Found Note',
+        body='A nother note... it says, "url: https://bit.ly/3fkBytZ"'
+    )
+    room3_log3 = EventLog(
         room_id=3,
         user_id=None,
         title='The Locked Door - Key',
@@ -120,6 +126,7 @@ def seed_logs():
     db.session.add(room2_log3)
     db.session.add(room3_log1)
     db.session.add(room3_log2)
+    db.session.add(room3_log3)
     db.session.add(room4_log1)
     db.session.add(room4_log2)
     db.session.add(room5_log1)

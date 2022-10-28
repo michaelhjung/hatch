@@ -22,6 +22,7 @@ export default function Rooms({ user, url, userRooms }) {
     const [showFooterEvent, setShowFooterEvent] = useState(false);
     const [showRoom2Note, setShowRoom2Note] = useState(false);
     const [showRoom3Intro, setShowRoom3Intro] = useState(true);
+    const [showRoom3Note, setShowRoom3Note] = useState(false);
     const [showRoom3CorrectKey, setShowRoom3CorrectKey] = useState(false);
 
 
@@ -123,21 +124,32 @@ export default function Rooms({ user, url, userRooms }) {
     useEffect(() => {
         // CHECK IF USER HAS CORRECT ITEM MADE:
         console.log("ITEM MADE");
-
-            user.Items.forEach(item => {
-                console.log("==>item:", item);
-                if (item.serial_id === "B0A9J19M" && item.img === "https://bit.ly/3fkBytZ") setShowRoom3CorrectKey(true);
-            });
-
+            if (userItems) {
+                Object.values(userItems).forEach(item => {
+                    console.log("==>item:", item);
+                    if (item.serial_id === "B0A9J19M" && item.img === "https://bit.ly/3fkBytZ") setShowRoom3CorrectKey(true);
+                });
+            }
     }, [dispatch, userItems]);
+    const room3NoteClick = () => setShowRoom3Note(true);
+    const closeRoom3NoteEvent = () => {
+        // CLOSE MODAL:
+        setShowRoom3Note(false);
+
+        // UPDATE USER LOG HISTORY:
+        const room3log2id = userRooms['2'].Event_Logs[1].id;
+        dispatch(logActions.updateLog(room3log2id, { user_id: user.id }));
+    }
+
     const closeRoom3CorrectKey = () => {
         // UPDATE USER LOG HISTORY:
-        const room3log2id = userRooms['3'].Event_Logs[1].id;
-        dispatch(logActions.updateLog(room3log2id, { user_id: user.id }));
+        const room3log3id = userRooms['3'].Event_Logs[2].id;
+        dispatch(logActions.updateLog(room3log3id, { user_id: user.id }));
 
         // REDIRECT USER TO NEW ROOM:
         history.push('/play/nwgjJHTaYys');
     }
+
 
 
 
@@ -213,7 +225,7 @@ export default function Rooms({ user, url, userRooms }) {
                             onClose={closeRoom2NoteEvent}
                         >
                             <div className='event-popup'>
-                                A note... it says, "serial id: BA09JM19, url: https://bit.ly/3fkBytZ"
+                                A note... it says, "serial id: BA09JM19"
                             </div>
                         </Modal>
                     )}
@@ -225,6 +237,7 @@ export default function Rooms({ user, url, userRooms }) {
             {url === '/play/AKDzZV7xMuQ' && userRooms['3'] && (
                 <>
                     <img className='room-img' src={userRooms['3'].Images[0].img} alt="room3" />
+                    <div className='room-3-note' onClick={room3NoteClick}></div>
                     {showRoom3Intro && (
                         <Modal
                             className='room-3-intro-modal'
@@ -232,6 +245,16 @@ export default function Rooms({ user, url, userRooms }) {
                         >
                             <div className='event-popup'>
                                 I found a door, but it's locked... Looks like it wants a very specific key...
+                            </div>
+                        </Modal>
+                    )}
+                    {showRoom3Note && (
+                        <Modal
+                            className='room-3-note-event-modal'
+                            onClose={closeRoom3NoteEvent}
+                        >
+                            <div className='event-popup'>
+                                A nother note... it says, "url: https://bit.ly/3fkBytZ"
                             </div>
                         </Modal>
                     )}
