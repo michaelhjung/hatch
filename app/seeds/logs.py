@@ -2,12 +2,6 @@ from app.models import db, EventLog
 
 
 def seed_logs():
-    # back_story = EventLog(
-    #     room_id=1,
-    #     user_id=None,
-    #     title='The Background',
-    #     body='You are a genius mechanicical/software engineer multi-billionaire and weapons manufacturer, hired by the federal government. Unfortunately, you have been kidnapped by a terrorist group who are forcing you to create weapons of mass destruction for them. They offer you unlimited resources to be able to create these weapons. Use this to your advantage to create "items" and find a way to escape!'
-    # )
     room1_log1 = EventLog(
         room_id=1,
         user_id=None,
@@ -65,6 +59,18 @@ def seed_logs():
     room4_log2 = EventLog(
         room_id=4,
         user_id=None,
+        title='The Empty Room - Game Console?',
+        body='What is this old video game console doing here...? Someone must be living around here... gotta be careful...'
+    )
+    room4_log3 = EventLog(
+        room_id=4,
+        user_id=None,
+        title='The Empty Room - Random Rabbit',
+        body='A random rabbit.'
+    )
+    room4_log4 = EventLog(
+        room_id=4,
+        user_id=None,
         title='The Empty Room - The Right Tool',
         body='Nice job again, let\'s get out of here...'
     )
@@ -77,19 +83,19 @@ def seed_logs():
     room5_log2 = EventLog(
         room_id=5,
         user_id=None,
-        title='The Bat Cave - Event 1',
+        title='The Bat Cave - Bat 1',
         body='A bat flew into you.'
     )
     room5_log3 = EventLog(
         room_id=5,
         user_id=None,
-        title='The Bat Cave - Event 2',
+        title='The Bat Cave - Bat 2',
         body='Another bat flew into you.'
     )
     room5_log4 = EventLog(
         room_id=5,
         user_id=None,
-        title='The Bat Cave - Event 3',
+        title='The Bat Cave - Bat 3',
         body='A third bat flew into you. This one dropped a note.'
     )
     room6_log1 = EventLog(
@@ -113,12 +119,17 @@ def seed_logs():
     room8_log1 = EventLog(
         room_id=8,
         user_id=None,
-        title='Game Over',
-        body='Congratulations you escaped!'
+        title='Game Over?',
+        body='Congratulations, you escaped.'
+    )
+    room9_log1 = EventLog(
+        room_id=9,
+        user_id=None,
+        title='Reality',
+        body='You found the real final room. This world is not what it seems... Do you want to stay in wonderland, or see how far the rabbit hole goes...?'
     )
 
 
-    # db.session.add(back_story)
     db.session.add(room1_log1)
     db.session.add(room1_log2)
     db.session.add(room2_log1)
@@ -129,6 +140,7 @@ def seed_logs():
     db.session.add(room3_log3)
     db.session.add(room4_log1)
     db.session.add(room4_log2)
+    db.session.add(room4_log3)
     db.session.add(room5_log1)
     db.session.add(room5_log2)
     db.session.add(room5_log3)
@@ -137,6 +149,7 @@ def seed_logs():
     db.session.add(room7_log1)
     db.session.add(room7_log2)
     db.session.add(room8_log1)
+    db.session.add(room9_log1)
 
 
     db.session.commit()

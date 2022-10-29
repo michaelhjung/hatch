@@ -42,6 +42,11 @@ def seed_rooms():
         progress_id=8,
         name='Escaped!'
     )
+    room9 = Room(
+        user_id=2,
+        progress_id=9,
+        name='The Real Final Room'
+    )
 
 
     db.session.add(room1)
@@ -52,6 +57,7 @@ def seed_rooms():
     db.session.add(room6)
     db.session.add(room7)
     db.session.add(room8)
+    db.session.add(room9)
 
     db.session.commit()
 

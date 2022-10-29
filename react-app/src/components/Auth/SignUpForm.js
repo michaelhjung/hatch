@@ -190,7 +190,6 @@ export default function SignUpForm () {
                         <button
                             className='submit-button'
                             type='submit'
-                            disabled={validationErrors.length}
                         >Sign Up</button>
                     </form>
                 </Modal>

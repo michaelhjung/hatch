@@ -74,7 +74,6 @@ export default function LoginForm () {
                         <button
                             className='submit-button'
                             type='submit'
-                            disabled={validationErrors.length}
                         >Log In</button>
                     </form>
                 </Modal>
