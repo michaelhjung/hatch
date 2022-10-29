@@ -1,5 +1,3 @@
-// import { csrfFetch } from './csrf';
-
 /* ----------------------------- ACTION TYPES: ----------------------------- */
 const READ_LOGS = '/logs/READ_LOGS';
 const CREATE_LOG = '/logs/CREATE_LOG';
