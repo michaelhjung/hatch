@@ -1,5 +1,5 @@
 import './Rooms.css';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { Modal } from '../../context/Modal';
@@ -10,6 +10,7 @@ import * as noteActions from '../../store/notes';
 import * as itemActions from '../../store/items';
 import wrongRoom from '../../assets/imgs/wrong-room.png';
 import keySvg from '../../assets/icons/key.svg';
+import morseSvg from '../../assets/icons/morse.svg';
 
 
 export default function Rooms({ user, url, userRooms }) {
@@ -28,8 +29,10 @@ export default function Rooms({ user, url, userRooms }) {
     const [showRoom4ConsoleEvent, setShowRoom4ConsoleEvent] = useState(false);
     const [showRoom4RabbitEvent, setShowRoom4RabbitEvent] = useState(false);
     const [showRoom4CorrectKey, setShowRoom4CorrectKey] = useState(false);
-
-
+    const [showRoom5Intro, setShowRoom5Intro] = useState(true);
+    const [showRoom5BatEvent, setShowRoom5BatEvent] = useState(false);
+    const [showRoom6Intro, setShowRoom6Intro] = useState(true);
+    const [showRoom6CorrectKey, setShowRoom6CorrectKey] = useState(false);
 
 
     // -------------------- ROOM 1 GAME LOGIC: -------------------- //
@@ -217,11 +220,224 @@ export default function Rooms({ user, url, userRooms }) {
 
 
     // -------------------- ROOM 5 GAME LOGIC: -------------------- //
+    let batCount = useRef(0);
+    const closeRoom5Intro = () => {
 
+        // RESET BAT COUNT:
+        batCount.current = 0;
+
+        // CLOSE MODAL:
+        setShowRoom5Intro(false);
+
+        // UPDATE USER LOG HISTORY:
+        const room5log1id = userRooms['5'].Event_Logs[0].id;
+        dispatch(logActions.updateLog(room5log1id, { user_id: user.id }));
+    }
+    const room5BatClick = () => setShowRoom5BatEvent(true);
+    const closeRoom5BatEvent = () => {
+        // CLOSE MODAL:
+        batCount.current = batCount.current + 1;
+        setShowRoom5BatEvent(false);
+
+        if (batCount.current === 1) {
+            // UPDATE USER LOG HISTORY:
+            const room5log2id = userRooms['5'].Event_Logs[1].id;
+            dispatch(logActions.updateLog(room5log2id, { user_id: user.id }));
+        }
+        if (batCount.current === 2) {
+            // UPDATE USER LOG HISTORY:
+            const room5log3id = userRooms['5'].Event_Logs[2].id;
+            dispatch(logActions.updateLog(room5log3id, { user_id: user.id }));
+        }
+        if (batCount.current === 3) {
+            // UPDATE USER LOG HISTORY:
+            const room5log4id = userRooms['5'].Event_Logs[3].id;
+            dispatch(logActions.updateLog(room5log4id, { user_id: user.id }));
+
+            // CREATE NOTE WITH ROOM 5 HINT:
+            if (user.Notes) {
+                const userNotes = Object.values(user.Notes);
+                let hasNote = false;
+                userNotes.forEach(note => {
+                    if (note.body === "#antman") hasNote = true;
+                })
+                if (!hasNote) {
+                    dispatch(noteActions.createNote({ title: "find me", body: "#antman" }));
+                }
+            }
+
+        }
+    }
 
 
 
     // -------------------- ROOM 6 GAME LOGIC: -------------------- //
+    let morseCode = useRef([]);
+    const closeRoom6Intro = () => {
+        // RESET MORSE CODE EVERY TIME ROOM 6 INTRO CLOSED:
+        morseCode.current = [];
+
+        // CLOSE MODAL:
+        setShowRoom6Intro(false);
+
+        // UPDATE USER LOG HISTORY:
+        const room6log1id = userRooms['6'].Event_Logs[0].id;
+        dispatch(logActions.updateLog(room6log1id, { user_id: user.id }));
+
+        // CREATE LINK IN FOOTER:
+        const footerContacts = document.querySelector('.footer-contact');
+        const morseLink = document.createElement('a');
+        morseLink.setAttribute('class', 'rscForRoom6 footer-links');
+        morseLink.setAttribute('href', 'https://morsecode.world/international/translator.html');
+        morseLink.setAttribute('target', '_blank');
+        const morseImg = document.createElement('img');
+        morseImg.setAttribute('class', 'footer-icons');
+        morseImg.setAttribute('src', morseSvg);
+        morseImg.setAttribute('alt', "morse");
+        morseLink.appendChild(morseImg);
+        footerContacts.appendChild(morseLink);
+    }
+    useEffect(() => {
+        // RESET MORSE CODE EVERY PAGE LOAD:
+        morseCode.current = [];
+
+        // RUN FOR ROOM 6 ONLY:
+        if (url === '/play/3RA7Y6eJ2bE') {
+            const detectMorseCode = (e) => {
+                const key = e.key;
+
+                if (key === '.' || key === '-' || key === ' ') {
+                    if (morseCode.current.slice(0).join('') === '' && key === '.') {
+                        if (key === '.') {
+                            morseCode.current.push(key);
+                            console.log("You're on the right track!");
+                        } else {
+                            morseCode.current = [];
+                            console.log("Fail!");
+                        }
+                    }
+                    else if (morseCode.current.slice(0).join('') === '.' && key === '.') {
+                        if (key === '.') {
+                            morseCode.current.push(key);
+                            console.log("You're on the right track!");
+                        } else {
+                            morseCode.current = [];
+                            console.log("Fail!");
+                        }
+                    }
+                    else if (morseCode.current.slice(0).join('') === '..' && key === '.') {
+                        if (key === '.') {
+                            morseCode.current.push(key);
+                            console.log("You're on the right track!");
+                        } else {
+                            morseCode.current = [];
+                            console.log("Fail!");
+                        }
+                    }
+                    else if (morseCode.current.slice(0).join('') === '...' && key === ' ') {
+                        if (key === ' ') {
+                            morseCode.current.push(key);
+                            console.log("You're on the right track!");
+                        } else {
+                            morseCode.current = [];
+                            console.log("Fail!");
+                        }
+                    }
+                    else if (morseCode.current.slice(0).join('') === '... ' && key === '-') {
+                        if (key === '-') {
+                            morseCode.current.push(key);
+                            console.log("You're on the right track!");
+                        } else {
+                            morseCode.current = [];
+                            console.log("Fail!");
+                        }
+                    }
+                    else if (morseCode.current.slice(0).join('') === '... -' && key === '-') {
+                        if (key === '-') {
+                            morseCode.current.push(key);
+                            console.log("You're on the right track!");
+                        } else {
+                            morseCode.current = [];
+                            console.log("Fail!");
+                        }
+                    }
+                    else if (morseCode.current.slice(0).join('') === '... --' && key === '-') {
+                        if (key === '-') {
+                            morseCode.current.push(key);
+                            console.log("You're on the right track!");
+                        } else {
+                            morseCode.current = [];
+                            console.log("Fail!");
+                        }
+                    }
+                    else if (morseCode.current.slice(0).join('') === '... ---' && key === ' ') {
+                        if (key === ' ') {
+                            morseCode.current.push(key);
+                            console.log("You're on the right track!");
+                        } else {
+                            morseCode.current = [];
+                            console.log("Fail!");
+                        }
+                    }
+                    else if (morseCode.current.slice(0).join('') === '... --- ' && key === '.') {
+                        if (key === '.') {
+                            morseCode.current.push(key);
+                            console.log("You're on the right track!");
+                        } else {
+                            morseCode.current = [];
+                            console.log("Fail!");
+                        }
+                    }
+                    else if (morseCode.current.slice(0).join('') === '... --- .' && key === '.') {
+                        if (key === '.') {
+                            morseCode.current.push(key);
+                            console.log("You're on the right track!");
+                        } else {
+                            morseCode.current = [];
+                            console.log("Fail!");
+                        }
+                    }
+                    else if (morseCode.current.slice(0).join('') === '... --- ..' && key === '.') {
+                        if (key === '.') {
+                            morseCode.current.push(key);
+                            console.log("You did it!");
+                            setShowRoom6CorrectKey(true);
+                        } else {
+                            morseCode.current = [];
+                            console.log("Fail!");
+                        }
+                    }
+                    else {
+                        morseCode.current = [];
+                        console.log("Fail!");
+                    }
+                } else {
+                    morseCode.current = [];
+                    console.log("Fail!");
+                }
+            }
+
+            // ADD KEY PRESS EVENT LISTENER:
+            document.addEventListener('keydown', detectMorseCode);
+
+
+            // CONSOLE LOG THE HINT:
+
+
+            // CLEAN UP FUNCTION:
+            return () => document.removeEventListener('keydown', detectMorseCode);
+        }
+    }, []);
+    const closeRoom6CorrectKey = () => {
+        // UPDATE USER LOG HISTORY:
+        const room6log2id = userRooms['6'].Event_Logs[1].id;
+        dispatch(logActions.updateLog(room6log2id, { user_id: user.id }));
+
+        // REDIRECT USER TO NEW ROOM:
+        history.push('/play/jhNmKd74tEA');
+    }
+
+
     // -------------------- ROOM 7 GAME LOGIC: -------------------- //
     // -------------------- ROOM 8 GAME LOGIC: -------------------- //
     // -------------------- ROOM 9 GAME LOGIC: -------------------- //
@@ -395,13 +611,94 @@ export default function Rooms({ user, url, userRooms }) {
 
 
             {url === '/play/cSI7QDhHLW8' && userRooms['5'] && (
-                <img className='room-img' src={userRooms['5'].Images[0].img} alt="room5" />
+                <>
+                    <img className='room-img' src={userRooms['5'].Images[0].img} alt="room5" />
+                    <div className='room-5-bat' onClick={room5BatClick}>
+                        <img className='room-5-bat-img bat1' src="https://i.imgur.com/R2EUztL.png" alt="bat" />
+                        <img className='room-5-bat-img bat2' src="https://i.imgur.com/R2EUztL.png" alt="bat" />
+                        <img className='room-5-bat-img bat3' src="https://i.imgur.com/R2EUztL.png" alt="bat" />
+                        <img className='room-5-bat-img bat4' src="https://i.imgur.com/R2EUztL.png" alt="bat" />
+                        <img id="antman play/3RA7Y6eJ2bE" className='room-5-bat-img bat5' src="https://i.imgur.com/R2EUztL.png" alt="bat" />
+                    </div>
+                    {showRoom5Intro && (
+                        <Modal
+                            className='room-5-intro-modal'
+                            onClose={closeRoom5Intro}
+                        >
+                            <div className='event-popup'>
+                                What is this the bat cave? Am I supposed to be iron man or batman?
+                            </div>
+                        </Modal>
+                    )}
+                    {showRoom5BatEvent && batCount.current === 0 && (
+                        <Modal
+                            className='room-5-bat-event-1-modal'
+                            onClose={closeRoom5BatEvent}
+                        >
+                            <div className='event-popup'>
+                                A bat flew into you.
+                            </div>
+                        </Modal>
+                    )}
+                    {showRoom5BatEvent && batCount.current === 1 && (
+                        <Modal
+                            className='room-5-bat-event-2-modal'
+                            onClose={closeRoom5BatEvent}
+                        >
+                            <div className='event-popup'>
+                                Another bat flew into you.
+                            </div>
+                        </Modal>
+                    )}
+                    {showRoom5BatEvent && batCount.current === 2 && (
+                        <Modal
+                            className='room-5-bat-event-3-modal'
+                            onClose={closeRoom5BatEvent}
+                        >
+                            <div className='event-popup'>
+                                A third bat flew into you. This one dropped a note.
+                            </div>
+                        </Modal>
+                    )}
+                    {showRoom5BatEvent && batCount.current >= 3 && (
+                        <Modal
+                            className='room-5-bat-event-3-modal'
+                            onClose={closeRoom5BatEvent}
+                        >
+                            <div className='event-popup'>
+                                The bats stare at you from above.
+                            </div>
+                        </Modal>
+                    )}
+                </>
             )}
 
 
 
             {url === '/play/3RA7Y6eJ2bE' && userRooms['6'] && (
-                <img className='room-img' src={userRooms['6'].Images[0].img} alt="room6" />
+                <>
+                    <img className='room-img' src={userRooms['6'].Images[0].img} alt="room6" />
+                    {showRoom6Intro && (
+                        <Modal
+                            className='room-6-intro-modal'
+                            onClose={closeRoom6Intro}
+                        >
+                            <div className='event-popup'>
+                                Ok, now this is just getting weird. Did I teleport in time? Who designed this game?
+                            </div>
+                        </Modal>
+                    )}
+                    {showRoom6CorrectKey && (
+                        <Modal
+                            className='room-6-success-modal'
+                            onClose={closeRoom6CorrectKey}
+                        >
+                            <div className='event-popup'>
+                                Solid work.
+                            </div>
+                        </Modal>
+                    )}
+                </>
             )}
 
 

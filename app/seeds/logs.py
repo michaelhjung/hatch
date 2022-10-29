@@ -101,8 +101,14 @@ def seed_logs():
     room6_log1 = EventLog(
         room_id=6,
         user_id=None,
-        title='The Morse - Observing New Room',
-        body='Ok, now this is just getting weird. Did I teleport in time? Who\'s writing this script?'
+        title='The Telegraph - Observing New Room',
+        body='Ok, now this is just getting weird. Did I teleport in time? Who designed this game?'
+    )
+    room6_log2 = EventLog(
+        room_id=6,
+        user_id=None,
+        title='The Telegraph - Success',
+        body='Solid work.'
     )
     room7_log1 = EventLog(
         room_id=7,
@@ -147,6 +153,7 @@ def seed_logs():
     db.session.add(room5_log3)
     db.session.add(room5_log4)
     db.session.add(room6_log1)
+    db.session.add(room6_log2)
     db.session.add(room7_log1)
     db.session.add(room7_log2)
     db.session.add(room8_log1)

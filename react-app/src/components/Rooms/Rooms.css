@@ -173,3 +173,49 @@
     transform: scaleX(-1);
     object-fit: cover;
 }
+
+
+
+/* ========== ROOM 5 ========== */
+.room-5-bat {
+    width: 40px;
+    height: 40px;
+    background-color: none;
+    border-radius: 6px;
+    opacity: 0.6;
+    position: absolute;
+    left: 50%;
+    top: 5%;
+    transition: opacity 0.6s ease;
+}
+.room-5-bat:hover {
+    opacity: 0.8;
+    cursor: pointer;
+}
+.room-5-bat-img {
+    width: 100%;
+    height: 100%;
+    transform: scaleX(-1);
+    object-fit: cover;
+    position: absolute;
+}
+.bat1 {
+    left: 50%;
+    top: 0%;
+}
+.bat2 {
+    left: 160%;
+    top: 70%;
+}
+.bat3 {
+    left: -40%;
+    top: 120%;
+}
+.bat4 {
+    left: 0%;
+    top: 50%;
+}
+.bat5 {
+    left: -70%;
+    top: -20%;
+}
