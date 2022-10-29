@@ -1,5 +1,5 @@
 import './Rooms.css';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { Modal } from '../../context/Modal';
@@ -28,8 +28,8 @@ export default function Rooms({ user, url, userRooms }) {
     const [showRoom4ConsoleEvent, setShowRoom4ConsoleEvent] = useState(false);
     const [showRoom4RabbitEvent, setShowRoom4RabbitEvent] = useState(false);
     const [showRoom4CorrectKey, setShowRoom4CorrectKey] = useState(false);
-
-
+    const [showRoom5Intro, setShowRoom5Intro] = useState(true);
+    const [showRoom5BatEvent, setShowRoom5BatEvent] = useState(false);
 
 
     // -------------------- ROOM 1 GAME LOGIC: -------------------- //
@@ -217,7 +217,51 @@ export default function Rooms({ user, url, userRooms }) {
 
 
     // -------------------- ROOM 5 GAME LOGIC: -------------------- //
+    let batCount = useRef(0);
+    const closeRoom5Intro = () => {
+        // CLOSE MODAL:
+        batCount.current = 0;
+        setShowRoom5Intro(false);
 
+        // UPDATE USER LOG HISTORY:
+        const room5log1id = userRooms['5'].Event_Logs[0].id;
+        dispatch(logActions.updateLog(room5log1id, { user_id: user.id }));
+    }
+    const room5BatClick = () => setShowRoom5BatEvent(true);
+    const closeRoom5BatEvent = () => {
+        // CLOSE MODAL:
+        batCount.current = batCount.current + 1;
+        setShowRoom5BatEvent(false);
+
+        if (batCount.current === 1) {
+            // UPDATE USER LOG HISTORY:
+            const room5log2id = userRooms['5'].Event_Logs[1].id;
+            dispatch(logActions.updateLog(room5log2id, { user_id: user.id }));
+        }
+        if (batCount.current === 2) {
+            // UPDATE USER LOG HISTORY:
+            const room5log3id = userRooms['5'].Event_Logs[2].id;
+            dispatch(logActions.updateLog(room5log3id, { user_id: user.id }));
+        }
+        if (batCount.current === 3) {
+            // UPDATE USER LOG HISTORY:
+            const room5log4id = userRooms['5'].Event_Logs[3].id;
+            dispatch(logActions.updateLog(room5log4id, { user_id: user.id }));
+
+            // CREATE NOTE WITH ROOM 5 HINT:
+            if (user.Notes) {
+                const userNotes = Object.values(user.Notes);
+                let hasNote = false;
+                userNotes.forEach(note => {
+                    if (note.body === "#antman") hasNote = true;
+                })
+                if (!hasNote) {
+                    dispatch(noteActions.createNote({ title: "find me", body: "#antman" }));
+                }
+            }
+
+        }
+    }
 
 
 
@@ -395,7 +439,66 @@ export default function Rooms({ user, url, userRooms }) {
 
 
             {url === '/play/cSI7QDhHLW8' && userRooms['5'] && (
-                <img className='room-img' src={userRooms['5'].Images[0].img} alt="room5" />
+                <>
+                    <img className='room-img' src={userRooms['5'].Images[0].img} alt="room5" />
+                    <div className='room-5-bat' onClick={room5BatClick}>
+                        <img className='room-5-bat-img bat1' src="https://i.imgur.com/R2EUztL.png" alt="bat" />
+                        <img className='room-5-bat-img bat2' src="https://i.imgur.com/R2EUztL.png" alt="bat" />
+                        <img className='room-5-bat-img bat3' src="https://i.imgur.com/R2EUztL.png" alt="bat" />
+                        <img className='room-5-bat-img bat4' src="https://i.imgur.com/R2EUztL.png" alt="bat" />
+                        <img id="antman play/3RA7Y6eJ2bE" className='room-5-bat-img bat5' src="https://i.imgur.com/R2EUztL.png" alt="bat" />
+                    </div>
+                    {showRoom5Intro && (
+                        <Modal
+                            className='room-5-intro-modal'
+                            onClose={closeRoom5Intro}
+                        >
+                            <div className='event-popup'>
+                                What is this the bat cave? Am I supposed to be iron man or batman?
+                            </div>
+                        </Modal>
+                    )}
+                    {showRoom5BatEvent && batCount.current === 0 && (
+                        <Modal
+                            className='room-5-bat-event-1-modal'
+                            onClose={closeRoom5BatEvent}
+                        >
+                            <div className='event-popup'>
+                                A bat flew into you.
+                            </div>
+                        </Modal>
+                    )}
+                    {showRoom5BatEvent && batCount.current === 1 && (
+                        <Modal
+                            className='room-5-bat-event-2-modal'
+                            onClose={closeRoom5BatEvent}
+                        >
+                            <div className='event-popup'>
+                                Another bat flew into you.
+                            </div>
+                        </Modal>
+                    )}
+                    {showRoom5BatEvent && batCount.current === 2 && (
+                        <Modal
+                            className='room-5-bat-event-3-modal'
+                            onClose={closeRoom5BatEvent}
+                        >
+                            <div className='event-popup'>
+                                A third bat flew into you. This one dropped a note.
+                            </div>
+                        </Modal>
+                    )}
+                    {showRoom5BatEvent && batCount.current >= 3 && (
+                        <Modal
+                            className='room-5-bat-event-3-modal'
+                            onClose={closeRoom5BatEvent}
+                        >
+                            <div className='event-popup'>
+                                The bats stare at you from above.
+                            </div>
+                        </Modal>
+                    )}
+                </>
             )}
 
 
