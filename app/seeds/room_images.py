@@ -47,7 +47,8 @@ def seed_room_images():
     room6image1 = RoomImage(
         room_id=6,
         name='The Telegraph',
-        img='https://bit.ly/3gJqcjx',
+        img='https://i.imgur.com/fS1Ko2e.gif',
+        # img='https://bit.ly/3gJqcjx',
         order='1'
     )
     room7image1 = RoomImage(
@@ -59,71 +60,16 @@ def seed_room_images():
     room8image1 = RoomImage(
         room_id=8,
         name='Escaped!',
-        img='https://bit.ly/3zeZmWV',
+        img='https://i.imgur.com/426V0Hu.gif',
+        # img='https://bit.ly/3zeZmWV',
         order='1'
     )
-
-
-    # room1image1 = RoomImage(
-    #     room_id=9,
-    #     name='The Cave - 1',
-    #     img='https://bit.ly/3DxLKss',
-    #     order='1'
-    # )
-    # room1image2 = RoomImage(
-    #     room_id=9,
-    #     name='The Cave - 2',
-    #     img='https://bit.ly/3FgmWGx',
-    #     order='2'
-    # )
-    # room2image1 = RoomImage(
-    #     room_id=10,
-    #     name='The Sewer - 1',
-    #     img='https://bit.ly/3f5D8Qd',
-    #     order='1'
-    # )
-    # room2image2 = RoomImage(
-    #     room_id=10,
-    #     name='The Sewer - 2',
-    #     img='https://bit.ly/3N46YBk',
-    #     order='2'
-    # )
-    # room3image1 = RoomImage(
-    #     room_id=11,
-    #     name='The Sewer Door',
-    #     img='https://bit.ly/3Ff8O06',
-    #     order='1'
-    # )
-    # room4image1 = RoomImage(
-    #     room_id=12,
-    #     name='The Empty Room',
-    #     img='https://bit.ly/3DwkLgI',
-    #     order='1'
-    # )
-    # room5image1 = RoomImage(
-    #     room_id=13,
-    #     name='The Bat Cave',
-    #     img='https://bit.ly/3W0Yrmy',
-    #     order='1'
-    # )
-    # room6image1 = RoomImage(
-    #     room_id=14,
-    #     name='The Telegraph',
-    #     img='https://bit.ly/3gJqcjx',
-    #     order='1'
-    # )
-    # room7image1 = RoomImage(
-    #     room_id=15,
-    #     name='The End',
-    #     img='https://bit.ly/3TYRIrJ',
-    #     order='1'
-    # )
-    # room8image1 = RoomImage(
-    #     room_id=16,
-    #     name='Escaped!',
-    #     img='https://bit.ly/3zeZmWV',
-    #     order='1'
-    # )
+    room9image1 = RoomImage(
+        room_id=9,
+        name='Escaped!',
+        img='https://i.imgur.com/zMWiRjr.gif',
+        order='1'
+    )
 
 
     db.session.add(room1image1)
@@ -136,6 +82,7 @@ def seed_room_images():
     db.session.add(room6image1)
     db.session.add(room7image1)
     db.session.add(room8image1)
+    db.session.add(room9image1)
 
     db.session.commit()
 

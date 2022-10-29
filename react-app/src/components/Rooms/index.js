@@ -158,6 +158,7 @@ export default function Rooms({ user, url, userRooms }) {
     // -------------------- ROOM 6 GAME LOGIC: -------------------- //
     // -------------------- ROOM 7 GAME LOGIC: -------------------- //
     // -------------------- ROOM 8 GAME LOGIC: -------------------- //
+    // -------------------- ROOM 9 GAME LOGIC: -------------------- //
 
 
 
@@ -303,6 +304,12 @@ export default function Rooms({ user, url, userRooms }) {
 
 
 
+            {url === '/play/OakSkzL3XaZM2VUR' && userRooms['9'] && (
+                <img className='room-img' src={userRooms['9'].Images[0].img} alt="room9" />
+            )}
+
+
+
             {url !== '/play' &&
              url !== '/play/sewer' &&
              url !== '/play/AKDzZV7xMuQ' &&
@@ -310,7 +317,8 @@ export default function Rooms({ user, url, userRooms }) {
              url !== '/play/cSI7QDhHLW8' &&
              url !== '/play/3RA7Y6eJ2bE' &&
              url !== '/play/jhNmKd74tEA' &&
-             url !== '/play/gUpht2fDiqo' && (
+             url !== '/play/gUpht2fDiqo' &&
+             url !== '/play/OakSkzL3XaZM2VUR' && (
                 <img className='room-img' src={wrongRoom} alt="wrong room" />
              )}
         </>
