@@ -131,7 +131,7 @@ def seed_logs():
     room9_log1 = EventLog(
         room_id=9,
         user_id=None,
-        title='Reality',
+        title='The Real Final Room - The Reality',
         body='You found the real final room. This world is not what it seems... Do you want to stay in wonderland, or see how far the rabbit hole goes...?'
     )
 
