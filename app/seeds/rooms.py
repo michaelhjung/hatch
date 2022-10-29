@@ -35,12 +35,12 @@ def seed_rooms():
     room7 = Room(
         user_id=2,
         progress_id=7,
-        name='The End'
+        name='The Dead End'
     )
     room8 = Room(
         user_id=2,
         progress_id=8,
-        name='Escaped!'
+        name='Game Over?'
     )
     room9 = Room(
         user_id=2,

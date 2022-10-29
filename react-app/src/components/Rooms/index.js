@@ -10,6 +10,7 @@ import * as noteActions from '../../store/notes';
 import * as itemActions from '../../store/items';
 import wrongRoom from '../../assets/imgs/wrong-room.png';
 import keySvg from '../../assets/icons/key.svg';
+import morseSvg from '../../assets/icons/morse.svg';
 
 
 export default function Rooms({ user, url, userRooms }) {
@@ -30,6 +31,8 @@ export default function Rooms({ user, url, userRooms }) {
     const [showRoom4CorrectKey, setShowRoom4CorrectKey] = useState(false);
     const [showRoom5Intro, setShowRoom5Intro] = useState(true);
     const [showRoom5BatEvent, setShowRoom5BatEvent] = useState(false);
+    const [showRoom6Intro, setShowRoom6Intro] = useState(true);
+    const [showRoom6CorrectKey, setShowRoom6CorrectKey] = useState(false);
 
 
     // -------------------- ROOM 1 GAME LOGIC: -------------------- //
@@ -219,8 +222,11 @@ export default function Rooms({ user, url, userRooms }) {
     // -------------------- ROOM 5 GAME LOGIC: -------------------- //
     let batCount = useRef(0);
     const closeRoom5Intro = () => {
-        // CLOSE MODAL:
+
+        // RESET BAT COUNT:
         batCount.current = 0;
+
+        // CLOSE MODAL:
         setShowRoom5Intro(false);
 
         // UPDATE USER LOG HISTORY:
@@ -266,6 +272,172 @@ export default function Rooms({ user, url, userRooms }) {
 
 
     // -------------------- ROOM 6 GAME LOGIC: -------------------- //
+    let morseCode = useRef([]);
+    const closeRoom6Intro = () => {
+        // RESET MORSE CODE EVERY TIME ROOM 6 INTRO CLOSED:
+        morseCode.current = [];
+
+        // CLOSE MODAL:
+        setShowRoom6Intro(false);
+
+        // UPDATE USER LOG HISTORY:
+        const room6log1id = userRooms['6'].Event_Logs[0].id;
+        dispatch(logActions.updateLog(room6log1id, { user_id: user.id }));
+
+        // CREATE LINK IN FOOTER:
+        const footerContacts = document.querySelector('.footer-contact');
+        const morseLink = document.createElement('a');
+        morseLink.setAttribute('class', 'rscForRoom6 footer-links');
+        morseLink.setAttribute('href', 'https://morsecode.world/international/translator.html');
+        morseLink.setAttribute('target', '_blank');
+        const morseImg = document.createElement('img');
+        morseImg.setAttribute('class', 'footer-icons');
+        morseImg.setAttribute('src', morseSvg);
+        morseImg.setAttribute('alt', "morse");
+        morseLink.appendChild(morseImg);
+        footerContacts.appendChild(morseLink);
+    }
+    useEffect(() => {
+        // RESET MORSE CODE EVERY PAGE LOAD:
+        morseCode.current = [];
+
+        // RUN FOR ROOM 6 ONLY:
+        if (url === '/play/3RA7Y6eJ2bE') {
+            const detectMorseCode = (e) => {
+                const key = e.key;
+
+                if (key === '.' || key === '-' || key === ' ') {
+                    if (morseCode.current.slice(0).join('') === '' && key === '.') {
+                        if (key === '.') {
+                            morseCode.current.push(key);
+                            console.log("You're on the right track!");
+                        } else {
+                            morseCode.current = [];
+                            console.log("Fail!");
+                        }
+                    }
+                    else if (morseCode.current.slice(0).join('') === '.' && key === '.') {
+                        if (key === '.') {
+                            morseCode.current.push(key);
+                            console.log("You're on the right track!");
+                        } else {
+                            morseCode.current = [];
+                            console.log("Fail!");
+                        }
+                    }
+                    else if (morseCode.current.slice(0).join('') === '..' && key === '.') {
+                        if (key === '.') {
+                            morseCode.current.push(key);
+                            console.log("You're on the right track!");
+                        } else {
+                            morseCode.current = [];
+                            console.log("Fail!");
+                        }
+                    }
+                    else if (morseCode.current.slice(0).join('') === '...' && key === ' ') {
+                        if (key === ' ') {
+                            morseCode.current.push(key);
+                            console.log("You're on the right track!");
+                        } else {
+                            morseCode.current = [];
+                            console.log("Fail!");
+                        }
+                    }
+                    else if (morseCode.current.slice(0).join('') === '... ' && key === '-') {
+                        if (key === '-') {
+                            morseCode.current.push(key);
+                            console.log("You're on the right track!");
+                        } else {
+                            morseCode.current = [];
+                            console.log("Fail!");
+                        }
+                    }
+                    else if (morseCode.current.slice(0).join('') === '... -' && key === '-') {
+                        if (key === '-') {
+                            morseCode.current.push(key);
+                            console.log("You're on the right track!");
+                        } else {
+                            morseCode.current = [];
+                            console.log("Fail!");
+                        }
+                    }
+                    else if (morseCode.current.slice(0).join('') === '... --' && key === '-') {
+                        if (key === '-') {
+                            morseCode.current.push(key);
+                            console.log("You're on the right track!");
+                        } else {
+                            morseCode.current = [];
+                            console.log("Fail!");
+                        }
+                    }
+                    else if (morseCode.current.slice(0).join('') === '... ---' && key === ' ') {
+                        if (key === ' ') {
+                            morseCode.current.push(key);
+                            console.log("You're on the right track!");
+                        } else {
+                            morseCode.current = [];
+                            console.log("Fail!");
+                        }
+                    }
+                    else if (morseCode.current.slice(0).join('') === '... --- ' && key === '.') {
+                        if (key === '.') {
+                            morseCode.current.push(key);
+                            console.log("You're on the right track!");
+                        } else {
+                            morseCode.current = [];
+                            console.log("Fail!");
+                        }
+                    }
+                    else if (morseCode.current.slice(0).join('') === '... --- .' && key === '.') {
+                        if (key === '.') {
+                            morseCode.current.push(key);
+                            console.log("You're on the right track!");
+                        } else {
+                            morseCode.current = [];
+                            console.log("Fail!");
+                        }
+                    }
+                    else if (morseCode.current.slice(0).join('') === '... --- ..' && key === '.') {
+                        if (key === '.') {
+                            morseCode.current.push(key);
+                            console.log("You did it!");
+                            setShowRoom6CorrectKey(true);
+                        } else {
+                            morseCode.current = [];
+                            console.log("Fail!");
+                        }
+                    }
+                    else {
+                        morseCode.current = [];
+                        console.log("Fail!");
+                    }
+                } else {
+                    morseCode.current = [];
+                    console.log("Fail!");
+                }
+            }
+
+            // ADD KEY PRESS EVENT LISTENER:
+            document.addEventListener('keydown', detectMorseCode);
+
+
+            // CONSOLE LOG THE HINT:
+
+
+            // CLEAN UP FUNCTION:
+            return () => document.removeEventListener('keydown', detectMorseCode);
+        }
+    }, []);
+    const closeRoom6CorrectKey = () => {
+        // UPDATE USER LOG HISTORY:
+        const room6log2id = userRooms['6'].Event_Logs[1].id;
+        dispatch(logActions.updateLog(room6log2id, { user_id: user.id }));
+
+        // REDIRECT USER TO NEW ROOM:
+        history.push('/play/jhNmKd74tEA');
+    }
+
+
     // -------------------- ROOM 7 GAME LOGIC: -------------------- //
     // -------------------- ROOM 8 GAME LOGIC: -------------------- //
     // -------------------- ROOM 9 GAME LOGIC: -------------------- //
@@ -504,7 +676,29 @@ export default function Rooms({ user, url, userRooms }) {
 
 
             {url === '/play/3RA7Y6eJ2bE' && userRooms['6'] && (
-                <img className='room-img' src={userRooms['6'].Images[0].img} alt="room6" />
+                <>
+                    <img className='room-img' src={userRooms['6'].Images[0].img} alt="room6" />
+                    {showRoom6Intro && (
+                        <Modal
+                            className='room-6-intro-modal'
+                            onClose={closeRoom6Intro}
+                        >
+                            <div className='event-popup'>
+                                Ok, now this is just getting weird. Did I teleport in time? Who designed this game?
+                            </div>
+                        </Modal>
+                    )}
+                    {showRoom6CorrectKey && (
+                        <Modal
+                            className='room-6-success-modal'
+                            onClose={closeRoom6CorrectKey}
+                        >
+                            <div className='event-popup'>
+                                Solid work.
+                            </div>
+                        </Modal>
+                    )}
+                </>
             )}
 
 
