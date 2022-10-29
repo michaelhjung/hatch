@@ -24,6 +24,11 @@ export default function Rooms({ user, url, userRooms }) {
     const [showRoom3Intro, setShowRoom3Intro] = useState(true);
     const [showRoom3Note, setShowRoom3Note] = useState(false);
     const [showRoom3CorrectKey, setShowRoom3CorrectKey] = useState(false);
+    const [showRoom4Intro, setShowRoom4Intro] = useState(true);
+    const [showRoom4ConsoleEvent, setShowRoom4ConsoleEvent] = useState(false);
+    const [showRoom4RabbitEvent, setShowRoom4RabbitEvent] = useState(false);
+    const [showRoom4CorrectKey, setShowRoom4CorrectKey] = useState(false);
+
 
 
 
@@ -122,12 +127,16 @@ export default function Rooms({ user, url, userRooms }) {
         dispatch(logActions.updateLog(room3log1id, { user_id: user.id }));
     }
     useEffect(() => {
-        // CHECK IF USER HAS CORRECT ITEM MADE:
+        // RUN FOR ROOM 3 ONLY:
+        if (url === '/play/AKDzZV7xMuQ' && userRooms['3']) {
+
+            // CHECK IF USER HAS CORRECT ITEM MADE:
             if (userItems) {
                 Object.values(userItems).forEach(item => {
                     if (item.serial_id === "BA09JM19" && item.img === "https://bit.ly/3fkBytZ") setShowRoom3CorrectKey(true);
                 });
             }
+        }
     }, [dispatch, userItems]);
     const room3NoteClick = () => setShowRoom3Note(true);
     const closeRoom3NoteEvent = () => {
@@ -138,7 +147,6 @@ export default function Rooms({ user, url, userRooms }) {
         const room3log2id = userRooms['3'].Event_Logs[1].id;
         dispatch(logActions.updateLog(room3log2id, { user_id: user.id }));
     }
-
     const closeRoom3CorrectKey = () => {
         // UPDATE USER LOG HISTORY:
         const room3log3id = userRooms['3'].Event_Logs[2].id;
@@ -151,10 +159,68 @@ export default function Rooms({ user, url, userRooms }) {
 
 
     // -------------------- ROOM 4 GAME LOGIC: -------------------- //
+    const closeRoom4Intro = () => {
+        // CLOSE MODAL:
+        setShowRoom4Intro(false);
+
+        // UPDATE USER LOG HISTORY:
+        const room4log1id = userRooms['4'].Event_Logs[0].id;
+        dispatch(logActions.updateLog(room4log1id, { user_id: user.id }));
+    }
+    useEffect(() => {
+        // RUN FOR ROOM 4 ONLY:
+        if (url === '/play/nwgjJHTaYys' && userRooms['4']) {
+
+            // CHECK IF USER HAS CORRECT ITEM MADE:
+            if (userItems) {
+                Object.values(userItems).forEach(item => {
+                    if (item.name === "metal ladder" && item.serial_id === "9lcTOjGQRsI" && item.img === "https://bit.ly/3FqXWfV") setShowRoom4CorrectKey(true);
+                });
+            }
+        }
+    }, [dispatch, userItems]);
+    useEffect(() => {
+        // RUN FOR ROOM 4 ONLY:
+        if (url === '/play/nwgjJHTaYys' && userRooms['4']) {
+
+            // CONSOLE LOG THE HINT:
+            console.log("*hint* { name: metal ladder, serial id: 9lcTOjGQRsI, url: https://bit.ly/3FqXWfV }");
+        }
+    }, [dispatch, userItems]);
+    const room4ConsoleClick = () => setShowRoom4ConsoleEvent(true);
+    const closeRoom4ConsoleEvent = () => {
+        // CLOSE MODAL:
+        setShowRoom4ConsoleEvent(false);
+
+        // UPDATE USER LOG HISTORY:
+        const room4log2id = userRooms['4'].Event_Logs[1].id;
+        dispatch(logActions.updateLog(room4log2id, { user_id: user.id }));
+    }
+    const room4RabbitClick = () => setShowRoom4RabbitEvent(true);
+    const closeRoom4RabbitEvent = () => {
+        // CLOSE MODAL:
+        setShowRoom4RabbitEvent(false);
+
+        // UPDATE USER LOG HISTORY:
+        const room4log3id = userRooms['4'].Event_Logs[2].id;
+        dispatch(logActions.updateLog(room4log3id, { user_id: user.id }));
+    }
+    const closeRoom4CorrectKey = () => {
+        // UPDATE USER LOG HISTORY:
+        const room4log4id = userRooms['4'].Event_Logs[3].id;
+        dispatch(logActions.updateLog(room4log4id, { user_id: user.id }));
+
+        // REDIRECT USER TO NEW ROOM:
+        history.push('/play/cSI7QDhHLW8');
+    }
 
 
 
     // -------------------- ROOM 5 GAME LOGIC: -------------------- //
+
+
+
+
     // -------------------- ROOM 6 GAME LOGIC: -------------------- //
     // -------------------- ROOM 7 GAME LOGIC: -------------------- //
     // -------------------- ROOM 8 GAME LOGIC: -------------------- //
@@ -212,7 +278,7 @@ export default function Rooms({ user, url, userRooms }) {
                     )}
                     {showFooterEvent && (
                         <Modal
-                            className='bottle-event-modal'
+                            className='footer-event-modal'
                             onClose={closeFooterEvent}
                         >
                             <div className='event-popup'>
@@ -261,7 +327,7 @@ export default function Rooms({ user, url, userRooms }) {
                     )}
                     {showRoom3CorrectKey && (
                         <Modal
-                            className='room-3-intro-modal'
+                            className='room-3-success-modal'
                             onClose={closeRoom3CorrectKey}
                         >
                             <div className='event-popup'>
@@ -275,7 +341,55 @@ export default function Rooms({ user, url, userRooms }) {
 
 
             {url === '/play/nwgjJHTaYys' && userRooms['4'] && (
-                <img className='room-img' src={userRooms['4'].Images[0].img} alt="room4" />
+                <>
+                    <img className='room-img' src={userRooms['4'].Images[0].img} alt="room4" />
+                    <div className='room-4-console' onClick={room4ConsoleClick}>
+                        <img className='room-4-console-img' src="https://i.imgur.com/Aky9pGi.png" alt="console" />
+                    </div>
+                    <div className='room-4-rabbit' onClick={room4RabbitClick}>
+                        <img className='room-4-rabbit-img' src="https://i.imgur.com/ujM26Nw.png" alt="rabbit" />
+                    </div>
+                    {showRoom4Intro && (
+                        <Modal
+                            className='room-4-intro-modal'
+                            onClose={closeRoom4Intro}
+                        >
+                            <div className='event-popup'>
+                                There's a hole in the ceiling, but how do I get up there? Maybe I can make something again...
+                            </div>
+                        </Modal>
+                    )}
+                    {showRoom4ConsoleEvent && (
+                        <Modal
+                            className='room-4-console-event-modal'
+                            onClose={closeRoom4ConsoleEvent}
+                        >
+                            <div className='event-popup'>
+                                What is this old video game console doing here...? Someone must be living around here... gotta be careful...
+                            </div>
+                        </Modal>
+                    )}
+                    {showRoom4RabbitEvent && (
+                        <Modal
+                            className='room-4-rabbit-event-modal'
+                            onClose={closeRoom4RabbitEvent}
+                        >
+                            <div className='event-popup'>
+                                A random rabbit.
+                            </div>
+                        </Modal>
+                    )}
+                    {showRoom4CorrectKey && (
+                        <Modal
+                            className='room-4-success-modal'
+                            onClose={closeRoom4CorrectKey}
+                        >
+                            <div className='event-popup'>
+                                Nice job again, let's get out of here...
+                            </div>
+                        </Modal>
+                    )}
+                </>
             )}
 
 
