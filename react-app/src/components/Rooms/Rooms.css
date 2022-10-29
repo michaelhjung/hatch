@@ -85,7 +85,7 @@
     height: 40px;
     background-color: #C1B2AB;
     border-radius: 6px;
-    opacity: 0.4;
+    opacity: 0.2;
     position: absolute;
     right: 10%;
     top: 45%;
@@ -116,11 +116,60 @@
     height: 40px;
     background-color: #C1B2AB;
     border-radius: 6px;
-    opacity: 0.05;
+    opacity: 0.02;
     position: absolute;
     right: 2%;
     bottom: 20%;
 }
 .room-3-note:hover {
-    box-shadow: 0px 0px 12px 1px #D9D9D9;
+    box-shadow: 3px 3px 12px 1px #D9D9D9;
+}
+
+
+
+/* ========== ROOM 4 ========== */
+.room-4-console {
+    width: 50px;
+    height: 35px;
+    background-color: none;
+    border-radius: 12px;
+    overflow: hidden;
+    opacity: 0.4;
+    position: absolute;
+    right: 37%;
+    top: 45%;
+    transition: transform 0.5s ease;
+}
+.room-4-console:hover {
+    transform: scale(1.1);
+    cursor: pointer;
+}
+.room-4-console-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.room-4-rabbit {
+    width: 40px;
+    height: 40px;
+    background-color: none;
+    border-radius: 6px;
+    opacity: 0.1;
+    position: absolute;
+    left: 3%;
+    bottom: 25%;
+    transition: transform 0.5s ease;
+    transition: opacity 0.3s ease;
+}
+.room-4-rabbit:hover {
+    transform: scale(1.1);
+    opacity: 0.3;
+    cursor: pointer;
+}
+.room-4-rabbit-img {
+    width: 100%;
+    height: 100%;
+    transform: scaleX(-1);
+    object-fit: cover;
 }

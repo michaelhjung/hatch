@@ -141,6 +141,7 @@ def seed_logs():
     db.session.add(room4_log1)
     db.session.add(room4_log2)
     db.session.add(room4_log3)
+    db.session.add(room4_log4)
     db.session.add(room5_log1)
     db.session.add(room5_log2)
     db.session.add(room5_log3)
