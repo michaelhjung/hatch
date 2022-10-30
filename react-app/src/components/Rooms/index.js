@@ -145,6 +145,8 @@ export default function Rooms({ user, url, userRooms }) {
                 });
             }
         }
+
+        return () => setShowRoom3CorrectKey(false);
     }, [dispatch, userItems]);
     const room3NoteClick = () => setShowRoom3Note(true);
     const closeRoom3NoteEvent = () => {
@@ -186,6 +188,8 @@ export default function Rooms({ user, url, userRooms }) {
                 });
             }
         }
+
+        return () => setShowRoom4CorrectKey(false);
     }, [dispatch, userItems]);
     useEffect(() => {
         // RUN FOR ROOM 4 ONLY:
@@ -195,7 +199,12 @@ export default function Rooms({ user, url, userRooms }) {
             console.log("*hint* { name: metal ladder, serial id: 9lcTOjGQRsI, url: https://bit.ly/3FqXWfV }");
         }
     }, [dispatch, userItems]);
-    const room4ConsoleClick = () => setShowRoom4ConsoleEvent(true);
+    const room4ConsoleClick = () => {
+        setShowRoom4ConsoleEvent(true);
+
+        // CONSOLE LOG THE HINT:
+        console.log("*hint* { name: metal ladder, serial id: 9lcTOjGQRsI, url: https://bit.ly/3FqXWfV }");
+    }
     const closeRoom4ConsoleEvent = () => {
         // CLOSE MODAL:
         setShowRoom4ConsoleEvent(false);
@@ -464,6 +473,8 @@ export default function Rooms({ user, url, userRooms }) {
                 });
             }
         }
+
+        return () => setShowRoom7CorrectKey(false);
     }, [dispatch, userNotes]);
     const closeRoom7CorrectKey = () => {
         // UPDATE USER LOG HISTORY:
@@ -485,12 +496,6 @@ export default function Rooms({ user, url, userRooms }) {
         const room8log1id = userRooms['8'].Event_Logs[0].id;
         dispatch(logActions.updateLog(room8log1id, { user_id: user.id }));
     }
-    useEffect(() => {
-        // RUN FOR ROOM 7 ONLY:
-        if (url === '/play/gUpht2fDiqo' && userRooms['8']) {
-
-        }
-    }, []);
 
 
 
@@ -520,7 +525,7 @@ export default function Rooms({ user, url, userRooms }) {
 
 
 
-
+    // ========================= RENDERED PAGE ========================= //
     if (!userRooms) return null;
     return (
         <>
