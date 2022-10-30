@@ -15,7 +15,7 @@ def seed_notes():
     test_note3 = Note(
         user_id=2,
         title='Items',
-        body='Also feel free to create, read, update, or delete items on the right!'
+        body='Also feel free to create, read, update, or delete items on the right! We made some cookies for you already as an example.'
     )
 
 
