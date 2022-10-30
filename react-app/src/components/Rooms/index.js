@@ -17,6 +17,7 @@ export default function Rooms({ user, url, userRooms }) {
     const dispatch = useDispatch();
     const history = useHistory();
     const userItems = useSelector(state => state.items);
+    const userNotes = useSelector(state => state.notes);
     const [showIntro, setShowIntro] = useState(true);
     const [showBottleEvent, setShowBottleEvent] = useState(false);
     const [showRoom2Intro, setShowRoom2Intro] = useState(true);
@@ -33,6 +34,10 @@ export default function Rooms({ user, url, userRooms }) {
     const [showRoom5BatEvent, setShowRoom5BatEvent] = useState(false);
     const [showRoom6Intro, setShowRoom6Intro] = useState(true);
     const [showRoom6CorrectKey, setShowRoom6CorrectKey] = useState(false);
+    const [showRoom7Intro, setShowRoom7Intro] = useState(true);
+    const [showRoom7CorrectKey, setShowRoom7CorrectKey] = useState(false);
+    const [showRoom8Intro, setShowRoom8Intro] = useState(true);
+    const [showRoom9Intro, setShowRoom9Intro] = useState(true);
 
 
     // -------------------- ROOM 1 GAME LOGIC: -------------------- //
@@ -439,13 +444,79 @@ export default function Rooms({ user, url, userRooms }) {
 
 
     // -------------------- ROOM 7 GAME LOGIC: -------------------- //
+    // SET COOKIES (THIS WILL HAPPEN ON THE FIRST ROOM):
+    document.cookie = "note_title=finalkey";
+    document.cookie = "note_body=hiremichaeljung";
 
+    const closeRoom7Intro = () => {
+        // CLOSE MODAL:
+        setShowRoom7Intro(false);
+
+        // UPDATE USER LOG HISTORY:
+        const room7log1id = userRooms['7'].Event_Logs[0].id;
+        dispatch(logActions.updateLog(room7log1id, { user_id: user.id }));
+    }
+    useEffect(() => {
+        // RUN FOR ROOM 7 ONLY:
+        if (url === '/play/jhNmKd74tEA' && userRooms['7']) {
+
+            // CHECK IF USER HAS CORRECT NOTE MADE:
+            if (userNotes) {
+                Object.values(userNotes).forEach(note => {
+                    if (note.title === "finalkey" && note.body === "hiremichaeljung") setShowRoom7CorrectKey(true);
+                });
+            }
+        }
+    }, [dispatch, userNotes]);
+    const closeRoom7CorrectKey = () => {
+        // UPDATE USER LOG HISTORY:
+        const room7log2id = userRooms['7'].Event_Logs[1].id;
+        dispatch(logActions.updateLog(room7log2id, { user_id: user.id }));
+
+        // REDIRECT USER TO NEW ROOM:
+        history.push('/play/gUpht2fDiqo');
+    }
 
 
 
     // -------------------- ROOM 8 GAME LOGIC: -------------------- //
-    // -------------------- ROOM 9 GAME LOGIC: -------------------- //
+    const closeRoom8Intro = () => {
+        // CLOSE MODAL:
+        setShowRoom8Intro(false);
 
+        // UPDATE USER LOG HISTORY:
+        const room8log1id = userRooms['8'].Event_Logs[0].id;
+        dispatch(logActions.updateLog(room8log1id, { user_id: user.id }));
+    }
+    useEffect(() => {
+        // RUN FOR ROOM 7 ONLY:
+        if (url === '/play/gUpht2fDiqo' && userRooms['8']) {
+
+        }
+    }, []);
+
+
+    // -------------------- ROOM 9 GAME LOGIC: -------------------- //
+    const closeRoom9Intro = () => {
+        // CLOSE MODAL:
+        setShowRoom9Intro(false);
+
+        // UPDATE USER LOG HISTORY:
+        const room9log1id = userRooms['9'].Event_Logs[0].id;
+        dispatch(logActions.updateLog(room9log1id, { user_id: user.id }));
+
+        // CREATE ITEM REWARD:
+        if (user.Items) {
+            const userItems = Object.values(user.Items);
+            let hasItem = false;
+            userItems.forEach(item => {
+                if (item.name === "Choice" && item.serial_id === "#bigquestions" && item.img === "https://i.imgur.com/SDYUHbe.png") hasItem = true;
+            })
+            if (!hasItem) {
+                dispatch(itemActions.createItem({ name: "Choice", serial_id: "#bigquestions", img: "https://i.imgur.com/SDYUHbe.png" }));
+            }
+        }
+    }
 
 
     if (!userRooms) return null;
@@ -708,19 +779,68 @@ export default function Rooms({ user, url, userRooms }) {
 
 
             {url === '/play/jhNmKd74tEA' && userRooms['7'] && (
-                <img className='room-img' src={userRooms['7'].Images[0].img} alt="room7" />
+                <>
+                    <img className='room-img' src={userRooms['7'].Images[0].img} alt="room7" />
+                    {showRoom7Intro && (
+                        <Modal
+                            className='room-7-intro-modal'
+                            onClose={closeRoom7Intro}
+                        >
+                            <div className='event-popup'>
+                                Dang it I'm back in the caves... but it looks like all I need to do now is get this final lock!
+                            </div>
+                        </Modal>
+                    )}
+                    {showRoom7CorrectKey && (
+                        <Modal
+                            className='room-7-success-modal'
+                            onClose={closeRoom7CorrectKey}
+                        >
+                            <div className='event-popup'>
+                                Were those always there?
+                            </div>
+                        </Modal>
+                    )}
+                </>
             )}
 
 
 
             {url === '/play/gUpht2fDiqo' && userRooms['8'] && (
-                <img className='room-img' src={userRooms['8'].Images[0].img} alt="room8" />
+                <>
+                    <img className='room-img' id="room9? OakSkzL3XaZM2VUR" src={userRooms['8'].Images[0].img} alt="room8" />
+                    {showRoom8Intro && (
+                        <Modal
+                            className='room-8-intro-modal'
+                            onClose={closeRoom8Intro}
+                        >
+                            <div className='event-popup'>
+                                Congratulations, you escaped.
+                            </div>
+                        </Modal>
+                    )}
+                </>
             )}
 
 
 
             {url === '/play/OakSkzL3XaZM2VUR' && userRooms['9'] && (
-                <img className='room-img' src={userRooms['9'].Images[0].img} alt="room9" />
+                <>
+                    <img className='room-img' src={userRooms['9'].Images[0].img} alt="room9" />
+                    {showRoom9Intro && (
+                        <Modal
+                            className='room-9-intro-modal'
+                            onClose={closeRoom9Intro}
+                        >
+                            <div className='event-popup'>
+                                You found the real final room. This world is not what it seems... Do you want to stay in wonderland, or see how far the rabbit hole goes...?
+                                <br/>
+                                <br/>
+                                Thanks for playing!
+                            </div>
+                        </Modal>
+                    )}
+                </>
             )}
 
 

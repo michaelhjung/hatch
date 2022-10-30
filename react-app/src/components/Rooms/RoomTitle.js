@@ -27,6 +27,9 @@ export default function RoomTitle({ url, userRooms }) {
             {url === '/play/gUpht2fDiqo' && userRooms['8'] && (
                 <span className='room-header'>{userRooms['8'].name}</span>
             )}
+            {url === '/play/OakSkzL3XaZM2VUR' && userRooms['9'] && (
+                <span className='room-header'>{userRooms['9'].name}</span>
+            )}
             {url !== '/play' &&
              url !== '/play/sewer' &&
              url !== '/play/AKDzZV7xMuQ' &&
@@ -34,7 +37,8 @@ export default function RoomTitle({ url, userRooms }) {
              url !== '/play/cSI7QDhHLW8' &&
              url !== '/play/3RA7Y6eJ2bE' &&
              url !== '/play/jhNmKd74tEA' &&
-             url !== '/play/gUpht2fDiqo' && (
+             url !== '/play/gUpht2fDiqo' &&
+             url !== '/play/OakSkzL3XaZM2VUR' && (
                 <span className='room-header'>Wrong Room</span>
              )}
         </>

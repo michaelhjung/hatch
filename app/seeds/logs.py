@@ -119,8 +119,8 @@ def seed_logs():
     room7_log2 = EventLog(
         room_id=7,
         user_id=None,
-        title='The Dead End - Hunger',
-        body='How long has it been since I ate? Really want a chocolate chip cookie right now...'
+        title='The Dead End - Success',
+        body='How long were those cookies there!?'
     )
     room8_log1 = EventLog(
         room_id=8,
@@ -132,7 +132,7 @@ def seed_logs():
         room_id=9,
         user_id=None,
         title='The Real Final Room - The Reality',
-        body='You found the real final room. This world is not what it seems... Do you want to stay in wonderland, or see how far the rabbit hole goes...?'
+        body='Congratulations. You found the real final room. This world is not what it seems... Do you want to stay in this fantasy world and believe whatever you want? Or do you want me to show you how deep the rabbit hole goes...?'
     )
 
 
