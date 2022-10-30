@@ -37,7 +37,7 @@ export default function Rooms({ user, url, userRooms }) {
     const [showRoom7Intro, setShowRoom7Intro] = useState(true);
     const [showRoom7CorrectKey, setShowRoom7CorrectKey] = useState(false);
     const [showRoom8Intro, setShowRoom8Intro] = useState(true);
-    const [showRoom9Intro, setShowRoom9Intro] = useState(true);
+    const [showRoom9Intro, setShowRoom9Intro] = useState(false);
 
 
     // -------------------- ROOM 1 GAME LOGIC: -------------------- //
@@ -145,6 +145,8 @@ export default function Rooms({ user, url, userRooms }) {
                 });
             }
         }
+
+        return () => setShowRoom3CorrectKey(false);
     }, [dispatch, userItems]);
     const room3NoteClick = () => setShowRoom3Note(true);
     const closeRoom3NoteEvent = () => {
@@ -186,6 +188,8 @@ export default function Rooms({ user, url, userRooms }) {
                 });
             }
         }
+
+        return () => setShowRoom4CorrectKey(false);
     }, [dispatch, userItems]);
     useEffect(() => {
         // RUN FOR ROOM 4 ONLY:
@@ -464,6 +468,8 @@ export default function Rooms({ user, url, userRooms }) {
                 });
             }
         }
+
+        return () => setShowRoom7CorrectKey(false);
     }, [dispatch, userNotes]);
     const closeRoom7CorrectKey = () => {
         // UPDATE USER LOG HISTORY:
@@ -485,16 +491,19 @@ export default function Rooms({ user, url, userRooms }) {
         const room8log1id = userRooms['8'].Event_Logs[0].id;
         dispatch(logActions.updateLog(room8log1id, { user_id: user.id }));
     }
-    useEffect(() => {
-        // RUN FOR ROOM 7 ONLY:
-        if (url === '/play/gUpht2fDiqo' && userRooms['8']) {
-
-        }
-    }, []);
 
 
 
     // -------------------- ROOM 9 GAME LOGIC: -------------------- //
+    useEffect(() => {
+        // RUN FOR ROOM 9 ONLY:
+        if (url === '/play/OakSkzL3XaZM2VUR' && userRooms['9']) {
+            setShowRoom9Intro(true);
+        }
+
+        return () => setShowRoom9Intro(false);
+    }, []);
+
     const closeRoom9Intro = () => {
         // CLOSE MODAL:
         setShowRoom9Intro(false);
@@ -520,7 +529,7 @@ export default function Rooms({ user, url, userRooms }) {
 
 
 
-
+    // ========================= RENDERED PAGE ========================= //
     if (!userRooms) return null;
     return (
         <>
