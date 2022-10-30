@@ -145,7 +145,21 @@ def sign_up():
         db.session.add(user)
         db.session.commit()
         login_user(user)
-        return user.to_dict()
+
+        user_query = User.query.get(user.id)
+
+        newUser = user_query.to_dict()
+
+        event_log_query = EventLog.query.filter(EventLog.user_id == newUser['id']).all()
+        newUser['Event_Logs'] = [log.to_dict() for log in event_log_query]
+        items_query = Item.query.filter(Item.user_id == newUser['id']).all()
+        newUser['Items'] = [item.to_dict() for item in items_query]
+        notes_query = Note.query.filter(Note.user_id == newUser['id']).all()
+        newUser['Notes'] = [note.to_dict() for note in notes_query]
+        rooms_query = Room.query.filter(Room.user_id == newUser['id']).all()
+        newUser['Rooms'] = [room.to_dict() for room in rooms_query]
+
+        return newUser
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
 

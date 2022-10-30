@@ -425,10 +425,6 @@ export default function Rooms({ user, url, userRooms }) {
             // ADD KEY PRESS EVENT LISTENER:
             document.addEventListener('keydown', detectMorseCode);
 
-
-            // CONSOLE LOG THE HINT:
-
-
             // CLEAN UP FUNCTION:
             return () => document.removeEventListener('keydown', detectMorseCode);
         }
@@ -441,6 +437,7 @@ export default function Rooms({ user, url, userRooms }) {
         // REDIRECT USER TO NEW ROOM:
         history.push('/play/jhNmKd74tEA');
     }
+
 
 
     // -------------------- ROOM 7 GAME LOGIC: -------------------- //
@@ -496,6 +493,7 @@ export default function Rooms({ user, url, userRooms }) {
     }, []);
 
 
+
     // -------------------- ROOM 9 GAME LOGIC: -------------------- //
     const closeRoom9Intro = () => {
         // CLOSE MODAL:
@@ -517,6 +515,10 @@ export default function Rooms({ user, url, userRooms }) {
             }
         }
     }
+
+
+
+
 
 
     if (!userRooms) return null;
