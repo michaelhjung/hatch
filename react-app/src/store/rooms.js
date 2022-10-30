@@ -1,6 +1,7 @@
 /* ----------------------------- ACTION TYPES: ----------------------------- */
 const READ_ROOMS = '/rooms/READ_ROOMS';
 const CREATE_ROOM = '/rooms/CREATE_ROOM';
+const CREATE_ROOM_IMG = '/rooms/CREATE_ROOM_IMG';
 const UPDATE_ROOM = '/rooms/UPDATE_ROOM';
 const DELETE_ROOM = '/rooms/DELETE_ROOM';
 const CLEAR_DATA = '/rooms/CLEAR_DATA';
@@ -42,6 +43,26 @@ export const createRoom = (roomData) => async dispatch => {
         // console.log("NEW ROOM DATA AFTER FETCH:", newRoom);
         dispatch(_createRoom(newRoom));
         return newRoom;
+    }
+}
+
+const _createRoomImg = (roomImgData) => ({
+    type: CREATE_ROOM_IMG,
+    payload: roomImgData
+});
+
+export const createRoomImg = (roomImgData) => async dispatch => {
+    const response = await fetch(`/api/images/`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(roomImgData)
+    });
+
+    if (response.ok) {
+        const newRoomImg = await response.json();
+        // console.log("NEW ROOM DATA AFTER FETCH:", newRoom);
+        dispatch(_createRoomImg(newRoomImg));
+        return newRoomImg;
     }
 }
 
@@ -111,6 +132,21 @@ const roomsReducer = (state = initialState, action) => {
             newState = { ...state };
             newState[action.payload.progress_id] = action.payload;
             // console.log("NEWSTATE AFTER CREATE_ROOM ACTION:", newState);
+            return newState;
+        case CREATE_ROOM_IMG:
+            newState = { ...state };
+            Object.values(newState).forEach(room => {
+                if (room.Images) room.Images = [ ...state[room.progress_id].Images ]
+            });
+
+            // CREATE IMAGES KEY IF NOT THERE, OTHERWISE JUST PUSH:
+            if (!newState[action.payload.room_progress_id].Images) {
+                newState[action.payload.room_progress_id].Images = [];
+                newState[action.payload.room_progress_id].Images.push(action.payload);
+            } else {
+                newState[action.payload.room_progress_id].Images.push(action.payload);
+            }
+            // console.log("NEWSTATE AFTER CREATE_ROOM_IMG ACTION:", newState);
             return newState;
         case UPDATE_ROOM:
             newState = { ...state };

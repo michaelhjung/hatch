@@ -1,5 +1,5 @@
 from flask import Blueprint, jsonify, session, request
-from app.models import db, User, EventLog, Item, Note
+from app.models import db, User, EventLog, Item, Note, Room
 from app.forms import LoginForm, SignUpForm
 from flask_login import current_user, login_user, logout_user, login_required
 from sqlalchemy import or_
@@ -35,6 +35,8 @@ def authenticate():
         user['Items'] = [item.to_dict() for item in items_query]
         notes_query = Note.query.filter(Note.user_id == user['id']).all()
         user['Notes'] = [note.to_dict() for note in notes_query]
+        rooms_query = Room.query.filter(Room.user_id == user['id']).all()
+        user['Rooms'] = [room.to_dict() for room in rooms_query]
 
         return user
     return jsonify({ "message": "Forbidden - please log in", "status_code": 403 }), 403
@@ -67,9 +69,21 @@ def login():
 
     if form.validate_on_submit():
         # Add the user to the session, we are logged in!
-        user = User.query.filter(or_(User.email == form.data['credential'], User.username == form.data['credential'])).first()
-        login_user(user)
-        return user.to_dict()
+        user_query = User.query.filter(or_(User.email == form.data['credential'], User.username == form.data['credential'])).first()
+        login_user(user_query)
+
+        user = user_query.to_dict()
+
+        event_log_query = EventLog.query.filter(EventLog.user_id == user['id']).all()
+        user['Event_Logs'] = [log.to_dict() for log in event_log_query]
+        items_query = Item.query.filter(Item.user_id == user['id']).all()
+        user['Items'] = [item.to_dict() for item in items_query]
+        notes_query = Note.query.filter(Note.user_id == user['id']).all()
+        user['Notes'] = [note.to_dict() for note in notes_query]
+        rooms_query = Room.query.filter(Room.user_id == user['id']).all()
+        user['Rooms'] = [room.to_dict() for room in rooms_query]
+
+        return user
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
 

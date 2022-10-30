@@ -54,6 +54,7 @@ def create_room_img():
     if form.validate_on_submit():
         new_room_img = RoomImage(
             room_id=form.data['room_id'],
+            room_progress_id=form.data['room_progress_id'],
             name=form.data['name'],
             img=form.data['img'],
             order=form.data['order']
