@@ -2,20 +2,20 @@ from app.models import db, Item
 
 
 def seed_items():
+    control = Item(
+        room_id=None,
+        user_id=1,
+        name='Control',
+        serial_id='#master',
+        img='https://bit.ly/3DMK5iw'
+    )
+
     bottle = Item(
-        room_id=1,
-        user_id=None,
+        room_id=None,
+        user_id=1,
         name='Bottle',
         serial_id='B92E70',
         img='https://bit.ly/3zeSmt5'
-    )
-
-    cookie = Item(
-        room_id=None,
-        user_id=1,
-        name='Cookie',
-        serial_id='C00KI3',
-        img='https://bit.ly/3DGqFfz'
     )
 
     tool = Item(
@@ -26,7 +26,7 @@ def seed_items():
         img='https://bit.ly/3fkwTbg'
     )
 
-    cookie2 = Item(
+    cookie = Item(
         room_id=None,
         user_id=2,
         name='Cookie',
@@ -35,10 +35,10 @@ def seed_items():
     )
 
 
+    db.session.add(control)
     db.session.add(bottle)
-    db.session.add(cookie)
     db.session.add(tool)
-    db.session.add(cookie2)
+    db.session.add(cookie)
 
     db.session.commit()
 

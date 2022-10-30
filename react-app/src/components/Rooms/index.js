@@ -37,7 +37,7 @@ export default function Rooms({ user, url, userRooms }) {
     const [showRoom7Intro, setShowRoom7Intro] = useState(true);
     const [showRoom7CorrectKey, setShowRoom7CorrectKey] = useState(false);
     const [showRoom8Intro, setShowRoom8Intro] = useState(true);
-    const [showRoom9Intro, setShowRoom9Intro] = useState(false);
+    const [showRoom9Intro, setShowRoom9Intro] = useState(true);
 
 
     // -------------------- ROOM 1 GAME LOGIC: -------------------- //
@@ -199,7 +199,12 @@ export default function Rooms({ user, url, userRooms }) {
             console.log("*hint* { name: metal ladder, serial id: 9lcTOjGQRsI, url: https://bit.ly/3FqXWfV }");
         }
     }, [dispatch, userItems]);
-    const room4ConsoleClick = () => setShowRoom4ConsoleEvent(true);
+    const room4ConsoleClick = () => {
+        setShowRoom4ConsoleEvent(true);
+
+        // CONSOLE LOG THE HINT:
+        console.log("*hint* { name: metal ladder, serial id: 9lcTOjGQRsI, url: https://bit.ly/3FqXWfV }");
+    }
     const closeRoom4ConsoleEvent = () => {
         // CLOSE MODAL:
         setShowRoom4ConsoleEvent(false);
@@ -495,15 +500,6 @@ export default function Rooms({ user, url, userRooms }) {
 
 
     // -------------------- ROOM 9 GAME LOGIC: -------------------- //
-    useEffect(() => {
-        // RUN FOR ROOM 9 ONLY:
-        if (url === '/play/OakSkzL3XaZM2VUR' && userRooms['9']) {
-            setShowRoom9Intro(true);
-        }
-
-        return () => setShowRoom9Intro(false);
-    }, []);
-
     const closeRoom9Intro = () => {
         // CLOSE MODAL:
         setShowRoom9Intro(false);
