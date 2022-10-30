@@ -184,7 +184,7 @@ export default function SignUpForm () {
                             {profilePic && (
                                 <div className='profile-pic-prev-container'>
                                     <span>Profile Picture Preview:</span>
-                                    <img className='profile-pic-preview' src={profilePic} alt="avatar" onError={e => e.target.src=wanted} />
+                                    <img className='profile-pic-preview' src={profilePic} alt="avatar" onError={e => e.target.src="https://bit.ly/3Ddiwxy"} />
                                 </div>
                             )}
                         <button

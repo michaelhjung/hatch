@@ -7,6 +7,7 @@ class RoomImage(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     room_id = db.Column(db.Integer, db.ForeignKey('rooms.id'))
+    room_progress_id = db.Column(db.Integer)
     name = db.Column(db.String(255), nullable=False)
     img = db.Column(db.String(255), nullable=False)
     order = db.Column(db.Integer, nullable=False)
@@ -21,6 +22,7 @@ class RoomImage(db.Model):
         return {
             'id': self.id,
             'room_id': self.room_id,
+            'room_progress_id': self.room_progress_id,
             'name': self.name,
             'img': self.img,
             'order': self.order,

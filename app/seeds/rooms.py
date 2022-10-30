@@ -15,7 +15,7 @@ def seed_rooms():
     room3 = Room(
         user_id=2,
         progress_id=3,
-        name='The Sewer Door'
+        name='The Locked Door'
     )
     room4 = Room(
         user_id=2,
