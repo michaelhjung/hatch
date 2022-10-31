@@ -158,7 +158,7 @@ export default function Splash() {
 
         setTimeout(() => {
             history.push('/play');
-        }, 3000)
+        }, 3500);
     }
 
 
