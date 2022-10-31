@@ -55,22 +55,33 @@ export default function LoginForm () {
                                 ))}
                             </div>
                         )}
-                        <input
-                            name='credential'
-                            type='text'
-                            placeholder='Email or Username'
-                            value={credential}
-                            onChange={e => setCredential(e.target.value)}
-                            className='form-field-input first-field-input'
-                        />
-                        <input
-                            name='password'
-                            type='password'
-                            placeholder='Password'
-                            value={password}
-                            onChange={e => setPassword(e.target.value)}
-                            className='form-field-input last-field-input'
-                        />
+                        <div className='form-field-input-container'>
+                            <input
+                                name='credential'
+                                type='text'
+                                placeholder='Email or Username'
+                                value={credential}
+                                onChange={e => setCredential(e.target.value)}
+                                className='form-field-input first-field-input'
+                            />
+                            {credential.length > 0 && (
+                                <small className='input-label'>email or username:</small>
+                            )}
+                        </div>
+
+                        <div className='form-field-input-container'>
+                            <input
+                                name='password'
+                                type='password'
+                                placeholder='Password'
+                                value={password}
+                                onChange={e => setPassword(e.target.value)}
+                                className='form-field-input last-field-input'
+                            />
+                            {password.length > 0 && (
+                                <small className='input-label'>password:</small>
+                            )}
+                        </div>
                         {(credential.length === 0 || password.length === 0) && (
                             <small className='req-text' >*All fields are required.</small>
                         )}

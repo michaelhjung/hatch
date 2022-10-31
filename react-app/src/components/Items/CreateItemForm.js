@@ -68,6 +68,8 @@ export default function CreateItemForm({ add }) {
                                 ))}
                             </div>
                         )}
+
+                        <div className='form-field-input-container'>
                             <input
                                 type='text'
                                 name='name'
@@ -77,6 +79,12 @@ export default function CreateItemForm({ add }) {
                                 required={true}
                                 className='form-field-input first-field-input'
                             />
+                            {name.length > 0 && (
+                                <small className='input-label'>item name:</small>
+                            )}
+                        </div>
+
+                        <div className='form-field-input-container'>
                             <input
                                 type='text'
                                 name='serialId'
@@ -86,6 +94,12 @@ export default function CreateItemForm({ add }) {
                                 required={true}
                                 className='form-field-input'
                             />
+                            {serialId.length > 0 && (
+                                <small className='input-label'>item serial id:</small>
+                            )}
+                        </div>
+
+                        <div className='form-field-input-container'>
                             <input
                                 type='text'
                                 name='itemImg'
@@ -95,15 +109,22 @@ export default function CreateItemForm({ add }) {
                                 required={true}
                                 className='form-field-input last-field-input'
                             />
-                            {(name.length === 0 || serialId.length === 0 || img.length === 0) && (
-                                <small className='req-text' >*All fields are required.</small>
+                            {img.length > 0 && (
+                                <small className='input-label'>item img url:</small>
                             )}
-                            {img && (
-                                <div className='item-img-prev-container'>
-                                    <span>Item Picture Preview:</span>
-                                    <img className='item-img-preview' src={img} alt="item" onError={e => e.target.src=tools} />
-                                </div>
-                            )}
+                        </div>
+
+                        {(name.length === 0 || serialId.length === 0 || img.length === 0) && (
+                            <small className='req-text' >*All fields are required.</small>
+                        )}
+
+                        {img && (
+                            <div className='item-img-prev-container'>
+                                <span>Item Picture Preview:</span>
+                                <img className='item-img-preview' src={img} alt="item" onError={e => e.target.src=tools} />
+                            </div>
+                        )}
+
                         <button
                             className='submit-button'
                             type='submit'
