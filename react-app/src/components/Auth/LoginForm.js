@@ -71,6 +71,9 @@ export default function LoginForm () {
                             onChange={e => setPassword(e.target.value)}
                             className='form-field-input last-field-input'
                         />
+                        {(credential.length === 0 || password.length === 0) && (
+                            <small className='req-text' >*All fields are required.</small>
+                        )}
                         <button
                             className='submit-button'
                             type='submit'

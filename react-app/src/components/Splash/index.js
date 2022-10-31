@@ -3,8 +3,9 @@ import { useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import logo from '../../assets/imgs/hatch-logo.png';
-// import heroBg from '../../assets/imgs/watertight-door_door-bg.png';
-// import heroWheel from '../../assets/imgs/watertight-door_wheel.png';
+import heroBg from '../../assets/imgs/hero-bg.png';
+import heroDoor from '../../assets/imgs/hero-door.png';
+import heroWheel from '../../assets/imgs/hero-wheel.png';
 import LoginForm from '../Auth/LoginForm';
 import SignUpForm from '../Auth/SignUpForm';
 import LogoutButton from '../Auth/LogoutButton';
@@ -135,34 +136,34 @@ export default function Splash() {
 
 
 
+    // SCROLL LOGIC FOR HERO:
+
+
+
 
     return (
         <main className='hero-splash-container'>
             <section className='hero-container'>
-                {/* <img className='hero-bg' src={hero} alt='watertight door'/> */}
+                <img className='hero-img' id='hero-bg' src={heroBg} alt='hero background'/>
+                <img className='hero-img' id='hero-door' src={heroDoor} alt='watertight door'/>
+                <img className='hero-img' id='hero-wheel' src={heroWheel} alt='hatch wheel' />
             </section>
 
 
             <section className='splash-container'>
-                <div className='splash-logo-container'>
-                    <img src={logo} alt='hatch logo' />
-                </div>
                 <div className='login-signup-container'>
+                    <img className='hero-logo' src={logo} alt='hatch logo' />
                     <LoginForm />
                     <SignUpForm />
-                </div>
-                {user && (
-                    <>
-                        <div>
+                    <Demo />
+                    {user && (
+                        <>
                             <h1 className='welcome-title'>Welcome, {user.username}.</h1>
-                        </div>
-                        <div>
                             <button className='room-1-button' onClick={() => history.push('/play')}>ENTER ROOM 1</button>
                             <LogoutButton />
-                        </div>
-                    </>
-                )}
-                <Demo />
+                        </>
+                    )}
+                </div>
             </section>
         </main>
     )
