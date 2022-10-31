@@ -17,6 +17,10 @@ import * as logActions from '../../store/logs';
 
 export default function Splash() {
     const user = useSelector(state => state.session.user);
+    const userRooms = useSelector(state => state.rooms);
+    const userLogs = useSelector(state => state.logs);
+    const userItems = useSelector(state => state.items);
+    const userNotes = useSelector(state => state.notes);
     const dispatch = useDispatch();
     const history = useHistory();
 
@@ -143,16 +147,63 @@ export default function Splash() {
         const hatchLogo = document.querySelector('.hero-logo');
         const welcomeTitle = document.querySelector('.welcome-title');
         const enterButton = document.querySelector('.room-1-button');
+        const resetButton = document.querySelector('.reset-button');
         const logoutButton = document.querySelector('.logout-button');
 
         hatchLogo.setAttribute('class', 'hero-logo fade');
         welcomeTitle.setAttribute('class', 'welcome-title fade');
         enterButton.setAttribute('class', 'room-1-button fade');
+        resetButton.setAttribute('class', 'reset-button fade');
         logoutButton.setAttribute('class', 'logout-button fade');
 
         setTimeout(() => {
             history.push('/play');
         }, 3000)
+    }
+
+
+
+    // USE EFFECT TO GRAB USER'S ROOMS, NOTES, ITEMS, & EVENT LOGS:
+    useEffect(() => {
+        if (user) {
+            dispatch(roomActions.readRooms());
+            dispatch(logActions.readLogs());
+            dispatch(noteActions.readNotes());
+            dispatch(itemActions.readItems());
+
+            return () => {
+                dispatch(roomActions.clearData());
+                dispatch(logActions.clearData());
+                dispatch(noteActions.clearData());
+                dispatch(itemActions.clearData());
+            }
+        }
+    }, [dispatch, user]);
+
+    const resetUserData = () => {
+        Object.values(userNotes).forEach(note => {
+            dispatch(noteActions.deleteNote(note.id));
+        });
+        Object.values(userItems).forEach(item => {
+            dispatch(itemActions.deleteItem(item.id));
+        });
+        Object.values(userLogs).forEach(log => {
+            dispatch(logActions.deleteLog(log.id));
+        });
+        Object.values(userRooms).forEach(room => {
+            dispatch(roomActions.deleteRoom(room.id, room.progress_id));
+        })
+    }
+
+    // RESET BUTTON HANDLER:
+    const handleReset = () => {
+        if (window.confirm(`Please verify you would like to reset the game data by clicking "OK". This action cannot be undone.`)) {
+            resetUserData();
+            roomsSetup(user);
+            notesSetup(user);
+            itemsSetup(user);
+            alert("Data has been reset.");
+        }
     }
 
 
@@ -174,6 +225,7 @@ export default function Splash() {
                         <>
                             <h1 className='welcome-title'>Welcome, {user.username}.</h1>
                             <button className='room-1-button' onClick={handleEnterRoom}>ENTER ROOM 1</button>
+                            <button className='reset-button' onClick={handleReset}>RESET GAME DATA</button>
                             <LogoutButton />
                         </>
                     )}
