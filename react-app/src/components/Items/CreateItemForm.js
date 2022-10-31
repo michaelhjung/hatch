@@ -54,6 +54,7 @@ export default function CreateItemForm({ add }) {
                     onClose={() => {
                             setName('');
                             setSerialId('');
+                            setImg('');
                             setValidationErrors([]);
                             setShowModal(false)
                         }

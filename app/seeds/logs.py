@@ -42,7 +42,7 @@ def seed_logs():
         room_id=3,
         user_id=None,
         title='The Locked Door - Found Note',
-        body='A nother note... it says, "url: https://bit.ly/3fkBytZ"'
+        body='Another note... it says, "url: https://bit.ly/3fkBytZ"'
     )
     room3_log3 = EventLog(
         room_id=3,

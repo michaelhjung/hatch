@@ -58,7 +58,7 @@ export default function Splash() {
             await dispatch(roomActions.createRoomImg({ room_id: room3.id, room_progress_id: 3, name: "The Sewer Door", img: "https://bit.ly/3Ff8O06", order: 1 }));
 
             await dispatch(logActions.createLog({ room_id: room3.id, title: "The Locked Door - Observing New Room", body: `I found a door, but it's locked... Looks like it wants a very specific key...` }));
-            await dispatch(logActions.createLog({ room_id: room3.id, title: "The Locked Door - Found Note", body: `A nother note... it says, "url: https://bit.ly/3fkBytZ"` }));
+            await dispatch(logActions.createLog({ room_id: room3.id, title: "The Locked Door - Found Note", body: `Another note... it says, "url: https://bit.ly/3fkBytZ"` }));
             await dispatch(logActions.createLog({ room_id: room3.id, title: "The Locked Door - Key", body: `You made the right key! Nice...` }));
 
             // ROOM 4 IMGS & LOGS:
