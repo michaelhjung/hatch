@@ -63,17 +63,26 @@
 }
 
 .bottle {
-    width: 6px;
-    height: 20px;
+    width: 12px;
+    height: 22px;
     border-radius: 15px;
     background-color: none;
     position: absolute;
-    bottom: 10%;
+    bottom: 6%;
     left: 20%;
 }
 
-.bottle:hover {
+.bottle-img {
+    width: 100%;
+    height: 100%;
+    opacity: 0.02;
+    object-fit: cover;
+    position: absolute;
+}
+
+.bottle-img:hover {
     box-shadow: 0px 0px 12px 1px #D9D9D9;
+    opacity: 0.3;
     cursor: pointer;
 }
 
@@ -92,26 +101,34 @@
     transition: opacity 0.5s ease;
 }
 .room-2-note:hover {
-    opacity: 0.4;
+    opacity: 0.5;
     box-shadow: 0px 0px 12px 1px #D9D9D9;
 }
 
 .snake {
-    width: 8px;
+    width: 15px;
     height: 40px;
     border-radius: 15px;
     background-color: none;
     position: absolute;
-    bottom: -2%;
+    bottom: -3%;
     left: 50%;
-    transition: box-shadow 0.6s ease;
 }
 
-.snake:hover {
-    box-shadow: 0px 0px 12px 1px #D9D9D9;
+.snake-img {
+    width: 100%;
+    height: 100%;
+    opacity: 0.2;
+    object-fit: cover;
+    position: absolute;
+    transition: transform 0.4s ease;
+}
+
+.snake-img:hover {
+    transform: scale(2);
+    opacity: 0.7;
     cursor: pointer;
 }
-
 
 
 /* ========== ROOM 3 ========== */
@@ -120,14 +137,14 @@
     height: 40px;
     background-color: #C1B2AB;
     border-radius: 6px;
-    opacity: 0.02;
+    opacity: 0.04;
     position: absolute;
     right: 2%;
     bottom: 20%;
     transition: opacity 0.4s ease;
 }
 .room-3-note:hover {
-    opacity: 0.06;
+    opacity: 0.1;
     box-shadow: 3px 3px 12px 1px #D9D9D9;
 }
 

@@ -10,7 +10,9 @@ import * as noteActions from '../../store/notes';
 import * as itemActions from '../../store/items';
 import wrongRoom from '../../assets/imgs/wrong-room.png';
 import keySvg from '../../assets/icons/key.svg';
+import toolSvg from '../../assets/icons/tool.svg';
 import morseSvg from '../../assets/icons/morse.svg';
+import cookieSvg from '../../assets/icons/cookie.svg';
 
 
 export default function Rooms({ user, url, userRooms }) {
@@ -84,9 +86,11 @@ export default function Rooms({ user, url, userRooms }) {
 
 
     // -------------------- ROOM 2 GAME LOGIC: -------------------- //
+    let footerUpdatedSnake = useRef(false);
     const closeRoom2Intro = () => {
         // CLOSE MODAL:
         setShowRoom2Intro(false);
+        footerUpdatedSnake.current = false;
 
         // UPDATE USER LOG HISTORY:
         const room2log1id = userRooms['2'].Event_Logs[0].id;
@@ -101,17 +105,20 @@ export default function Rooms({ user, url, userRooms }) {
         const room2log2id = userRooms['2'].Event_Logs[1].id;
         dispatch(logActions.updateLog(room2log2id, { user_id: user.id }));
 
-        // CREATE LINK IN FOOTER:
-        const footerContacts = document.querySelector('.footer-contact');
-        const keyLink = document.createElement('a');
-        keyLink.setAttribute('class', 'keyForRoom3 footer-links');
-        keyLink.setAttribute('href', 'https://escape-hatch.herokuapp.com/play/AKDzZV7xMuQ');
-        const keyImg = document.createElement('img');
-        keyImg.setAttribute('class', 'footer-icons');
-        keyImg.setAttribute('src', keySvg);
-        keyImg.setAttribute('alt', "key");
-        keyLink.appendChild(keyImg);
-        footerContacts.appendChild(keyLink);
+        if (!footerUpdatedSnake.current) {
+            // CREATE LINK IN FOOTER:
+            const footerContacts = document.querySelector('.footer-contact');
+            const keyLink = document.createElement('a');
+            keyLink.setAttribute('class', 'keyForRoom3 footer-links');
+            keyLink.setAttribute('href', 'https://escape-hatch.herokuapp.com/play/AKDzZV7xMuQ');
+            const keyImg = document.createElement('img');
+            keyImg.setAttribute('class', 'footer-icons');
+            keyImg.setAttribute('src', keySvg);
+            keyImg.setAttribute('alt', "key");
+            keyLink.appendChild(keyImg);
+            footerContacts.appendChild(keyLink);
+            footerUpdatedSnake.current = true;
+        }
     }
     const room2NoteClick = () => setShowRoom2Note(true);
     const closeRoom2NoteEvent = () => {
@@ -169,9 +176,11 @@ export default function Rooms({ user, url, userRooms }) {
 
 
     // -------------------- ROOM 4 GAME LOGIC: -------------------- //
+    let footerUpdatedRabbit = useRef(false);
     const closeRoom4Intro = () => {
         // CLOSE MODAL:
         setShowRoom4Intro(false);
+        footerUpdatedRabbit.current = false;
 
         // UPDATE USER LOG HISTORY:
         const room4log1id = userRooms['4'].Event_Logs[0].id;
@@ -221,6 +230,22 @@ export default function Rooms({ user, url, userRooms }) {
         // UPDATE USER LOG HISTORY:
         const room4log3id = userRooms['4'].Event_Logs[2].id;
         dispatch(logActions.updateLog(room4log3id, { user_id: user.id }));
+
+        if (!footerUpdatedRabbit.current) {
+            // CREATE LINK IN FOOTER:
+            const footerContacts = document.querySelector('.footer-contact');
+            const rscLink = document.createElement('a');
+            rscLink.setAttribute('class', 'keyForRoom4 footer-links');
+            rscLink.setAttribute('href', 'https://developer.chrome.com/docs/devtools/open/#shortcuts');
+            rscLink.setAttribute('target', '_blank');
+            const rscImg = document.createElement('img');
+            rscImg.setAttribute('class', 'footer-icons');
+            rscImg.setAttribute('src', toolSvg);
+            rscImg.setAttribute('alt', "resource");
+            rscLink.appendChild(rscImg);
+            footerContacts.appendChild(rscLink);
+            footerUpdatedRabbit.current = true;
+        }
     }
     const closeRoom4CorrectKey = () => {
         // UPDATE USER LOG HISTORY:
@@ -461,6 +486,19 @@ export default function Rooms({ user, url, userRooms }) {
         // UPDATE USER LOG HISTORY:
         const room7log1id = userRooms['7'].Event_Logs[0].id;
         dispatch(logActions.updateLog(room7log1id, { user_id: user.id }));
+
+        // CREATE LINK IN FOOTER:
+        const footerContacts = document.querySelector('.footer-contact');
+        const cookieLink = document.createElement('a');
+        cookieLink.setAttribute('class', 'rscForRoom7 footer-links');
+        cookieLink.setAttribute('href', 'https://bit.ly/3U9VTAU');
+        cookieLink.setAttribute('target', '_blank');
+        const cookieImg = document.createElement('img');
+        cookieImg.setAttribute('class', 'footer-icons');
+        cookieImg.setAttribute('src', cookieSvg);
+        cookieImg.setAttribute('alt', "cookie");
+        cookieLink.appendChild(cookieImg);
+        footerContacts.appendChild(cookieLink);
     }
     useEffect(() => {
         // RUN FOR ROOM 7 ONLY:
@@ -533,7 +571,9 @@ export default function Rooms({ user, url, userRooms }) {
                 <>
                     <img className='room-img' id='blurry' src={userRooms['1'].Images[0].img} alt="room1" />
                     <button className='rub-eyes-button' onClick={vizHandler}>Rub Eyes</button>
-                    <div className='bottle' onClick={bottleClick}></div>
+                    <div className='bottle' onClick={bottleClick}>
+                        <img className='bottle-img' src="https://i.imgur.com/MxqBtSE.png" alt="bottle" />
+                    </div>
                     {showIntro && (
                         <Modal
                             className='intro-story-modal'
@@ -563,7 +603,9 @@ export default function Rooms({ user, url, userRooms }) {
                 <>
                     <img className='room-img' src={userRooms['2'].Images[0].img} alt="room2" />
                     <div className='room-2-note' onClick={room2NoteClick}></div>
-                    <div className='snake' onClick={snakeClick}></div>
+                    <div className='snake' onClick={snakeClick}>
+                        <img className='snake-img' src='https://i.imgur.com/ixNino2.png' alt="snake" />
+                    </div>
                     {showRoom2Intro && (
                         <Modal
                             className='room-2-intro-modal'
