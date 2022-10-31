@@ -73,6 +73,8 @@ export default function UpdateNoteForm({ note, pencil }) {
                                 ))}
                             </div>
                         )}
+
+                        <div className='form-field-input-container'>
                             <input
                                 type='text'
                                 name='title'
@@ -82,6 +84,12 @@ export default function UpdateNoteForm({ note, pencil }) {
                                 required={true}
                                 className='form-field-input first-field-input'
                             />
+                            {title.length > 0 && (
+                                <small className='input-label'>note title:</small>
+                            )}
+                        </div>
+
+                        <div className='form-field-input-container'>
                             <textarea
                                 name='body'
                                 placeholder="Type your note body here...*"
@@ -90,9 +98,15 @@ export default function UpdateNoteForm({ note, pencil }) {
                                 required
                                 className='form-field-input form-field-textarea last-field-input'
                             />
-                            {(title.length === 0 || body.length === 0) && (
-                                <small className='req-text' >*All fields are required.</small>
+                            {body.length > 0 && (
+                                <small className='input-label'>note body:</small>
                             )}
+                        </div>
+
+                        {(title.length === 0 || body.length === 0) && (
+                            <small className='req-text' >*All fields are required.</small>
+                        )}
+
                         <button
                             className='submit-button'
                             type='submit'
