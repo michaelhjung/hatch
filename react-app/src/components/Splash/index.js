@@ -3,9 +3,8 @@ import { useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import logo from '../../assets/imgs/hatch-logo.png';
-import heroBg from '../../assets/imgs/hero-bg.png';
-import heroDoor from '../../assets/imgs/hero-door.png';
-import heroWheel from '../../assets/imgs/hero-wheel.png';
+import hero from '../../assets/imgs/hero-normal.gif';
+import heroAnimate from '../../assets/imgs/hero-animate.gif';
 import LoginForm from '../Auth/LoginForm';
 import SignUpForm from '../Auth/SignUpForm';
 import LogoutButton from '../Auth/LogoutButton';
@@ -136,17 +135,32 @@ export default function Splash() {
 
 
 
-    // SCROLL LOGIC FOR HERO:
+    // ANIMATION LOGIC FOR ENTER ROOM:
+    const handleEnterRoom = () => {
+        const hero = document.getElementById('hero');
+        hero.src = heroAnimate;
 
+        const hatchLogo = document.querySelector('.hero-logo');
+        const welcomeTitle = document.querySelector('.welcome-title');
+        const enterButton = document.querySelector('.room-1-button');
+        const logoutButton = document.querySelector('.logout-button');
+
+        hatchLogo.setAttribute('class', 'hero-logo fade');
+        welcomeTitle.setAttribute('class', 'welcome-title fade');
+        enterButton.setAttribute('class', 'room-1-button fade');
+        logoutButton.setAttribute('class', 'logout-button fade');
+
+        setTimeout(() => {
+            history.push('/play');
+        }, 3000)
+    }
 
 
 
     return (
         <main className='hero-splash-container'>
             <section className='hero-container'>
-                <img className='hero-img' id='hero-bg' src={heroBg} alt='hero background'/>
-                <img className='hero-img' id='hero-door' src={heroDoor} alt='watertight door'/>
-                <img className='hero-img' id='hero-wheel' src={heroWheel} alt='hatch wheel' />
+                <img className='hero-img' id='hero' src={hero} alt='hatch hero' />
             </section>
 
 
@@ -159,7 +173,7 @@ export default function Splash() {
                     {user && (
                         <>
                             <h1 className='welcome-title'>Welcome, {user.username}.</h1>
-                            <button className='room-1-button' onClick={() => history.push('/play')}>ENTER ROOM 1</button>
+                            <button className='room-1-button' onClick={handleEnterRoom}>ENTER ROOM 1</button>
                             <LogoutButton />
                         </>
                     )}
