@@ -2,6 +2,7 @@
     height: 100vh;
     min-width: 1000px;
 }
+
 /* ---------------------- HERO -------------------- */
 .hero-container {
     width: 100vw;
@@ -14,6 +15,23 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
+}
+
+.fade {
+    animation-duration: 1s;
+    animation-name: fade;
+    animation-timing-function: ease-in-out;
+    animation-fill-mode: forwards;
+}
+
+@keyframes fade {
+    0% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
 }
 
 
