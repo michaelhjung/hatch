@@ -51,7 +51,7 @@ export default function Splash() {
             await dispatch(roomActions.createRoomImg({ room_id: room2.id, room_progress_id: 2, name: "The Sewer", img: "https://bit.ly/3f5D8Qd", order: 1 }));
 
             await dispatch(logActions.createLog({ room_id: room2.id, title: "The Sewer - Observing New Room", body: `An underground sewage system... Now to keep looking around...` }));
-            await dispatch(logActions.createLog({ room_id: room2.id, title: "The Sewer - Creepy Thing in Water", body: `Gross, did I feel something crawling on my feet?` }));
+            await dispatch(logActions.createLog({ room_id: room2.id, title: "The Sewer - Creepy Thing in Water", body: `Gross, did I feel something crawling on my foot?` }));
             await dispatch(logActions.createLog({ room_id: room2.id, title: "The Sewer - Found Note", body: `A note... it says, "serial id: BA09JM19"` }));
 
             // ROOM 3 IMGS & LOGS:
