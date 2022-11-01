@@ -32,13 +32,14 @@
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ### Project Wiki
-* [Backend API Documentation](https://github.com/michaelhjung/hatch/wiki/Backend-API-Documentation)
-* [Database Schema](https://github.com/michaelhjung/hatch/wiki/Database-Schema)
-* [User Stories](https://github.com/michaelhjung/hatch/wiki/User-Stories)
-* [Features List](https://github.com/michaelhjung/hatch/wiki/Features-List)
-* [Redux State Shape](https://github.com/michaelhjung/hatch/wiki/Redux-Store-Shape)
-* [Wireframes](https://github.com/michaelhjung/hatch/wiki/Wireframes)
-* [Why hatch?](https://github.com/michaelhjung/hatch/wiki/Why-hatch%3F)
+* 🗄️[Backend API Documentation](https://github.com/michaelhjung/hatch/wiki/Backend-API-Documentation)
+* 💾[Database Schema](https://github.com/michaelhjung/hatch/wiki/Database-Schema)
+* 📖[User Stories](https://github.com/michaelhjung/hatch/wiki/User-Stories)
+* 🗒️[Features List](https://github.com/michaelhjung/hatch/wiki/Features-List)
+* 🏪[Redux State Shape](https://github.com/michaelhjung/hatch/wiki/Redux-Store-Shape)
+* 🖼️[Wireframes](https://github.com/michaelhjung/hatch/wiki/Wireframes)
+* 🎬[BTS/Game Walkthrough](https://github.com/michaelhjung/hatch/wiki/BTS---Game-Walkthrough-*SPOILER-WARNING*)
+* 🙋[Why hatch?](https://github.com/michaelhjung/hatch/wiki/Why-hatch%3F)
 
 
 ### Built With
