@@ -144,6 +144,8 @@ export default function Rooms({ user, url, userRooms }) {
     useEffect(() => {
         // RUN FOR ROOM 3 ONLY:
         if (url === '/play/AKDzZV7xMuQ' && userRooms['3']) {
+            // RESET CORRECT KEY STATE
+            setShowRoom3CorrectKey(false);
 
             // CHECK IF USER HAS CORRECT ITEM MADE:
             if (userItems) {
@@ -189,6 +191,8 @@ export default function Rooms({ user, url, userRooms }) {
     useEffect(() => {
         // RUN FOR ROOM 4 ONLY:
         if (url === '/play/nwgjJHTaYys' && userRooms['4']) {
+            // RESET CORRECT KEY STATE
+            setShowRoom4CorrectKey(false);
 
             // CHECK IF USER HAS CORRECT ITEM MADE:
             if (userItems) {
@@ -342,6 +346,7 @@ export default function Rooms({ user, url, userRooms }) {
 
         // RUN FOR ROOM 6 ONLY:
         if (url === '/play/3RA7Y6eJ2bE') {
+
             const detectMorseCode = (e) => {
                 const key = e.key;
 
@@ -503,6 +508,8 @@ export default function Rooms({ user, url, userRooms }) {
     useEffect(() => {
         // RUN FOR ROOM 7 ONLY:
         if (url === '/play/jhNmKd74tEA' && userRooms['7']) {
+            // RESET CORRECT KEY STATE
+            setShowRoom7CorrectKey(false);
 
             // CHECK IF USER HAS CORRECT NOTE MADE:
             if (userNotes) {
