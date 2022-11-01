@@ -73,10 +73,6 @@
     ![notes]
   - ### Create, Read, Update, Delete Items
     ![items]
-  - ### Reset User Game Data
-    ![reset]
-  - ### Sign Up!
-    ![signup]
 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
@@ -161,9 +157,7 @@ Project Link: [https://github.com/michaelhjung/hatch](https://github.com/michael
 [github-url-michael]: https://github.com/michaelhjung
 
 
-[enter]: https://i.imgur.com/1dHgtfS.gif
+[enter]: https://i.imgur.com/kr9oAlp.gif
 [interact]: https://i.imgur.com/2tVKIUV.gif
 [notes]: https://i.imgur.com/lqMDkKJ.gif
 [items]: https://i.imgur.com/1xvJVBy.gif
-[reset]: https://i.imgur.com/Y77Nsw7.gif
-[signup]: https://i.imgur.com/omDlFo9.gif
