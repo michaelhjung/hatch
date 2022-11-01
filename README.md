@@ -16,7 +16,7 @@
     <li>
       <a href="#getting-started">Getting Started</a>
     </li>
-    <li><a href="#roadmap">Roadmap</a></li>
+    <li><a href="#timeline">Timeline</a></li>
     <li><a href="#contact-michael">Contact Michael</a></li>
   </ol>
 </details>
@@ -65,7 +65,18 @@
 <!-- SAMPLE FEATURES -->
 ## Sample Features
 
-🚧🚧 This section is still under construction. 🚧🚧
+  - ### Enter Room Animation
+    ![enter]
+  - ### Interact with Room Elements
+    ![interact]
+  - ### Create, Read, Update, Delete Notes
+    ![notes]
+  - ### Create, Read, Update, Delete Items
+    ![items]
+  - ### Reset User Game Data
+    ![reset]
+  - ### Sign Up!
+    ![signup]
 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
@@ -109,13 +120,21 @@ To get a local copy up and running follow these simple example steps.
     npm start
     ```
 
-<!-- ROADMAP -->
-## Roadmap
+<!-- Timeline -->
+## Timeline
 
-🚧🚧 This section is still under construction. 🚧🚧
-
-<!-- - [ ] User
-    - [ ] Create a user account -->
+| Date            |           Accomplishment           |
+|:---------------:|:-----------------------------------|
+| Sat, 10/22/2022 | decide on idea, start finding assets, create repo |
+| Sun, 10/23/2022 | finish first draft of api documentation, db schema, list of riddles/clues to implement, redux store shape pseudocode, features list, wireframe |
+| Mon, 10/24/2022 | receive project approval, create logo, create all backend models, backend forms, backend api routes |
+| Tue, 10/25/2022 | revise schema, add room images table, complete api routes for room images table, complete storyboarding, create test seed data, create postman tests and tested all backend routes, update wireframe |
+| Wed, 10/26/2022 | photoshop hero image, finished login/signup forms with error validations, demo user button, footer, profile button |
+| Thu, 10/27/2022 | all CRUD for notes and items, finish Rooms and Event Logs reducers |
+| Fri, 10/28/2022 | finished rooms 1, 2, & 3 game logic |
+| Sat, 10/29/2022 | finished rest of rooms game logic, finished logic for game initialization upon sign up (auto-creates all rooms with associated room images and event logs, starter user notes, starter user items) |
+| Sun, 10/30/2022 | add clean up functions for rooms, update splash page |
+| Mon, 10/31/2022 | finish hero image animation, finish reset game data button, update form labels to appear when typing, update CSS |
 
 
 
@@ -140,3 +159,11 @@ Project Link: [https://github.com/michaelhjung/hatch](https://github.com/michael
 [github-icon]: https://skillicons.dev/icons?i=github
 [linkedin-url-michael]: https://linkedin.com/in/michael-h-jung/
 [github-url-michael]: https://github.com/michaelhjung
+
+
+[enter]: https://i.imgur.com/1dHgtfS.gif
+[interact]: https://i.imgur.com/2tVKIUV.gif
+[notes]: https://i.imgur.com/lqMDkKJ.gif
+[items]: https://i.imgur.com/1xvJVBy.gif
+[reset]: https://i.imgur.com/Y77Nsw7.gif
+[signup]: https://i.imgur.com/omDlFo9.gif
