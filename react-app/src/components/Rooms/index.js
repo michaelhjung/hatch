@@ -43,6 +43,7 @@ export default function Rooms({ user, url, userRooms }) {
 
 
     // -------------------- ROOM 1 GAME LOGIC: -------------------- //
+    const noteGiven = useRef(false);
     const vizHandler = async (e) => {
         e.preventDefault();
         const roomImg = document.querySelector('.room-img');
@@ -77,8 +78,18 @@ export default function Rooms({ user, url, userRooms }) {
             userNotes.forEach(note => {
                 if (note.body === "https://escape-hatch.herokuapp.com/play/sewer") hasNote = true;
             })
-            if (!hasNote) {
+            if (!noteGiven.current && !hasNote) {
                 await dispatch(noteActions.createNote({ title: "A Back Door", body: "https://escape-hatch.herokuapp.com/play/sewer" }));
+                noteGiven.current = true;
+                const notesContainer = document.querySelector('.all-notes-container');
+                const lastNoteMade = notesContainer.lastElementChild;
+                const updateDeleteIcons = lastNoteMade.lastElementChild;
+                lastNoteMade.removeChild(updateDeleteIcons);
+                const room1key = document.createElement('a');
+                room1key.setAttribute('href', 'https://escape-hatch.herokuapp.com/play/sewer');
+                room1key.setAttribute('target', '_blank');
+                room1key.appendChild(lastNoteMade);
+                notesContainer.appendChild(room1key);
             }
         }
     }
@@ -156,7 +167,7 @@ export default function Rooms({ user, url, userRooms }) {
         }
 
         return () => setShowRoom3CorrectKey(false);
-    }, [dispatch, userItems]);
+    }, [dispatch, userItems, url, userRooms]);
     const room3NoteClick = () => setShowRoom3Note(true);
     const closeRoom3NoteEvent = () => {
         // CLOSE MODAL:
@@ -203,7 +214,7 @@ export default function Rooms({ user, url, userRooms }) {
         }
 
         return () => setShowRoom4CorrectKey(false);
-    }, [dispatch, userItems]);
+    }, [dispatch, userItems, url, userRooms]);
     useEffect(() => {
         // RUN FOR ROOM 4 ONLY:
         if (url === '/play/nwgjJHTaYys' && userRooms['4']) {
@@ -211,7 +222,7 @@ export default function Rooms({ user, url, userRooms }) {
             // CONSOLE LOG THE HINT:
             console.log("*hint* { name: metal ladder, serial id: 9lcTOjGQRsI, url: https://bit.ly/3FqXWfV }");
         }
-    }, [dispatch, userItems]);
+    }, [dispatch, userItems, url, userRooms]);
     const room4ConsoleClick = () => {
         setShowRoom4ConsoleEvent(true);
 
@@ -467,7 +478,7 @@ export default function Rooms({ user, url, userRooms }) {
             // CLEAN UP FUNCTION:
             return () => document.removeEventListener('keydown', detectMorseCode);
         }
-    }, []);
+    }, [url]);
     const closeRoom6CorrectKey = () => {
         // UPDATE USER LOG HISTORY:
         const room6log2id = userRooms['6'].Event_Logs[1].id;
@@ -520,7 +531,7 @@ export default function Rooms({ user, url, userRooms }) {
         }
 
         return () => setShowRoom7CorrectKey(false);
-    }, [dispatch, userNotes]);
+    }, [dispatch, userNotes, url, userRooms]);
     const closeRoom7CorrectKey = () => {
         // UPDATE USER LOG HISTORY:
         const room7log2id = userRooms['7'].Event_Logs[1].id;
