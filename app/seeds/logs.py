@@ -24,7 +24,7 @@ def seed_logs():
         room_id=2,
         user_id=None,
         title='The Sewer - Creepy Thing in Water',
-        body='Gross, did I feel something crawling on my feet?'
+        body='Gross, did I feel something crawling on my foot?'
     )
     room2_log3 = EventLog(
         room_id=2,

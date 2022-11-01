@@ -629,7 +629,7 @@ export default function Rooms({ user, url, userRooms }) {
                             onClose={closeFooterEvent}
                         >
                             <div className='event-popup'>
-                                "Gross, did I feel something crawling on my feet?"
+                                "Gross, did I feel something crawling on my foot?"
                             </div>
                         </Modal>
                     )}
