@@ -38,7 +38,7 @@
 * 🗒️[Features List](https://github.com/michaelhjung/hatch/wiki/Features-List)
 * 🏪[Redux State Shape](https://github.com/michaelhjung/hatch/wiki/Redux-Store-Shape)
 * 🖼️[Wireframes](https://github.com/michaelhjung/hatch/wiki/Wireframes)
-* 🎬[BTS/Game Walkthrough](https://github.com/michaelhjung/hatch/wiki/BTS---Game-Walkthrough-*SPOILER-WARNING*)
+* 🎬[BTS/Game Walkthrough](https://github.com/michaelhjung/hatch/wiki/BTS-Game-Walkthrough-*SPOILER-WARNING*)
 * 🙋[Why hatch?](https://github.com/michaelhjung/hatch/wiki/Why-hatch%3F)
 
 
