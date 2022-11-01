@@ -13,6 +13,9 @@ import keySvg from '../../assets/icons/key.svg';
 import toolSvg from '../../assets/icons/tool.svg';
 import morseSvg from '../../assets/icons/morse.svg';
 import cookieSvg from '../../assets/icons/cookie.svg';
+import add from '../../assets/icons/add-item-dark.svg';
+import pencil from '../../assets/icons/pencil-dark.svg';
+import trash from '../../assets/icons/trash-dark.svg';
 
 
 export default function Rooms({ user, url, userRooms }) {
@@ -76,10 +79,10 @@ export default function Rooms({ user, url, userRooms }) {
             const userNotes = Object.values(user.Notes);
             let hasNote = false;
             userNotes.forEach(note => {
-                if (note.body === "https://escape-hatch.herokuapp.com/play/sewer") hasNote = true;
+                if (note.body === "room 2 url: https://escape-hatch.herokuapp.com/play/sewer") hasNote = true;
             })
             if (!noteGiven.current && !hasNote) {
-                await dispatch(noteActions.createNote({ title: "A Back Door", body: "https://escape-hatch.herokuapp.com/play/sewer" }));
+                await dispatch(noteActions.createNote({ title: "A Back Door", body: "room 2 url: https://escape-hatch.herokuapp.com/play/sewer" }));
                 noteGiven.current = true;
                 const notesContainer = document.querySelector('.all-notes-container');
                 const lastNoteMade = notesContainer.lastElementChild;
@@ -89,7 +92,6 @@ export default function Rooms({ user, url, userRooms }) {
                 lastNoteMade.removeChild(updateDeleteIcons);
                 const room1key = document.createElement('a');
                 room1key.setAttribute('href', 'https://escape-hatch.herokuapp.com/play/sewer');
-                room1key.setAttribute('target', '_blank');
                 room1key.setAttribute('id', 'backdoor');
                 room1key.appendChild(lastNoteMade);
                 notesContainer.appendChild(room1key);
@@ -601,7 +603,35 @@ export default function Rooms({ user, url, userRooms }) {
                             onClose={closeIntro}
                         >
                             <div className='intro-story'>
-                                You are a genius mechanical/software engineer multi-billionaire and weapons manufacturer, hired by the federal government. Unfortunately, you have been kidnapped by a terrorist group who are forcing you to create weapons of mass destruction for them. They offer you unlimited resources to be able to create these weapons. Use this to your advantage to find a way to escape! You can write, read, update, and delete notes on your left and same thing for items on the right. Good luck!
+                                <p className='intro-welcome'>Welcome to Hatch, a virtual escape room!</p>
+                                <br />
+                                <p className='intro-title'>
+                                    Story:
+                                </p>
+                                <p className='intro-body'>
+                                    You are a genius mechanical/software engineer multi-billionaire and weapons manufacturer, hired by the federal government. Unfortunately, you have been kidnapped by a terrorist group who are forcing you to create weapons of mass destruction for them. They offer you unlimited resources to be able to create these weapons. Use this to your advantage to find a way to escape! You can write, read, update, and delete notes on your left and same thing for items on the right. Good luck!
+                                </p>
+                                <br />
+                                <p className='intro-title'>
+                                    Instructions:
+                                </p>
+                                <p className='intro-body'>
+                                    <ol className='intro-instructions-list'>
+                                        <li className='intro-list-item'>Click around in the room to find clues.</li>
+                                        <li className='intro-list-item'>
+                                            Some rooms may require you to create specific notes and/or items to get to the next room.
+                                            <ul className='intro-instructions-nested-list'>
+                                                <li className='intro-nested-list-item'>Use the "notes" and "items" sections on the left and right of the page to do this.</li>
+                                                <li className='intro-nested-list-item'>Click the note or item card itself to view a note or item.</li>
+                                                <li className='intro-nested-list-item'>Click the <img src={add} alt="add" width='25px' /> icon to create a note or item.</li>
+                                                <li className='intro-nested-list-item'>Click the <img src={pencil} alt="update" width='25px' /> icon to update a note or item.</li>
+                                                <li className='intro-nested-list-item'>Click the <img src={trash} alt="delete" width='25px' /> icon to delete a note or item.</li>
+                                            </ul>
+                                        </li>
+                                        <li className='intro-list-item'>If you get stuck, you can check out my <a href="https://github.com/michaelhjung/hatch/wiki/BTS-Game-Walkthrough-*SPOILER-WARNING*" target="_blank" rel="noreferrer">game walkthrough</a> as a last resort (*spoiler warning*, this has all the room solutions).</li>
+                                        <li className='intro-list-item'>Have fun!</li>
+                                    </ol>
+                                </p>
                             </div>
                         </Modal>
                     )}

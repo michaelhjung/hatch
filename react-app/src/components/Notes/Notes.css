@@ -90,4 +90,5 @@
     padding: 20px 50px;
     font-size: 1.7rem;
     text-align: left;
+    word-wrap: break-word;
 }

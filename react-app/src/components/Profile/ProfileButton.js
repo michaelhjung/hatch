@@ -1,18 +1,22 @@
 import './Profile.css';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import ProfileMenu from './ProfileMenu';
 import wanted from '../../assets/icons/wanted.svg';
 
 export default function ProfileButton({ user }) {
     const [showProfileMenu, setShowProfileMenu] = useState(false);
 
-    const openMenu = (e) => {
-        e.preventDefault();
+    const openMenu = () => {
         if (!showProfileMenu) setShowProfileMenu(true);
     }
 
-    const closeMenu = (e) => {
-        e.preventDefault();
+    useEffect(() => {
+        if (!showProfileMenu) return;
+        document.addEventListener('click', closeMenu);
+        return () => document.removeEventListener("click", closeMenu);
+    });
+
+    const closeMenu = () => {
         if (showProfileMenu) setShowProfileMenu(false);
     }
 

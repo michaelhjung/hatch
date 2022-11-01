@@ -14,7 +14,6 @@ class User(db.Model, UserMixin):
     email = db.Column(db.String(255), nullable=False, unique=True)
     hashed_password = db.Column(db.String(255), nullable=False)
     profile_pic = db.Column(db.String(255), nullable=False)
-    secret_code = db.Column(db.String(255), nullable=False)
     viz = db.Column(db.Integer, default=1)
     won = db.Column(db.Boolean, default=False)
     current_room = db.Column(db.Integer, default=1)
@@ -36,32 +35,6 @@ class User(db.Model, UserMixin):
     def password(self, password):
         self.hashed_password = generate_password_hash(password)
 
-    # @property
-    # def viz(self):
-    #     return self.viz
-
-    # @viz.setter
-    # def viz(self):
-    #     if self.viz < 3:
-    #         self.viz += 1
-
-    # @property
-    # def won(self):
-    #     return self.won
-
-    # @won.setter
-    # def won(self):
-    #     if self.won == False:
-    #         self.won == True
-
-    # @property
-    # def current_room(self):
-    #     return self.current_room
-
-    # @current_room.setter
-    # def current_room(self):
-    #     if self.current_room < 8:
-    #         self.current_room += 1
 
     def check_password(self, password):
         return check_password_hash(self.password, password)

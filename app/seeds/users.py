@@ -8,8 +8,7 @@ def seed_users():
         username='gamemaster',
         email='gamemaster@user.io',
         password='michaeljung',
-        profile_pic='https://bit.ly/3TGJiFD',
-        secret_code='dr_doom'
+        profile_pic='https://bit.ly/3TGJiFD'
     )
 
     demo = User(
@@ -18,8 +17,7 @@ def seed_users():
         username='demouser',
         email='demouser@aa.io',
         password='username',
-        profile_pic='https://bit.ly/3U0JyPx',
-        secret_code='secret_code'
+        profile_pic='https://bit.ly/3U0JyPx'
     )
 
 

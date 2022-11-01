@@ -30,6 +30,44 @@
     color: #333;
 }
 
+.intro-welcome {
+    text-align: center;
+}
+
+.intro-title {
+    font-weight: 700;
+}
+
+.intro-body {
+    margin-top: 5px;
+    font-size: 1.35rem;
+}
+
+.intro-instructions-list {
+    margin-left: 25px;
+}
+
+.intro-list-item {
+    margin: 5px 0px;
+}
+
+.intro-list-item:last-child {
+    margin-bottom: 0px;
+}
+
+.intro-instructions-nested-list {
+    font-size: 1.15rem;
+    margin-left: 35px;
+}
+
+.intro-nested-list-item {
+    margin: 5px 0px;
+}
+
+.intro-nested-list-item:last-child {
+    margin-bottom: 0px;
+}
+
 .event-popup {
     display: flex;
     justify-content: center;
@@ -127,6 +165,7 @@
 .room-2-note:hover {
     opacity: 0.6;
     box-shadow: 0px 0px 12px 1px #D9D9D9;
+    cursor: pointer;
 }
 
 .snake {

@@ -15,7 +15,6 @@ export default function SignUpForm () {
     const [password, setPassword] = useState('');
     const [repeatPassword, setRepeatPassword] = useState('');
     const [profilePic, setProfilePic] = useState('');
-    const [secretCode, setSecretCode] = useState('');
     const [showModal, setShowModal] = useState(false);
     const user = useSelector(state => state.session.user);
     const dispatch = useDispatch();
@@ -23,7 +22,7 @@ export default function SignUpForm () {
     const onSignUp = async (e) => {
         e.preventDefault();
         if (password === repeatPassword) {
-            const data = await dispatch(signUp(firstName, lastName, username, email, password, profilePic, secretCode));
+            const data = await dispatch(signUp(firstName, lastName, username, email, password, profilePic));
             if (data) {
                 setValidationErrors(Object.values(data));
             }
@@ -35,7 +34,6 @@ export default function SignUpForm () {
                 setPassword('');
                 setRepeatPassword('');
                 setProfilePic('');
-                setSecretCode('');
                 setValidationErrors([]);
                 setShowModal(false);
             }
@@ -67,10 +65,9 @@ export default function SignUpForm () {
         }
         if (password.length && (password.length < 6 || password.length > 20)) errors.push("Password must be between 6-20 characters.");
         if ((password.length && repeatPassword.length) && password !== repeatPassword) errors.push("Password confirmation must match.");
-        if (secretCode.length && (secretCode.length < 4 || secretCode.length > 12)) errors.push("Secret code must be between 4-12 characters.");
 
         setValidationErrors(errors);
-    }, [firstName, lastName, username, email, password, repeatPassword, profilePic, secretCode]);
+    }, [firstName, lastName, username, email, password, repeatPassword, profilePic]);
 
     if (user) {
         return <Redirect to='/' />;
@@ -92,7 +89,6 @@ export default function SignUpForm () {
                             setPassword('');
                             setRepeatPassword('');
                             setProfilePic('');
-                            setSecretCode('');
                             setValidationErrors([]);
                             setShowModal(false)
                         }
@@ -199,21 +195,6 @@ export default function SignUpForm () {
                             <div className='form-field-input-container'>
                                 <input
                                     type='text'
-                                    name='secretCode'
-                                    placeholder='secret code (for in-game)*'
-                                    onChange={e => setSecretCode(e.target.value)}
-                                    value={secretCode}
-                                    required={true}
-                                    className='form-field-input'
-                                />
-                                {secretCode.length > 0 && (
-                                    <small className='input-label'>secret code*:</small>
-                                )}
-                            </div>
-
-                            <div className='form-field-input-container'>
-                                <input
-                                    type='text'
                                     name='profilePic'
                                     placeholder='profile picture url*'
                                     onChange={e => setProfilePic(e.target.value)}
@@ -225,7 +206,7 @@ export default function SignUpForm () {
                                     <small className='input-label'>profile pic url*:</small>
                                 )}
                             </div>
-                            {(firstName.length === 0 || lastName.length === 0 || username.length === 0 || email.length === 0 || password.length === 0 || repeatPassword.length === 0 || secretCode.length === 0 || profilePic.length === 0) && (
+                            {(firstName.length === 0 || lastName.length === 0 || username.length === 0 || email.length === 0 || password.length === 0 || repeatPassword.length === 0 || profilePic.length === 0) && (
                                 <small className='req-text' >*All fields are required.</small>
                             )}
                             {profilePic && (
