@@ -49,6 +49,7 @@
     border-radius: 6px;
     border: none;
     background-color: #333;
+    color: #D9D9D9;
     box-shadow: 1px 1px 4px 0px #333;
     cursor: pointer;
     transition: opacity 0.5s ease-out;
@@ -85,6 +86,30 @@
     cursor: pointer;
 }
 
+#backdoor-card {
+    background-color: #333;
+}
+
+#backdoor-card:hover {
+    background-color: #333;
+    transform: none;
+}
+
+#backdoor {
+    text-decoration: none;
+    color: slategray;
+    background-color: #333;
+    border: 1px dotted #444;
+    border-radius: 6px;
+    margin-bottom: 10px;
+    transition: transform 0.4s ease;
+}
+
+#backdoor:hover {
+    cursor: pointer;
+    transform: scale(1.03);
+    box-shadow: 0px 0px 12px 1px #D9D9D9;
+}
 
 
 /* ========== ROOM 2 ========== */
