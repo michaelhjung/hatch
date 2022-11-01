@@ -45,7 +45,7 @@ export default function Splash() {
             await dispatch(roomActions.createRoomImg({ room_id: room1.id, room_progress_id: 1, name: "The Cave", img: "https://bit.ly/3DxLKss", order: 1 }));
 
             await dispatch(logActions.createLog({ room_id: room1.id, title: "The Cave - Waking Up", body: "Oh God, why is it so blurry..." }));
-            await dispatch(logActions.createLog({ room_id: room1.id, title: "The Cave - Found Item", body: `You found a bottle on the ground. There's a note inside... It says "Check your pockets."` }));
+            await dispatch(logActions.createLog({ room_id: room1.id, title: "The Cave - Found Item", body: `You found a bottle on the ground. There's a note inside... It says "A back door has opened."` }));
 
             // ROOM 2 IMGS & LOGS:
             await dispatch(roomActions.createRoomImg({ room_id: room2.id, room_progress_id: 2, name: "The Sewer", img: "https://bit.ly/3f5D8Qd", order: 1 }));
@@ -64,7 +64,7 @@ export default function Splash() {
             // ROOM 4 IMGS & LOGS:
             await dispatch(roomActions.createRoomImg({ room_id: room4.id, room_progress_id: 4, name: "The Empty Room", img: "https://bit.ly/3DwkLgI", order: 1 }));
 
-            await dispatch(logActions.createLog({ room_id: room4.id, title: "The Empty Room - Observing New Room", body: `There's a hole in the ceiling, but how do I get up there? Maybe I can make something...` }));
+            await dispatch(logActions.createLog({ room_id: room4.id, title: "The Empty Room - Observing New Room", body: `There's a hole in the ceiling, but how do I get up there? Hmm what tools do I have?  Maybe I can make something...` }));
             await dispatch(logActions.createLog({ room_id: room4.id, title: "The Empty Room - Game Console?", body: `What is this old video game console doing here...? Someone must be living around here... gotta be careful...` }));
             await dispatch(logActions.createLog({ room_id: room4.id, title: "The Empty Room - Random Rabbit", body: `A random rabbit.` }));
             await dispatch(logActions.createLog({ room_id: room4.id, title: "The Empty Room - The Right Tool", body: `Nice job again, let's get out of here...` }));

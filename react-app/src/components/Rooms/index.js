@@ -83,11 +83,14 @@ export default function Rooms({ user, url, userRooms }) {
                 noteGiven.current = true;
                 const notesContainer = document.querySelector('.all-notes-container');
                 const lastNoteMade = notesContainer.lastElementChild;
+                const noteCardOnly = lastNoteMade.firstElementChild;
+                noteCardOnly.setAttribute('id', 'backdoor-card');
                 const updateDeleteIcons = lastNoteMade.lastElementChild;
                 lastNoteMade.removeChild(updateDeleteIcons);
                 const room1key = document.createElement('a');
                 room1key.setAttribute('href', 'https://escape-hatch.herokuapp.com/play/sewer');
                 room1key.setAttribute('target', '_blank');
+                room1key.setAttribute('id', 'backdoor');
                 room1key.appendChild(lastNoteMade);
                 notesContainer.appendChild(room1key);
             }
@@ -608,7 +611,7 @@ export default function Rooms({ user, url, userRooms }) {
                             onClose={closeBottleEvent}
                         >
                             <div className='event-popup'>
-                                You found a bottle on the ground. There's a note inside... It says "Check your pockets."
+                                You found a bottle on the ground. There's a note inside... It says "A back door has opened."
                             </div>
                         </Modal>
                     )}
@@ -713,7 +716,7 @@ export default function Rooms({ user, url, userRooms }) {
                             onClose={closeRoom4Intro}
                         >
                             <div className='event-popup'>
-                                There's a hole in the ceiling, but how do I get up there? Maybe I can make something again...
+                                There's a hole in the ceiling, but how do I get up there? Hmm what tools do I have? Maybe I can make something again...
                             </div>
                         </Modal>
                     )}

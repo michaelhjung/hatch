@@ -12,7 +12,7 @@ def seed_logs():
         room_id=1,
         user_id=None,
         title='The Cave - Found Item',
-        body='You found a bottle on the ground. There\'s a note inside... It says "Check your pockets."',
+        body='You found a bottle on the ground. There\'s a note inside... It says "A back door has opened."',
     )
     room2_log1 = EventLog(
         room_id=2,
@@ -54,7 +54,7 @@ def seed_logs():
         room_id=4,
         user_id=None,
         title='The Empty Room - Observing New Room',
-        body='There\'s a hole in the ceiling, but how do I get up there? Maybe I can make something...'
+        body='There\'s a hole in the ceiling, but how do I get up there? Hmm what tools do I have? Maybe I can make something...'
     )
     room4_log2 = EventLog(
         room_id=4,
