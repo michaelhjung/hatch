@@ -65,7 +65,7 @@ export default function LoginForm () {
                                 className='form-field-input first-field-input'
                             />
                             {credential.length > 0 && (
-                                <small className='input-label'>email or username:</small>
+                                <small className='input-label'>email or username*:</small>
                             )}
                         </div>
 
@@ -79,7 +79,7 @@ export default function LoginForm () {
                                 className='form-field-input last-field-input'
                             />
                             {password.length > 0 && (
-                                <small className='input-label'>password:</small>
+                                <small className='input-label'>password*:</small>
                             )}
                         </div>
                         {(credential.length === 0 || password.length === 0) && (

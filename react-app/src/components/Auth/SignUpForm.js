@@ -117,7 +117,7 @@ export default function SignUpForm () {
                                     className='form-field-input first-field-input'
                                 />
                                 {firstName.length > 0 && (
-                                    <small className='input-label'>first name:</small>
+                                    <small className='input-label'>first name*:</small>
                                 )}
                             </div>
 
@@ -132,7 +132,7 @@ export default function SignUpForm () {
                                     className='form-field-input'
                                 />
                                 {lastName.length > 0 && (
-                                    <small className='input-label'>last name:</small>
+                                    <small className='input-label'>last name*:</small>
                                 )}
                             </div>
 
@@ -147,7 +147,7 @@ export default function SignUpForm () {
                                     className='form-field-input'
                                 />
                                 {username.length > 0 && (
-                                    <small className='input-label'>username:</small>
+                                    <small className='input-label'>username*:</small>
                                 )}
                             </div>
 
@@ -162,7 +162,7 @@ export default function SignUpForm () {
                                     className='form-field-input'
                                 />
                                 {email.length > 0 && (
-                                    <small className='input-label'>email:</small>
+                                    <small className='input-label'>email*:</small>
                                 )}
                             </div>
 
@@ -177,7 +177,7 @@ export default function SignUpForm () {
                                     className='form-field-input'
                                 />
                                 {password.length > 0 && (
-                                    <small className='input-label'>password:</small>
+                                    <small className='input-label'>password*:</small>
                                 )}
                             </div>
 
@@ -192,7 +192,7 @@ export default function SignUpForm () {
                                     className='form-field-input'
                                 />
                                 {repeatPassword.length > 0 && (
-                                    <small className='input-label'>confirm password:</small>
+                                    <small className='input-label'>confirm password*:</small>
                                 )}
                             </div>
 
@@ -207,7 +207,7 @@ export default function SignUpForm () {
                                     className='form-field-input'
                                 />
                                 {secretCode.length > 0 && (
-                                    <small className='input-label'>secret code:</small>
+                                    <small className='input-label'>secret code*:</small>
                                 )}
                             </div>
 
@@ -222,7 +222,7 @@ export default function SignUpForm () {
                                     className='form-field-input last-field-input'
                                 />
                                 {profilePic.length > 0 && (
-                                    <small className='input-label'>profile pic url:</small>
+                                    <small className='input-label'>profile pic url*:</small>
                                 )}
                             </div>
                             {(firstName.length === 0 || lastName.length === 0 || username.length === 0 || email.length === 0 || password.length === 0 || repeatPassword.length === 0 || secretCode.length === 0 || profilePic.length === 0) && (

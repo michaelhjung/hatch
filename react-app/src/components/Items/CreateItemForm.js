@@ -81,7 +81,7 @@ export default function CreateItemForm({ add }) {
                                 className='form-field-input first-field-input'
                             />
                             {name.length > 0 && (
-                                <small className='input-label'>item name:</small>
+                                <small className='input-label'>item name*:</small>
                             )}
                         </div>
 
@@ -96,7 +96,7 @@ export default function CreateItemForm({ add }) {
                                 className='form-field-input'
                             />
                             {serialId.length > 0 && (
-                                <small className='input-label'>item serial id:</small>
+                                <small className='input-label'>item serial id*:</small>
                             )}
                         </div>
 
@@ -111,7 +111,7 @@ export default function CreateItemForm({ add }) {
                                 className='form-field-input last-field-input'
                             />
                             {img.length > 0 && (
-                                <small className='input-label'>item img url:</small>
+                                <small className='input-label'>item img url*:</small>
                             )}
                         </div>
 

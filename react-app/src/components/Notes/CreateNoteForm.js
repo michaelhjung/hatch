@@ -75,7 +75,7 @@ export default function CreateNoteForm({ add }) {
                                 className='form-field-input first-field-input'
                             />
                             {title.length > 0 && (
-                                <small className='input-label'>note title:</small>
+                                <small className='input-label'>note title*:</small>
                             )}
                         </div>
 
@@ -89,7 +89,7 @@ export default function CreateNoteForm({ add }) {
                                 className='form-field-input form-field-textarea last-field-input'
                             />
                             {body.length > 0 && (
-                                <small className='input-label'>note body:</small>
+                                <small className='input-label'>note body*:</small>
                             )}
                         </div>
 
