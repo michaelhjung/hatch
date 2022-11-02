@@ -1,4 +1,4 @@
-.all-logs-container {
+.all-logs-container-wrapper {
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -9,13 +9,19 @@
     padding: 20px 0px;
 }
 
+.logs-container {
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+}
+
 .logs-header {
     font-size: 2.5rem;
     font-weight: 600;
-    width: 50%;
+    width: 80%;
     text-align: center;
     padding-bottom: 10px;
-    border-bottom: 1px dotted #666;
+    border-bottom: 1px dotted #444;
 }
 
 .log-container {
@@ -23,13 +29,14 @@
     flex-direction: column;
     align-items: center;
     padding: 25px 0px;
-    border-bottom: 1px dotted #666;
+    border-bottom: 1px dotted #444;
     width: 50%;
 }
 
 .log-title {
     margin-bottom: 10px;
     font-size: 1.3rem;
+    font-weight: 600;
 }
 
 .log-body {
