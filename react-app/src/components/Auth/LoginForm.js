@@ -17,7 +17,8 @@ export default function LoginForm () {
         e.preventDefault();
         const data = await dispatch(login(credential, password));
         if (data) {
-            setValidationErrors(Object.values(data));
+            if (Object.values(data).includes("Invalid credentials.")) setValidationErrors(["Invalid credentials."]);
+            else setValidationErrors(Object.values(data));
         }
         else {
             setCredential('');

@@ -126,8 +126,6 @@ def sign_up():
         login_val_error["errors"]["password"] = "Password is required"
     if not form.data['profile_pic']:
         login_val_error["errors"]["profile_pic"] = "Profile picture is required"
-    if not form.data['secret_code']:
-        login_val_error["errors"]["secret_code"] = "Secret code is required"
     if len(login_val_error["errors"]) > 0:
         return jsonify(login_val_error), 400
 
@@ -139,8 +137,7 @@ def sign_up():
             username=form.data['username'].lower(),
             email=form.data['email'].lower(),
             password=form.data['password'],
-            profile_pic=form.data['profile_pic'],
-            secret_code=form.data['secret_code']
+            profile_pic=form.data['profile_pic']
         )
         db.session.add(user)
         db.session.commit()
