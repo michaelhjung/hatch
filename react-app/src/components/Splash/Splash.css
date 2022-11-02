@@ -60,6 +60,7 @@
 .welcome-title {
     font-size: 2.5rem;
     color: #333;
+    margin-top: -20px;
     margin-bottom: 27px;
 }
 
@@ -71,8 +72,8 @@
 .enter-room-button,
 .enter-last-room-button,
 .reset-button {
-    width: 250px;
-    height: 75px;
+    width: 265px;
+    height: 80px;
     border-radius: 6px;
     border: none;
     box-shadow: 2px 4px 14px 0.5px #333;
@@ -117,4 +118,20 @@
 .reset-button {
     background-color: rgb(214, 0, 0);
     color: #FFF;
+}
+
+.user-buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.enter-room-num-1 {
+    font-weight: 700;
+}
+
+.enter-room-num {
+    color: #666;
+    font-weight: 700;
 }

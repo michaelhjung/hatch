@@ -32,7 +32,7 @@ export default function Splash() {
         // ALL ROOMS
         const room1 = await dispatch(roomActions.createRoom({ user_id: user.id, progress_id: 1, name: "The Cave" }));
         const room2 = await dispatch(roomActions.createRoom({ user_id: user.id, progress_id: 2, name: "The Sewer" }));
-        const room3 = await dispatch(roomActions.createRoom({ user_id: user.id, progress_id: 3, name: "The Sewer Door" }));
+        const room3 = await dispatch(roomActions.createRoom({ user_id: user.id, progress_id: 3, name: "The Locked Door" }));
         const room4 = await dispatch(roomActions.createRoom({ user_id: user.id, progress_id: 4, name: "The Empty Room" }));
         const room5 = await dispatch(roomActions.createRoom({ user_id: user.id, progress_id: 5, name: "The Bat Cave" }));
         const room6 = await dispatch(roomActions.createRoom({ user_id: user.id, progress_id: 6, name: "The Telegraph" }));
@@ -56,7 +56,7 @@ export default function Splash() {
             await dispatch(logActions.createLog({ room_id: room2.id, title: "The Sewer - Found Note", body: `A note... it says, "serial id: BA09JM19"` }));
 
             // ROOM 3 IMGS & LOGS:
-            await dispatch(roomActions.createRoomImg({ room_id: room3.id, room_progress_id: 3, name: "The Sewer Door", img: "https://bit.ly/3Ff8O06", order: 1 }));
+            await dispatch(roomActions.createRoomImg({ room_id: room3.id, room_progress_id: 3, name: "The Locked Door", img: "https://bit.ly/3Ff8O06", order: 1 }));
 
             await dispatch(logActions.createLog({ room_id: room3.id, title: "The Locked Door - Observing New Room", body: `I found a door, but it's locked... Looks like it wants a very specific key...` }));
             await dispatch(logActions.createLog({ room_id: room3.id, title: "The Locked Door - Found Note", body: `Another note... it says, "url: https://bit.ly/3fkBytZ"` }));
@@ -262,15 +262,15 @@ export default function Splash() {
                     <SignUpForm />
                     <Demo />
                     {user && (
-                        <>
+                        <div className='user-buttons'>
                             <h1 className='welcome-title'>Welcome, {user.username}.</h1>
-                            <button className='enter-room-button' onClick={handleEnterRoom}>ENTER ROOM 1</button>
+                            <button className='enter-room-button' onClick={handleEnterRoom}>ENTER ROOM <span className='enter-room-num-1'>1</span></button>
                             {user && user.current_room && user.current_room !== 1 && (
-                                <button className='enter-last-room-button' onClick={handleEnterLastRoom}>LAST ENTERED ROOM: {user.current_room}</button>
+                                <button className='enter-last-room-button' onClick={handleEnterLastRoom}>LAST ENTERED ROOM: <span className='enter-room-num'>{user.current_room}</span></button>
                             )}
                             <button className='reset-button' onClick={handleReset}>RESET GAME DATA</button>
                             <LogoutButton />
-                        </>
+                        </div>
                     )}
                 </div>
             </section>

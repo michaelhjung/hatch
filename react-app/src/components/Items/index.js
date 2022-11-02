@@ -29,7 +29,7 @@ export default function Items() {
             <div className='all-items-container'>
                 {userItems && (
                     Object.values(userItems).map(item => (
-                        <div className='item-container'>
+                        <div className='item-container' key={item.id}>
                             <ReadItem item={item} />
                             <div className='item-icons-container'>
                                 <UpdateItemForm pencil={pencil} item={item} />
