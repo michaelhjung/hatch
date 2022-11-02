@@ -54,8 +54,8 @@ def update_user(id):
         login_val_error["errors"]["viz"] = "Viz must be an integer between 1-3"
     if form.data['won'] and type(form.data['won']) != bool:
         login_val_error["errors"]["won"] = "Won must be a boolean"
-    if form.data['current_room'] and (form.data['current_room'] < 1 or form.data['current_room'] > 8):
-        login_val_error["errors"]["current_room"] = "Current room must be an integer between 1-8"
+    if form.data['current_room'] and (form.data['current_room'] < 1 or form.data['current_room'] > 9):
+        login_val_error["errors"]["current_room"] = "Current room must be an integer between 1-9"
     if len(login_val_error["errors"]) > 0:
         return jsonify(login_val_error), 400
 

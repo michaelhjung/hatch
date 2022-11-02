@@ -68,7 +68,8 @@
 .signup-button,
 .demo-button,
 .logout-button,
-.room-1-button,
+.enter-room-button,
+.enter-last-room-button,
 .reset-button {
     width: 250px;
     height: 75px;
@@ -86,7 +87,8 @@
 .demo-button:hover,
 .logout-button:hover,
 .reset-button:hover,
-.room-1-button:hover {
+.enter-room-button:hover,
+.enter-last-room-button:hover {
     opacity: 0.7;
     cursor: pointer;
 }

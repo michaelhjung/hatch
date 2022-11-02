@@ -57,6 +57,31 @@ export default function Rooms({ user, url, userRooms }) {
     }, [dispatch]);
 
 
+
+    // --------------- USER CURRENT ROOM UPDATING LOGIC: ------------- //
+    useEffect(() => {
+        // ROOM 1:
+        if (url === '/play' && userRooms['1']) dispatch(sessionActions.updateUser(user.id, { current_room: 1 }));
+        // ROOM 2:
+        if (url === '/play/sewer' && userRooms['2']) dispatch(sessionActions.updateUser(user.id, { current_room: 2 }));
+        // ROOM 3:
+        if (url === '/play/AKDzZV7xMuQ' && userRooms['3']) dispatch(sessionActions.updateUser(user.id, { current_room: 3 }));
+        // ROOM 4:
+        if (url === '/play/nwgjJHTaYys' && userRooms['4']) dispatch(sessionActions.updateUser(user.id, { current_room: 4 }));
+        // ROOM 5:
+        if (url === '/play/cSI7QDhHLW8' && userRooms['5']) dispatch(sessionActions.updateUser(user.id, { current_room: 5 }));
+        // ROOM 6:
+        if (url === '/play/3RA7Y6eJ2bE' && userRooms['6']) dispatch(sessionActions.updateUser(user.id, { current_room: 6 }));
+        // ROOM 7:
+        if (url === '/play/jhNmKd74tEA' && userRooms['7']) dispatch(sessionActions.updateUser(user.id, { current_room: 7 }));
+        // ROOM 8:
+        if (url === '/play/gUpht2fDiqo' && userRooms['8']) dispatch(sessionActions.updateUser(user.id, { current_room: 8 }));
+        // ROOM 9:
+        if (url === '/play/OakSkzL3XaZM2VUR' && userRooms['9']) dispatch(sessionActions.updateUser(user.id, { current_room: 9 }));
+    }, [url, dispatch, user.id, userRooms]);
+
+
+
     // -------------------- ROOM 1 GAME LOGIC: -------------------- //
     const vizHandler = async (e) => {
         e.preventDefault();
