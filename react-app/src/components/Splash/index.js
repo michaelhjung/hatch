@@ -1,5 +1,5 @@
 import './Splash.css'
-import { useCallback, useEffect } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import logo from '../../assets/imgs/hatch-logo.png';
@@ -22,6 +22,7 @@ export default function Splash() {
     const userLogs = useSelector(state => state.logs);
     const userItems = useSelector(state => state.items);
     const userNotes = useSelector(state => state.notes);
+    const [showLastRoom, setShowLastRoom] = useState(false);
     const dispatch = useDispatch();
     const history = useHistory();
 
@@ -238,14 +239,19 @@ export default function Splash() {
             notesSetup(user);
             itemsSetup(user);
 
-            // REMOVE ENTER LAST ROOM BUTTON:
-            const enterLastButton = document.querySelector('.enter-last-room-button');
-            if (enterLastButton) enterLastButton.remove();
+            // UPDATE CURRENT ROOM & REMOVE ENTER LAST ROOM BUTTON:
+            dispatch(sessionActions.updateUser(user.id, { current_room: 1 }));
+            setShowLastRoom(false);
 
             alert("Data has been reset.");
         }
     }
 
+    useEffect(() => {
+        if (user && user.current_room !== 1) setShowLastRoom(true);
+
+        return () => setShowLastRoom(false);
+    }, [user]);
 
 
     return (
@@ -265,7 +271,7 @@ export default function Splash() {
                         <div className='user-buttons'>
                             <h1 className='welcome-title'>Welcome, {user.username}.</h1>
                             <button className='enter-room-button' onClick={handleEnterRoom}>ENTER ROOM <span className='enter-room-num-1'>1</span></button>
-                            {user && user.current_room && user.current_room !== 1 && (
+                            {showLastRoom && (
                                 <button className='enter-last-room-button' onClick={handleEnterLastRoom}>LAST ENTERED ROOM: <span className='enter-room-num'>{user.current_room}</span></button>
                             )}
                             <button className='reset-button' onClick={handleReset}>RESET GAME DATA</button>
