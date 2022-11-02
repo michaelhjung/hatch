@@ -13,6 +13,7 @@ import * as roomActions from '../../store/rooms';
 import * as noteActions from '../../store/notes'
 import * as itemActions from '../../store/items';
 import * as logActions from '../../store/logs';
+import * as sessionActions from '../../store/session';
 
 
 export default function Splash() {
@@ -99,6 +100,8 @@ export default function Splash() {
 
             await dispatch(logActions.createLog({ room_id: room9.id, title: "The Real Final Room - The Reality", body: `Congratulations. You found the real final room. This world is not what it seems... Do you want to stay in this fantasy world and believe whatever you want? Or do you want me to show you how deep the rabbit hole goes...?` }));
         }
+
+        await dispatch(sessionActions.updateUser(user.id, { current_room: 1 }));
     }, [dispatch]);
     // NOTES SETUP LOGIC:
     const notesSetup = useCallback((user) => {
@@ -146,18 +149,50 @@ export default function Splash() {
 
         const hatchLogo = document.querySelector('.hero-logo');
         const welcomeTitle = document.querySelector('.welcome-title');
-        const enterButton = document.querySelector('.room-1-button');
+        const enterButton = document.querySelector('.enter-room-button');
+        const enterLastButton = document.querySelector('.enter-last-room-button');
         const resetButton = document.querySelector('.reset-button');
         const logoutButton = document.querySelector('.logout-button');
 
         hatchLogo.setAttribute('class', 'hero-logo fade');
         welcomeTitle.setAttribute('class', 'welcome-title fade');
-        enterButton.setAttribute('class', 'room-1-button fade');
+        enterButton.setAttribute('class', 'enter-room-button fade');
+        if (enterLastButton) enterLastButton.setAttribute('class', 'enter-last-room-button fade');
         resetButton.setAttribute('class', 'reset-button fade');
         logoutButton.setAttribute('class', 'logout-button fade');
 
         setTimeout(() => {
             history.push('/play');
+        }, 3500);
+    }
+    const handleEnterLastRoom = () => {
+        const hero = document.getElementById('hero');
+        hero.src = heroAnimate;
+
+        const hatchLogo = document.querySelector('.hero-logo');
+        const welcomeTitle = document.querySelector('.welcome-title');
+        const enterButton = document.querySelector('.enter-room-button');
+        const enterLastButton = document.querySelector('.enter-last-room-button');
+        const resetButton = document.querySelector('.reset-button');
+        const logoutButton = document.querySelector('.logout-button');
+
+        hatchLogo.setAttribute('class', 'hero-logo fade');
+        welcomeTitle.setAttribute('class', 'welcome-title fade');
+        enterButton.setAttribute('class', 'enter-room-button fade');
+        if (enterLastButton) enterLastButton.setAttribute('class', 'enter-last-room-button fade');
+        resetButton.setAttribute('class', 'reset-button fade');
+        logoutButton.setAttribute('class', 'logout-button fade');
+
+        setTimeout(() => {
+            if (user.current_room === 1) history.push('/play');
+            else if (user.current_room === 2) history.push('/play/sewer');
+            else if (user.current_room === 3) history.push('/play/AKDzZV7xMuQ');
+            else if (user.current_room === 4) history.push('/play/nwgjJHTaYys');
+            else if (user.current_room === 5) history.push('/play/cSI7QDhHLW8');
+            else if (user.current_room === 6) history.push('/play/3RA7Y6eJ2bE');
+            else if (user.current_room === 7) history.push('/play/jhNmKd74tEA');
+            else if (user.current_room === 8) history.push('/play/gUpht2fDiqo');
+            else if (user.current_room === 9) history.push('/play/OakSkzL3XaZM2VUR');
         }, 3500);
     }
 
@@ -202,6 +237,11 @@ export default function Splash() {
             roomsSetup(user);
             notesSetup(user);
             itemsSetup(user);
+
+            // REMOVE ENTER LAST ROOM BUTTON:
+            const enterLastButton = document.querySelector('.enter-last-room-button');
+            if (enterLastButton) enterLastButton.remove();
+
             alert("Data has been reset.");
         }
     }
@@ -224,7 +264,10 @@ export default function Splash() {
                     {user && (
                         <>
                             <h1 className='welcome-title'>Welcome, {user.username}.</h1>
-                            <button className='room-1-button' onClick={handleEnterRoom}>ENTER ROOM 1</button>
+                            <button className='enter-room-button' onClick={handleEnterRoom}>ENTER ROOM 1</button>
+                            {user && user.current_room && user.current_room !== 1 && (
+                                <button className='enter-last-room-button' onClick={handleEnterLastRoom}>LAST ENTERED ROOM: {user.current_room}</button>
+                            )}
                             <button className='reset-button' onClick={handleReset}>RESET GAME DATA</button>
                             <LogoutButton />
                         </>
