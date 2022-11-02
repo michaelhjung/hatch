@@ -1,5 +1,5 @@
 import './Splash.css'
-import { useEffect } from 'react';
+import { useCallback, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import logo from '../../assets/imgs/hatch-logo.png';
@@ -27,7 +27,7 @@ export default function Splash() {
 
     // ----- NEW USER SIGN UP: AUTO-GENERATE ROOMS ----- //
     // ROOMS SETUP LOGIC:
-    const roomsSetup = async (user) => {
+    const roomsSetup = useCallback(async (user) => {
         // ALL ROOMS
         const room1 = await dispatch(roomActions.createRoom({ user_id: user.id, progress_id: 1, name: "The Cave" }));
         const room2 = await dispatch(roomActions.createRoom({ user_id: user.id, progress_id: 2, name: "The Sewer" }));
@@ -99,18 +99,18 @@ export default function Splash() {
 
             await dispatch(logActions.createLog({ room_id: room9.id, title: "The Real Final Room - The Reality", body: `Congratulations. You found the real final room. This world is not what it seems... Do you want to stay in this fantasy world and believe whatever you want? Or do you want me to show you how deep the rabbit hole goes...?` }));
         }
-    }
+    }, [dispatch]);
     // NOTES SETUP LOGIC:
-    const notesSetup = (user) => {
+    const notesSetup = useCallback((user) => {
         dispatch(noteActions.createNote({ user_id: user.id, title: `Hi, ${user.first_name}`, body: `Welcome to hatch, a virtual escape room!` }));
         dispatch(noteActions.createNote({ user_id: user.id, title: `Notes`, body: `Feel free to create, read, update, or delete notes!` }));
         dispatch(noteActions.createNote({ user_id: user.id, title: `Items`, body: `Feel free to create, read, update, or delete items on the right side. We made some examples for you already, check them out.` }));
-    }
+    }, [dispatch]);
     // ITEMS SETUP LOGIC:
-    const itemsSetup = (user) => {
+    const itemsSetup = useCallback((user) => {
         dispatch(itemActions.createItem({ user_id: user.id, name: "Random Tool", serial_id: "T25976", img: "https://bit.ly/3fkwTbg" }));
         dispatch(itemActions.createItem({ user_id: user.id, name: "Cookies", serial_id: "COOKI35", img: "https://bit.ly/3DGqFfz" }));
-    }
+    }, [dispatch]);
 
 
     // USE EFFECTS TO INITIALIZE GAME SETUP FOR NEW USERS:
@@ -135,7 +135,7 @@ export default function Splash() {
                 console.log("Finished setting up all items.");
             }
         }
-    }, [dispatch, user]);
+    }, [dispatch, user, roomsSetup, notesSetup, itemsSetup]);
 
 
 

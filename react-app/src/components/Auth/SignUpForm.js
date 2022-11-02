@@ -4,7 +4,6 @@ import { Redirect } from 'react-router-dom';
 import { signUp } from '../../store/session';
 import { Modal } from '../../context/Modal';
 import '../Forms.css';
-import wanted from '../../assets/icons/wanted.svg';
 
 export default function SignUpForm () {
     const [validationErrors, setValidationErrors] = useState([]);
