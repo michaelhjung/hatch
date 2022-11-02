@@ -44,9 +44,20 @@ export default function Rooms({ user, url, userRooms }) {
     const [showRoom8Intro, setShowRoom8Intro] = useState(true);
     const [showRoom9Intro, setShowRoom9Intro] = useState(true);
 
+    useEffect(() => {
+        dispatch(noteActions.readNotes());
+        dispatch(itemActions.readItems());
+        dispatch(logActions.readLogs());
+
+        return () => {
+            dispatch(noteActions.clearData());
+            dispatch(itemActions.clearData());
+            dispatch(logActions.clearData());
+        }
+    }, [dispatch]);
+
 
     // -------------------- ROOM 1 GAME LOGIC: -------------------- //
-    const noteGiven = useRef(false);
     const vizHandler = async (e) => {
         e.preventDefault();
         const roomImg = document.querySelector('.room-img');
@@ -75,15 +86,13 @@ export default function Rooms({ user, url, userRooms }) {
         dispatch(logActions.updateLog(room1log2id, { user_id: user.id }));
 
         // CREATE NOTE WITH ROOM 2 KEY:
-        if (user.Notes) {
-            const userNotes = Object.values(user.Notes);
+        if (userNotes) {
             let hasNote = false;
-            userNotes.forEach(note => {
+            Object.values(userNotes).forEach(note => {
                 if (note.body === "room 2 url: https://escape-hatch.herokuapp.com/play/sewer") hasNote = true;
             })
-            if (!noteGiven.current && !hasNote) {
+            if (!hasNote) {
                 await dispatch(noteActions.createNote({ title: "A Back Door", body: "room 2 url: https://escape-hatch.herokuapp.com/play/sewer" }));
-                noteGiven.current = true;
                 const notesContainer = document.querySelector('.all-notes-container');
                 const lastNoteMade = notesContainer.lastElementChild;
                 const noteCardOnly = lastNoteMade.firstElementChild;
@@ -314,10 +323,9 @@ export default function Rooms({ user, url, userRooms }) {
             dispatch(logActions.updateLog(room5log4id, { user_id: user.id }));
 
             // CREATE NOTE WITH ROOM 5 HINT:
-            if (user.Notes) {
-                const userNotes = Object.values(user.Notes);
+            if (userNotes) {
                 let hasNote = false;
-                userNotes.forEach(note => {
+                Object.values(userNotes).forEach(note => {
                     if (note.body === "#antman") hasNote = true;
                 })
                 if (!hasNote) {
@@ -570,10 +578,9 @@ export default function Rooms({ user, url, userRooms }) {
         dispatch(logActions.updateLog(room9log1id, { user_id: user.id }));
 
         // CREATE ITEM REWARD:
-        if (user.Items) {
-            const userItems = Object.values(user.Items);
+        if (userItems) {
             let hasItem = false;
-            userItems.forEach(item => {
+            Object.values(userItems).forEach(item => {
                 if (item.name === "Choice" && item.serial_id === "#bigquestions" && item.img === "https://i.imgur.com/SDYUHbe.png") hasItem = true;
             })
             if (!hasItem) {
@@ -628,6 +635,8 @@ export default function Rooms({ user, url, userRooms }) {
                                                 <li className='intro-nested-list-item'>Click the <img src={trash} alt="delete" width='25px' /> icon to delete a note or item.</li>
                                             </ul>
                                         </li>
+                                        <li className='intro-list-item'>You may need to utilize <a href="https://developer.chrome.com/docs/devtools/" target='_blank' rel='noreferrer'>Chrome DevTools</a> for some rooms.</li>
+                                        <li className='intro-list-item'>This <a href="https://developer.mozilla.org/en-US/docs/Learn/CSS/Building_blocks/Selectors/Type_Class_and_ID_Selectors#id_selectors" target='_blank' rel='noreferrer'>resource</a> may come in handy at some point.</li>
                                         <li className='intro-list-item'>If you get stuck, you can check out my <a href="https://github.com/michaelhjung/hatch/wiki/BTS-Game-Walkthrough-*SPOILER-WARNING*" target="_blank" rel="noreferrer">game walkthrough</a> as a last resort (*spoiler warning*, this has all the room solutions).</li>
                                         <li className='intro-list-item'>Have fun!</li>
                                     </ol>

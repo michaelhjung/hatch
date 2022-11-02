@@ -1,7 +1,6 @@
 import './Profile.css';
 import { useEffect, useState } from 'react';
 import ProfileMenu from './ProfileMenu';
-import wanted from '../../assets/icons/wanted.svg';
 
 export default function ProfileButton({ user }) {
     const [showProfileMenu, setShowProfileMenu] = useState(false);
