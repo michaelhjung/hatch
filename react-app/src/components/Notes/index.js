@@ -29,7 +29,7 @@ export default function Notes() {
             <div className='all-notes-container'>
                 {userNotes && (
                     Object.values(userNotes).map(note => (
-                        <div className='note-container'>
+                        <div className='note-container' key={note.id}>
                             <ReadNote note={note} />
                             <div className='note-icons-container'>
                                 <UpdateNoteForm pencil={pencil} note={note} />

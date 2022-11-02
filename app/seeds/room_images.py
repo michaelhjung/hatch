@@ -33,7 +33,7 @@ def seed_room_images():
     room3image1 = RoomImage(
         room_id=3,
         room_progress_id=3,
-        name='The Sewer Door',
+        name='The Locked Door',
         img='https://bit.ly/3Ff8O06',
         order='1'
     )

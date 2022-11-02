@@ -647,7 +647,7 @@ export default function Rooms({ user, url, userRooms }) {
                                 <p className='intro-title'>
                                     Instructions:
                                 </p>
-                                <p className='intro-body'>
+                                <div className='intro-body'>
                                     <ol className='intro-instructions-list'>
                                         <li className='intro-list-item'>Click around in the room to find clues.</li>
                                         <li className='intro-list-item'>
@@ -665,7 +665,7 @@ export default function Rooms({ user, url, userRooms }) {
                                         <li className='intro-list-item'>If you get stuck, you can check out my <a href="https://github.com/michaelhjung/hatch/wiki/BTS-Game-Walkthrough-*SPOILER-WARNING*" target="_blank" rel="noreferrer">game walkthrough</a> as a last resort (*spoiler warning*, this has all the room solutions).</li>
                                         <li className='intro-list-item'>Have fun!</li>
                                     </ol>
-                                </p>
+                                </div>
                             </div>
                         </Modal>
                     )}
