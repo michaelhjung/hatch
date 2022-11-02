@@ -6,6 +6,7 @@ import { authenticate } from './store/session';
 import Splash from './components/Splash';
 import Footer from './components/Footer';
 import Game from './components/Game';
+import NotFound from './components/NotFound';
 
 export default function App() {
     const [loaded, setLoaded] = useState(false);
@@ -30,6 +31,9 @@ export default function App() {
                 </Route>
                 <Route path='/play'>
                     <Game />
+                </Route>
+                <Route>
+                    <NotFound />
                 </Route>
             </Switch>
             <Footer />
