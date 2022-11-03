@@ -1,0 +1,42 @@
+.timer-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    color: #b5d8d2;
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin: 60px 0px 0px 21%;
+    width: 200px;
+    text-align: center;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hourglass-icon {
+    font-size: 3.5rem;
+    margin-bottom: -10px;
+}
+
+.timer-text {
+    font-size: 1rem;
+    font-weight: 200;
+    margin-top: -7px;
+}
+
+.minutes-section,
+.seconds-section {
+    display: flex;
+    flex-direction: column;
+}
+
+.timer-colon {
+    margin: 0px 13px;
+}
+
+.timer-left-text {
+    font-size: 1.7rem;
+    font-weight: 200;
+    margin-left: 10px;
+}

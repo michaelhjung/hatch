@@ -18,12 +18,12 @@ import pencil from '../../assets/icons/pencil-dark.svg';
 import trash from '../../assets/icons/trash-dark.svg';
 
 
-export default function Rooms({ user, url, userRooms }) {
+export default function Rooms({ user, url, userRooms, showIntro, setShowIntro }) {
     const dispatch = useDispatch();
     const history = useHistory();
     const userItems = useSelector(state => state.items);
     const userNotes = useSelector(state => state.notes);
-    const [showIntro, setShowIntro] = useState(true);
+    // const [showIntro, setShowIntro] = useState(true);
     const [showBottleEvent, setShowBottleEvent] = useState(false);
     const [showRoom2Intro, setShowRoom2Intro] = useState(true);
     const [showFooterEvent, setShowFooterEvent] = useState(false);
@@ -83,6 +83,9 @@ export default function Rooms({ user, url, userRooms }) {
 
 
     // -------------------- ROOM 1 GAME LOGIC: -------------------- //
+    useEffect(() => {
+        if (url === "/play") setShowIntro(true);
+    }, [url]);
     const vizHandler = async (e) => {
         e.preventDefault();
         const roomImg = document.querySelector('.room-img');
@@ -622,6 +625,52 @@ export default function Rooms({ user, url, userRooms }) {
     if (!userRooms) return null;
     return (
         <>
+            {showIntro && (
+                <Modal
+                    className='intro-story-modal'
+                    onClose={closeIntro}
+                >
+                    <div className='intro-story'>
+                        <p className='intro-welcome'>Welcome to Hatch, a virtual escape room!</p>
+                        <br />
+                        <p className='intro-title'>
+                            Story:
+                        </p>
+                        <p className='intro-body'>
+                            You are a genius mechanical/software engineer multi-billionaire and weapons manufacturer, hired by the federal government. Unfortunately, you have been kidnapped by a terrorist group who are forcing you to create weapons of mass destruction for them. They offer you unlimited resources to be able to create these weapons. Use this to your advantage to find a way to escape! You can write, read, update, and delete notes on your left and same thing for items on the right. Good luck!
+                        </p>
+                        <br />
+                        <p className='intro-title'>
+                            Instructions:
+                        </p>
+                        <div className='intro-body'>
+                            <ol className='intro-instructions-list'>
+                                <li className='intro-list-item'>There is a 45 minute countdown timer that has already been started. It will keep running as long as you have this tab in your browser open (even if you are logged out). If you want to reset the timer, exit out of this tab or browser and log back in.</li>
+                                <li className='intro-list-item'>Click around in the room to find clues.</li>
+                                <li className='intro-list-item'>
+                                    Some rooms may require you to create specific notes and/or items to get to the next room.
+                                    <ul className='intro-instructions-nested-list'>
+                                        <li className='intro-nested-list-item'>Use the "notes" and "items" sections on the left and right of the page to do this.</li>
+                                        <li className='intro-nested-list-item'>Click the note or item card itself to view a note or item.</li>
+                                        <li className='intro-nested-list-item'>Click the <img src={add} alt="add" width='25px' /> icon to create a note or item.</li>
+                                        <li className='intro-nested-list-item'>Click the <img src={pencil} alt="update" width='25px' /> icon to update a note or item.</li>
+                                        <li className='intro-nested-list-item'>Click the <img src={trash} alt="delete" width='25px' /> icon to delete a note or item.</li>
+                                    </ul>
+                                </li>
+                                <li className='intro-list-item'>You may need to utilize <a href="https://developer.chrome.com/docs/devtools/" target='_blank' rel='noreferrer'>Chrome DevTools</a> for some rooms.</li>
+                                <li className='intro-list-item'>This <a href="https://developer.mozilla.org/en-US/docs/Learn/CSS/Building_blocks/Selectors/Type_Class_and_ID_Selectors#id_selectors" target='_blank' rel='noreferrer'>resource</a> may come in handy at some point.</li>
+                                <li className='intro-list-item'>If you get stuck, you can check out my <a href="https://github.com/michaelhjung/hatch/wiki/BTS-Game-Walkthrough-*SPOILER-WARNING*" target="_blank" rel="noreferrer">game walkthrough</a> as a last resort (*spoiler warning*, this has all the room solutions).</li>
+                                <li className='intro-list-item'>If you ever need to revisit these instructions, click on the profile button at the top-right!</li>
+                                <li className='intro-list-item'>Have fun!</li>
+                            </ol>
+                        </div>
+                    </div>
+                </Modal>
+            )}
+
+
+
+
             {url === '/play' && userRooms['1'] && (
                 <>
                     <img className='room-img' id='blurry' src={userRooms['1'].Images[0].img} alt="room1" />
@@ -629,46 +678,6 @@ export default function Rooms({ user, url, userRooms }) {
                     <div className='bottle' onClick={bottleClick}>
                         <img className='bottle-img' src="https://i.imgur.com/MxqBtSE.png" alt="bottle" />
                     </div>
-                    {showIntro && (
-                        <Modal
-                            className='intro-story-modal'
-                            onClose={closeIntro}
-                        >
-                            <div className='intro-story'>
-                                <p className='intro-welcome'>Welcome to Hatch, a virtual escape room!</p>
-                                <br />
-                                <p className='intro-title'>
-                                    Story:
-                                </p>
-                                <p className='intro-body'>
-                                    You are a genius mechanical/software engineer multi-billionaire and weapons manufacturer, hired by the federal government. Unfortunately, you have been kidnapped by a terrorist group who are forcing you to create weapons of mass destruction for them. They offer you unlimited resources to be able to create these weapons. Use this to your advantage to find a way to escape! You can write, read, update, and delete notes on your left and same thing for items on the right. Good luck!
-                                </p>
-                                <br />
-                                <p className='intro-title'>
-                                    Instructions:
-                                </p>
-                                <div className='intro-body'>
-                                    <ol className='intro-instructions-list'>
-                                        <li className='intro-list-item'>Click around in the room to find clues.</li>
-                                        <li className='intro-list-item'>
-                                            Some rooms may require you to create specific notes and/or items to get to the next room.
-                                            <ul className='intro-instructions-nested-list'>
-                                                <li className='intro-nested-list-item'>Use the "notes" and "items" sections on the left and right of the page to do this.</li>
-                                                <li className='intro-nested-list-item'>Click the note or item card itself to view a note or item.</li>
-                                                <li className='intro-nested-list-item'>Click the <img src={add} alt="add" width='25px' /> icon to create a note or item.</li>
-                                                <li className='intro-nested-list-item'>Click the <img src={pencil} alt="update" width='25px' /> icon to update a note or item.</li>
-                                                <li className='intro-nested-list-item'>Click the <img src={trash} alt="delete" width='25px' /> icon to delete a note or item.</li>
-                                            </ul>
-                                        </li>
-                                        <li className='intro-list-item'>You may need to utilize <a href="https://developer.chrome.com/docs/devtools/" target='_blank' rel='noreferrer'>Chrome DevTools</a> for some rooms.</li>
-                                        <li className='intro-list-item'>This <a href="https://developer.mozilla.org/en-US/docs/Learn/CSS/Building_blocks/Selectors/Type_Class_and_ID_Selectors#id_selectors" target='_blank' rel='noreferrer'>resource</a> may come in handy at some point.</li>
-                                        <li className='intro-list-item'>If you get stuck, you can check out my <a href="https://github.com/michaelhjung/hatch/wiki/BTS-Game-Walkthrough-*SPOILER-WARNING*" target="_blank" rel="noreferrer">game walkthrough</a> as a last resort (*spoiler warning*, this has all the room solutions).</li>
-                                        <li className='intro-list-item'>Have fun!</li>
-                                    </ol>
-                                </div>
-                            </div>
-                        </Modal>
-                    )}
                     {showBottleEvent && (
                         <Modal
                             className='bottle-event-modal'

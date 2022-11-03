@@ -2,7 +2,7 @@ import './Profile.css';
 import { useEffect, useState } from 'react';
 import ProfileMenu from './ProfileMenu';
 
-export default function ProfileButton({ user }) {
+export default function ProfileButton({ user, showIntro, setShowIntro }) {
     const [showProfileMenu, setShowProfileMenu] = useState(false);
 
     const openMenu = () => {
@@ -31,6 +31,8 @@ export default function ProfileButton({ user }) {
                     showProfileMenu={showProfileMenu}
                     setShowProfileMenu={setShowProfileMenu}
                     closeMenu={closeMenu}
+                    showIntro={showIntro}
+                    setShowIntro={setShowIntro}
                 />
             )}
         </>
