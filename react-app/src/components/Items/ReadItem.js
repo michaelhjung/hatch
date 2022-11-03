@@ -9,7 +9,7 @@ export default function ReadItem({ item }) {
     return (
         <>
             <div className='item-card' onClick={() => setShowModal(true)}>
-                <span className='item-title'>{item.name}</span>
+                {/* <span className='item-title'>{item.name}</span> */}
                 <img className='item-card-img' src={item.img} alt="item" onError={e => e.target.src=tools} />
             </div>
             {showModal && (
