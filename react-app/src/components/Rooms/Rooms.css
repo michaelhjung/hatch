@@ -41,7 +41,7 @@
 
 .intro-body {
     margin-top: 5px;
-    font-size: 1.35rem;
+    font-size: 1.1rem;
 }
 
 .intro-instructions-list {
@@ -49,7 +49,7 @@
 }
 
 .intro-list-item {
-    margin: 5px 0px;
+    margin: 7px 0px;
 }
 
 .intro-list-item:last-child {

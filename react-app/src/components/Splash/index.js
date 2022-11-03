@@ -243,6 +243,9 @@ export default function Splash() {
             dispatch(sessionActions.updateUser(user.id, { current_room: 1 }));
             setShowLastRoom(false);
 
+            // REMOVE SESSION STORAGE:
+            sessionStorage.removeItem(`${user.id}_savedEndDate`);
+
             alert("Data has been reset.");
         }
     }

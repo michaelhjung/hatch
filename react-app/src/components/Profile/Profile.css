@@ -29,8 +29,8 @@
     margin-right: 25px;
     background-color: #D9D9D9;
     position: absolute;
-    top: 125px;
-    right: 0;
+    top: 80px;
+    right: 0px;
     border-radius: 6px;
     overflow: hidden;
     box-shadow: 4px 4px 30px 0px #555;
@@ -41,18 +41,36 @@
     font-weight: 600;
 }
 
-.game-logout-button {
+.game-logout-button,
+.instructions-button {
     width: 100%;
     padding: 15px;
-    margin-top: 10px;
     text-align: center;
-    background-color:#C1B2AB;
     transition: background-color 0.35s ease;
 }
 
-.game-logout-button:hover {
+.game-logout-button:hover,
+.instructions-button:hover {
     cursor: pointer;
-    background-color:#8a7b75;
+}
+
+.game-logout-button {
+    background-color: #C1B2AB;
+}
+
+.game-logout-button:hover {
+    background-color: #8a7b75;
+    color: #FFF;
+}
+
+.instructions-button {
+    margin-top: 5px;
+    background-color: #54778bcb;
+}
+
+.instructions-button:hover {
+    background-color: #435f70;
+    color: #FFF;
 }
 
 .x {
