@@ -67,13 +67,17 @@
 ## Sample Features
 
   - ### Enter Room Animation
-    ![enter]
-  - ### Interact with Room Elements
+    ![enter]    
+  - ### Interact with Room Elements to find Clues
     ![interact]
   - ### Create, Read, Update, Delete Notes
     ![notes]
   - ### Create, Read, Update, Delete Items
     ![items]
+  - ### Countdown Timer that Persists Across Refreshes or URL Changes
+    ![timer]
+  - ### Re-enter Last-Entered Room
+    ![last-room]
 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
@@ -120,7 +124,7 @@ To get a local copy up and running follow these simple example steps.
 <!-- Timeline -->
 ## Timeline
 
-| Date            |           Accomplishment           |
+| Date            |           Accomplishments          |
 |:---------------:|:-----------------------------------|
 | Sat, 10/22/2022 | decide on idea, start finding assets, create repo |
 | Sun, 10/23/2022 | finish first draft of api documentation, db schema, list of riddles/clues to implement, redux store shape pseudocode, features list, wireframe |
@@ -132,6 +136,8 @@ To get a local copy up and running follow these simple example steps.
 | Sat, 10/29/2022 | finished rest of rooms game logic, finished logic for game initialization upon sign up (auto-creates all rooms with associated room images and event logs, starter user notes, starter user items) |
 | Sun, 10/30/2022 | add clean up functions for rooms, update splash page |
 | Mon, 10/31/2022 | finish hero image animation, finish reset game data button, update form labels to appear when typing, update CSS |
+| Tue, 11/1/2022 | write game walkthrough wiki |
+| Wed, 11/2/2022 | create enter last-entered room button, create countdown timer, create 404 not found page |
 
 
 
@@ -158,7 +164,9 @@ Project Link: [https://github.com/michaelhjung/hatch](https://github.com/michael
 [github-url-michael]: https://github.com/michaelhjung
 
 
-[enter]: https://i.imgur.com/kr9oAlp.gif
+[enter]: https://i.imgur.com/Fbw0f2h.gif
 [interact]: https://i.imgur.com/2tVKIUV.gif
-[notes]: https://i.imgur.com/lqMDkKJ.gif
-[items]: https://i.imgur.com/1xvJVBy.gif
+[notes]: https://i.imgur.com/byFhjLn.gif
+[items]: https://i.imgur.com/BHB6VrW.gif
+[timer]: https://i.imgur.com/A6v1APy.gif
+[last-room]: https://i.imgur.com/l1DxsxS.gif
