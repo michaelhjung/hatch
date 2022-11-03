@@ -23,7 +23,7 @@ export default function Notes() {
     return (
         <>
             <div className='notes-heading'>
-                <h2>notes 🗒️</h2>
+                <h2>🗒️ notes</h2>
                 <CreateNoteForm add={add} />
             </div>
             <div className='all-notes-container'>

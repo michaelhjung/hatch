@@ -23,7 +23,7 @@ export default function Items() {
     return (
         <>
             <div className='items-heading'>
-                <h2>items 🔧</h2>
+                <h2>🔧 items</h2>
                 <CreateItemForm add={add} />
             </div>
             <div className='all-items-container'>

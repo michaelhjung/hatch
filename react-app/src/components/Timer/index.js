@@ -1,9 +1,7 @@
 import './Timer.css';
-import { useState, useEffect, useRef, useCallback } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useState, useEffect, useRef } from 'react';
 
 export default function Timer({ user }) {
-    const url = useLocation().pathname;
     // const [timerHours, setTimerHours] = useState('00');
     const [timerMinutes, setTimerMinutes] = useState('00');
     const [timerSeconds, setTimerSeconds] = useState('00');
@@ -14,7 +12,7 @@ export default function Timer({ user }) {
         let endDate;
         if (sessionStorage.getItem(`${user.id}_savedEndDate`)) endDate = sessionStorage.getItem(`${user.id}_savedEndDate`);
         else {
-            endDate = new Date(Date.now() + (45 * 60 * 1000)).getTime();
+            endDate = new Date(Date.now() + (35 * 60 * 1000)).getTime();
             sessionStorage.setItem(`${user.id}_savedEndDate`, endDate);
         }
 
