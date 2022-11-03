@@ -637,7 +637,7 @@ export default function Rooms({ user, url, userRooms, showIntro, setShowIntro })
                             Story:
                         </p>
                         <p className='intro-body'>
-                            You are a genius mechanical/software engineer multi-billionaire and weapons manufacturer, hired by the federal government. Unfortunately, you have been kidnapped by a terrorist group who are forcing you to create weapons of mass destruction for them. They offer you unlimited resources to be able to create these weapons. Use this to your advantage to find a way to escape! You can write, read, update, and delete notes on your left and same thing for items on the right. Good luck!
+                            You are a genius mechanical/software engineer multi-billionaire and weapons manufacturer, hired by the federal government. Unfortunately, you have been kidnapped by a terrorist group who are forcing you to create weapons of mass destruction for them. They offer you unlimited resources to make these weapons. Use this to your advantage to find a way to escape! You can create, view, update, and delete notes and items (see instructions below). Good luck!
                         </p>
                         <br />
                         <p className='intro-title'>
@@ -645,13 +645,14 @@ export default function Rooms({ user, url, userRooms, showIntro, setShowIntro })
                         </p>
                         <div className='intro-body'>
                             <ol className='intro-instructions-list'>
-                                <li className='intro-list-item'>There is a 45 minute countdown timer that has already been started. It will keep running as long as you have this tab in your browser open (even if you are logged out). If you want to reset the timer, exit out of this tab or browser and log back in.</li>
+                                <li className='intro-list-item'>There is a 35 minute countdown timer that has already begun. It will keep running as long as you have this tab in your browser open (even if you are logged out). If you want to reset the timer, exit out of this tab/browser and log back in.</li>
+                                <li className='intro-list-item'>There are a total of 9 rooms.</li>
                                 <li className='intro-list-item'>Click around in the room to find clues.</li>
                                 <li className='intro-list-item'>
                                     Some rooms may require you to create specific notes and/or items to get to the next room.
                                     <ul className='intro-instructions-nested-list'>
                                         <li className='intro-nested-list-item'>Use the "notes" and "items" sections on the left and right of the page to do this.</li>
-                                        <li className='intro-nested-list-item'>Click the note or item card itself to view a note or item.</li>
+                                        <li className='intro-nested-list-item'>Click the note or item card itself to view it.</li>
                                         <li className='intro-nested-list-item'>Click the <img src={add} alt="add" width='25px' /> icon to create a note or item.</li>
                                         <li className='intro-nested-list-item'>Click the <img src={pencil} alt="update" width='25px' /> icon to update a note or item.</li>
                                         <li className='intro-nested-list-item'>Click the <img src={trash} alt="delete" width='25px' /> icon to delete a note or item.</li>
