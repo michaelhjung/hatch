@@ -20,6 +20,9 @@ export default function SignUpForm () {
 
     const onSignUp = async (e) => {
         e.preventDefault();
+
+        if (validationErrors.length > 0) return null;
+
         if (password === repeatPassword) {
             const data = await dispatch(signUp(firstName, lastName, username, email, password, profilePic));
             if (data) {
@@ -44,7 +47,7 @@ export default function SignUpForm () {
 
         if (firstName.length && (firstName.length < 2 || firstName.length > 12)) errors.push("First name must be between 2-12 characters.");
         if (lastName.length && (lastName.length < 2 || lastName.length > 12)) errors.push("Last name must be between 2-12 characters.");
-        if (username.length && (username.length < 4 || username.length > 16)) errors.push("Username must be between 4-16 characters.");
+        if (username.length && (username.length < 4 || username.length > 14)) errors.push("Username must be between 4-14 characters.");
         if (email.length) {
             const lastDotIndex = email.lastIndexOf('.');
             const atSymbolIndex = email.indexOf('@');
@@ -61,6 +64,8 @@ export default function SignUpForm () {
                     if (!errors.includes("Please provide a valid email address.") && SYMBOLS.includes(char)) errors.push("Please provide a valid email address.");
                 });
             }
+
+            if (email.length > 100) errors.push("Maximum email character limit is 100.");
         }
         if (password.length && (password.length < 6 || password.length > 20)) errors.push("Password must be between 6-20 characters.");
         if ((password.length && repeatPassword.length) && password !== repeatPassword) errors.push("Password confirmation must match.");

@@ -25,7 +25,7 @@ export default function UpdateNoteForm({ note, pencil }) {
     useEffect(() => {
         const errors = [];
 
-        if (title.length && (title.length < 2 || title.length > 12)) errors.push("Note title must be between 2-12 characters.");
+        if (title.length && (title.length < 2 || title.length > 16)) errors.push("Note title must be between 2-16 characters.");
         if (body.length && (body.length < 2 || body.length > 250)) errors.push("Note body must be between 2-250 characters.");
 
         setValidationErrors(errors);

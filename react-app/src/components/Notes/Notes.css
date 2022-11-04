@@ -23,7 +23,10 @@
 }
 
 .note-title {
+    width: 100%;
     font-weight: 700;
+    text-align: center;
+    word-wrap: break-word;
 }
 
 .note-icons-container {
@@ -77,6 +80,7 @@
     min-width: 500px;
     height: 450px;
     border-radius: 6px;
+    word-wrap: break-word;
 }
 
 .note-details-title {
@@ -91,4 +95,7 @@
     font-size: 1.7rem;
     text-align: left;
     word-wrap: break-word;
+    height: 100%;
+    max-height: 325px;
+    overflow-y: auto;
 }
