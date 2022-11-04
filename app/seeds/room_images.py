@@ -78,7 +78,7 @@ def seed_room_images():
         room_id=9,
         room_progress_id=9,
         name='The Real Final Room',
-        img='https://i.imgur.com/zMWiRjr.gif',
+        img='https://i.imgur.com/CxAZUho.gif',
         order='1'
     )
 

@@ -97,7 +97,7 @@ export default function Splash() {
             await dispatch(logActions.createLog({ room_id: room8.id, title: "Game Over?", body: `Congratulations, you escaped.` }));
 
             // ROOM 9 IMGS & LOGS:
-            await dispatch(roomActions.createRoomImg({ room_id: room9.id, room_progress_id: 9, name: "The Real Final Room", img: "https://i.imgur.com/zMWiRjr.gif", order: 1 }));
+            await dispatch(roomActions.createRoomImg({ room_id: room9.id, room_progress_id: 9, name: "The Real Final Room", img: "https://i.imgur.com/CxAZUho.gif", order: 1 }));
 
             await dispatch(logActions.createLog({ room_id: room9.id, title: "The Real Final Room - The Reality", body: `Congratulations. You found the real final room. This world is not what it seems... Do you want to stay in this fantasy world and believe whatever you want? Or do you want me to show you how deep the rabbit hole goes...?` }));
         }
