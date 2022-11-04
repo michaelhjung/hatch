@@ -674,7 +674,7 @@ export default function Rooms({ user, url, userRooms, showIntro, setShowIntro })
 
             {url === '/play' && userRooms['1'] && (
                 <>
-                    <img className='room-img' id='blurry' src={userRooms['1'].Images[0].img} alt="room1" />
+                    <img className='room-img' id='blurry' src={userRooms['1']?.Images[0]?.img} alt="room1" />
                     <button className='rub-eyes-button' onClick={vizHandler}>Rub Eyes</button>
                     <div className='bottle' onClick={bottleClick}>
                         <img className='bottle-img' src="https://i.imgur.com/MxqBtSE.png" alt="bottle" />
@@ -696,7 +696,7 @@ export default function Rooms({ user, url, userRooms, showIntro, setShowIntro })
 
             {url === '/play/sewer' && userRooms['2'] && (
                 <>
-                    <img className='room-img' src={userRooms['2'].Images[0].img} alt="room2" />
+                    <img className='room-img' src={userRooms['2']?.Images[0]?.img} alt="room2" />
                     <div className='room-2-note' onClick={room2NoteClick}></div>
                     <div className='snake' onClick={snakeClick}>
                         <img className='snake-img' src='https://i.imgur.com/ixNino2.png' alt="snake" />
@@ -738,7 +738,7 @@ export default function Rooms({ user, url, userRooms, showIntro, setShowIntro })
 
             {url === '/play/AKDzZV7xMuQ' && userRooms['3'] && (
                 <>
-                    <img className='room-img' src={userRooms['3'].Images[0].img} alt="room3" />
+                    <img className='room-img' src={userRooms['3']?.Images[0]?.img} alt="room3" />
                     <div className='room-3-note' onClick={room3NoteClick}></div>
                     {showRoom3Intro && (
                         <Modal
@@ -777,7 +777,7 @@ export default function Rooms({ user, url, userRooms, showIntro, setShowIntro })
 
             {url === '/play/nwgjJHTaYys' && userRooms['4'] && (
                 <>
-                    <img className='room-img' src={userRooms['4'].Images[0].img} alt="room4" />
+                    <img className='room-img' src={userRooms['4']?.Images[0]?.img} alt="room4" />
                     <div className='room-4-console' onClick={room4ConsoleClick}>
                         <img className='room-4-console-img' src="https://i.imgur.com/Aky9pGi.png" alt="console" />
                     </div>
@@ -831,7 +831,7 @@ export default function Rooms({ user, url, userRooms, showIntro, setShowIntro })
 
             {url === '/play/cSI7QDhHLW8' && userRooms['5'] && (
                 <>
-                    <img className='room-img' src={userRooms['5'].Images[0].img} alt="room5" />
+                    <img className='room-img' src={userRooms['5']?.Images[0]?.img} alt="room5" />
                     <div className='room-5-bat' onClick={room5BatClick}>
                         <img className='room-5-bat-img bat1' src="https://i.imgur.com/R2EUztL.png" alt="bat" />
                         <img className='room-5-bat-img bat2' src="https://i.imgur.com/R2EUztL.png" alt="bat" />
@@ -896,7 +896,7 @@ export default function Rooms({ user, url, userRooms, showIntro, setShowIntro })
 
             {url === '/play/3RA7Y6eJ2bE' && userRooms['6'] && (
                 <>
-                    <img className='room-img' src={userRooms['6'].Images[0].img} alt="room6" />
+                    <img className='room-img' src={userRooms['6']?.Images[0]?.img} alt="room6" />
                     {showRoom6Intro && (
                         <Modal
                             className='room-6-intro-modal'
@@ -924,7 +924,7 @@ export default function Rooms({ user, url, userRooms, showIntro, setShowIntro })
 
             {url === '/play/jhNmKd74tEA' && userRooms['7'] && (
                 <>
-                    <img className='room-img' src={userRooms['7'].Images[0].img} alt="room7" />
+                    <img className='room-img' src={userRooms['7']?.Images[0]?.img} alt="room7" />
                     {showRoom7Intro && (
                         <Modal
                             className='room-7-intro-modal'
@@ -952,7 +952,7 @@ export default function Rooms({ user, url, userRooms, showIntro, setShowIntro })
 
             {url === '/play/gUpht2fDiqo' && userRooms['8'] && (
                 <>
-                    <img className='room-img' id="room9? OakSkzL3XaZM2VUR" src={userRooms['8'].Images[0].img} alt="room8" />
+                    <img className='room-img' id="room9? OakSkzL3XaZM2VUR" src={userRooms['8']?.Images[0]?.img} alt="room8" />
                     {showRoom8Intro && (
                         <Modal
                             className='room-8-intro-modal'
@@ -970,7 +970,7 @@ export default function Rooms({ user, url, userRooms, showIntro, setShowIntro })
 
             {url === '/play/OakSkzL3XaZM2VUR' && userRooms['9'] && (
                 <>
-                    <img className='room-img' src={userRooms['9'].Images[0].img} alt="room9" />
+                    <img className='room-img' src={userRooms['9']?.Images[0]?.img} alt="room9" />
                     {showRoom9Intro && (
                         <Modal
                             className='room-9-intro-modal'
