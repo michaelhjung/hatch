@@ -16,6 +16,7 @@ import cookieSvg from '../../assets/icons/cookie.svg';
 import add from '../../assets/icons/add-item-dark.svg';
 import pencil from '../../assets/icons/pencil-dark.svg';
 import trash from '../../assets/icons/trash-dark.svg';
+import matrix from '../../assets/imgs/9-matrix.gif';
 
 
 export default function Rooms({ user, url, userRooms, showIntro, setShowIntro }) {
@@ -970,7 +971,7 @@ export default function Rooms({ user, url, userRooms, showIntro, setShowIntro })
 
             {url === '/play/OakSkzL3XaZM2VUR' && userRooms['9'] && (
                 <>
-                    <img className='room-img' src={userRooms['9']?.Images[0]?.img} alt="room9" />
+                    <img className='room-img' src={userRooms['9']?.Images[0]?.img} alt="room9" onError={e => e.target.src={matrix}} />
                     {showRoom9Intro && (
                         <Modal
                             className='room-9-intro-modal'
