@@ -70,8 +70,11 @@
     border-bottom-right-radius: 6px;
 }
 
+#form-field-input-signup-last {
+    margin-bottom: 10px;
+}
+
 .req-text {
-    margin-top: 10px;
     font-weight: 600;
 }
 

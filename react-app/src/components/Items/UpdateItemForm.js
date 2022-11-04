@@ -133,7 +133,7 @@ export default function UpdateItemForm({ item, pencil }) {
                         {img && (
                             <div className='item-img-prev-container'>
                                 <span>Item Picture Preview:</span>
-                                <img className='item-img-preview' src={img} alt="item" onError={e => e.target.src=tools} />
+                                <img className='item-img-preview' src={img} alt="item" onError={e => e.target.src="https://i.imgur.com/2SCcczH.png"} />
                             </div>
                         )}
 
