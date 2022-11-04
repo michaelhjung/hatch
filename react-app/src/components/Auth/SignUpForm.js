@@ -199,7 +199,6 @@ export default function SignUpForm () {
                                     onChange={e => setProfilePic(e.target.value)}
                                     value={profilePic}
                                     required={true}
-                                    id="form-field-input-signup-last"
                                     className='form-field-input last-field-input'
                                 />
                                 {profilePic.length > 0 && (
