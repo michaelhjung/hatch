@@ -135,3 +135,10 @@
     color: #666;
     font-weight: 700;
 }
+
+
+.demo-rec {
+    max-width: 480px;
+    text-align: justify;
+    font-weight: 500;
+}

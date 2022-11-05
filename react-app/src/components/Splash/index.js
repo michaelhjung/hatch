@@ -281,6 +281,9 @@ export default function Splash() {
                             <LogoutButton />
                         </div>
                     )}
+                    {!user && (
+                        <small className='demo-rec'>*NOTE: it is recommended to sign up and use your own account rather than using the demo login (in case someone else is using the demo login at the same time)</small>
+                    )}
                 </div>
             </section>
         </main>
