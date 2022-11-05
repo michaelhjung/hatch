@@ -23,6 +23,7 @@
     text-align: center;
     padding-bottom: 10px;
     border-bottom: 1px dotted #444;
+    text-shadow: 2px 2px 2px #111;
 }
 
 .log-container {

@@ -1,7 +1,7 @@
 import './Timer.css';
 import { useState, useEffect, useRef } from 'react';
 
-export default function Timer({ user }) {
+export default function Timer({ user, url }) {
     // const [timerHours, setTimerHours] = useState('00');
     const [timerMinutes, setTimerMinutes] = useState('00');
     const [timerSeconds, setTimerSeconds] = useState('00');

@@ -29,7 +29,7 @@ export default function Game() {
     return (
         <main className='game-container'>
             <section className='top'>
-                <Timer user={user} />
+                <Timer user={user} url={url} />
                 <RoomTitle url={url} userRooms={userRooms} />
                 <ProfileButton user={user} showIntro={showIntro} setShowIntro={setShowIntro} />
             </section>
