@@ -4,6 +4,7 @@
     font-size: 2rem;
     margin-left: 27px;
     color: #D9D9D9;
+    text-shadow: 2px 2px 2px #111;
 }
 
 .add-icon {
@@ -76,7 +77,7 @@
 .note-details-container {
     background-color: #C1B2AB;
     text-align: center;
-    margin: 200px 175px;
+    margin: 100px 175px;
     min-width: 500px;
     height: 450px;
     border-radius: 6px;
