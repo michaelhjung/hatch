@@ -3,6 +3,42 @@
     min-width: 1000px;
 }
 
+/* ---------------- FADE ANIMATIONS -------------- */
+.fade-in-logo {
+    opacity: 0;
+    animation: fade-in 1.4s ease-in 0s forwards;
+}
+
+.fade-in-buttons {
+    opacity: 0;
+    animation: fade-in 0.6s ease-in 0s forwards;
+}
+
+@keyframes fade-in {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+.fade-out {
+    opacity: 0;
+    animation: fade-out 1s ease-in 0s forwards;
+}
+
+@keyframes fade-out {
+    0% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+
 /* ---------------------- HERO -------------------- */
 .hero-container {
     width: 100vw;
@@ -16,24 +52,6 @@
     height: 100%;
     object-fit: cover;
 }
-
-.fade {
-    animation-duration: 1s;
-    animation-name: fade;
-    animation-timing-function: ease-in-out;
-    animation-fill-mode: forwards;
-}
-
-@keyframes fade {
-    0% {
-        opacity: 1;
-    }
-
-    100% {
-        opacity: 0;
-    }
-}
-
 
 
 /* ---------- SPLASH (LOGIN, SIGNUP, ETC) -------- */
@@ -96,23 +114,18 @@
 
 .login-button {
     background-color: #C1B2AB;
-    /* margin-right: 25px; */
-    /* margin-top: 30px; */
 }
 
 .signup-button {
     background-color: #4F7F9B;
-    /* margin-top: 30px; */
 }
 
 .demo-button {
     background-color: #D9D9D9;
-    /* margin-top: 25px; */
 }
 
 .logout-button {
     background-color: #D9D9D9;
-    /* margin: 30px 0px 0px 30px; */
 }
 
 .reset-button {
@@ -135,7 +148,6 @@
     color: #666;
     font-weight: 700;
 }
-
 
 .demo-rec {
     max-width: 480px;

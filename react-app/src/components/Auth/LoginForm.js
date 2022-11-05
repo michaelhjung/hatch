@@ -34,7 +34,7 @@ export default function LoginForm () {
 
     return (
         <>
-            <button className='login-button' onClick={() => setShowModal(true)}>
+            <button className='login-button fade-in-buttons' onClick={() => setShowModal(true)}>
                 LOG IN
             </button>
             {showModal && (
