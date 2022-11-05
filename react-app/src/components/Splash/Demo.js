@@ -22,7 +22,7 @@ export default function Demo() {
             className="demo-button"
             onClick={demoLogin}
         >
-            DEMO
+            DEMO*
         </button>
     )
 }
