@@ -4,7 +4,6 @@ import { Modal } from '../../context/Modal';
 import { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux'
 import * as itemActions from '../../store/items';
-import tools from '../../assets/icons/tools.png';
 
 export default function UpdateItemForm({ item, pencil }) {
     const [validationErrors, setValidationErrors] = useState([]);

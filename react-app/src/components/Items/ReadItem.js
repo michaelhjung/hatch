@@ -1,7 +1,6 @@
 import './Items.css';
 import { Modal } from '../../context/Modal';
 import { useState } from 'react';
-import tools from '../../assets/icons/tools.png';
 
 export default function ReadItem({ item }) {
     const [showModal, setShowModal] = useState(false);

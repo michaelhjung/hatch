@@ -111,8 +111,10 @@ export default function Rooms({ user, url, userRooms, showIntro, setShowIntro })
         setShowBottleEvent(false);
 
         // UPDATE USER LOG HISTORY:
-        const room1log2id = userRooms['1'].Event_Logs[1].id;
-        dispatch(logActions.updateLog(room1log2id, { user_id: user.id }));
+        const room1log2 = userRooms['1'].Event_Logs[1];
+        console.log("ROOM 1 LOG 2", room1log2);
+        console.log("ROOM 1 id:", userRooms['1'].id);
+        if (room1log2.room_id === userRooms['1'].id) await dispatch(logActions.updateLog(room1log2.id, { user_id: user.id }));
 
         // CREATE NOTE WITH ROOM 2 KEY:
         if (userNotes) {
