@@ -19,7 +19,7 @@ export default function Demo() {
 
     return (
         <button
-            className="demo-button"
+            className="demo-button fade-in-buttons"
             onClick={demoLogin}
         >
             DEMO*

@@ -149,18 +149,11 @@ export default function Splash() {
         hero.src = heroAnimate;
 
         const hatchLogo = document.querySelector('.hero-logo');
-        const welcomeTitle = document.querySelector('.welcome-title');
-        const enterButton = document.querySelector('.enter-room-button');
-        const enterLastButton = document.querySelector('.enter-last-room-button');
-        const resetButton = document.querySelector('.reset-button');
-        const logoutButton = document.querySelector('.logout-button');
+        const userButtons = document.querySelector('.user-buttons');
 
-        hatchLogo.setAttribute('class', 'hero-logo fade');
-        welcomeTitle.setAttribute('class', 'welcome-title fade');
-        enterButton.setAttribute('class', 'enter-room-button fade');
-        if (enterLastButton) enterLastButton.setAttribute('class', 'enter-last-room-button fade');
-        resetButton.setAttribute('class', 'reset-button fade');
-        logoutButton.setAttribute('class', 'logout-button fade');
+        hatchLogo.setAttribute('class', 'hero-logo fade-out');
+        userButtons.setAttribute('class', 'user-buttons fade-out');
+
 
         setTimeout(() => {
             history.push('/play');
@@ -171,18 +164,11 @@ export default function Splash() {
         hero.src = heroAnimate;
 
         const hatchLogo = document.querySelector('.hero-logo');
-        const welcomeTitle = document.querySelector('.welcome-title');
-        const enterButton = document.querySelector('.enter-room-button');
-        const enterLastButton = document.querySelector('.enter-last-room-button');
-        const resetButton = document.querySelector('.reset-button');
-        const logoutButton = document.querySelector('.logout-button');
+        const userButtons = document.querySelector('.user-buttons');
 
-        hatchLogo.setAttribute('class', 'hero-logo fade');
-        welcomeTitle.setAttribute('class', 'welcome-title fade');
-        enterButton.setAttribute('class', 'enter-room-button fade');
-        if (enterLastButton) enterLastButton.setAttribute('class', 'enter-last-room-button fade');
-        resetButton.setAttribute('class', 'reset-button fade');
-        logoutButton.setAttribute('class', 'logout-button fade');
+        hatchLogo.setAttribute('class', 'hero-logo fade-out');
+        userButtons.setAttribute('class', 'user-buttons fade-out');
+
 
         setTimeout(() => {
             if (user.current_room === 1) history.push('/play');
@@ -266,12 +252,12 @@ export default function Splash() {
 
             <section className='splash-container'>
                 <div className='login-signup-container'>
-                    <img className='hero-logo' src={logo} alt='hatch logo' />
+                    <img className='hero-logo fade-in-logo' src={logo} alt='hatch logo' />
                     <LoginForm />
                     <SignUpForm />
                     <Demo />
                     {user && (
-                        <div className='user-buttons'>
+                        <div className='user-buttons fade-in-buttons'>
                             <h1 className='welcome-title'>Welcome, {user.username}.</h1>
                             <button className='enter-room-button' onClick={handleEnterRoom}>ENTER ROOM <span className='enter-room-num-1'>1</span></button>
                             {showLastRoom && (
@@ -282,7 +268,7 @@ export default function Splash() {
                         </div>
                     )}
                     {!user && (
-                        <small className='demo-rec'>*NOTE: it is recommended to sign up and use your own account rather than using the demo login (in case someone else is using the demo login at the same time)</small>
+                        <small className='demo-rec fade-in-buttons'>*NOTE: it is recommended to sign up and use your own account rather than using the demo login (in case someone else is using the demo login at the same time)</small>
                     )}
                 </div>
             </section>

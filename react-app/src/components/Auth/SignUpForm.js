@@ -79,7 +79,7 @@ export default function SignUpForm () {
 
     return (
         <>
-            <button className='signup-button' onClick={() => setShowModal(true)}>
+            <button className='signup-button fade-in-buttons' onClick={() => setShowModal(true)}>
                 SIGN UP
             </button>
             {showModal && (
