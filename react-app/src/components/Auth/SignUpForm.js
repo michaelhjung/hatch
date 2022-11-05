@@ -200,20 +200,20 @@ export default function SignUpForm () {
                                 <input
                                     type='text'
                                     name='profilePic'
-                                    placeholder='profile picture url*'
+                                    placeholder='profile picture url**'
                                     onChange={e => setProfilePic(e.target.value)}
                                     value={profilePic}
                                     required={true}
                                     className='form-field-input last-field-input'
                                 />
                                 {profilePic.length > 0 && (
-                                    <small className='input-label'>profile pic url*:</small>
+                                    <small className='input-label'>profile pic url**:</small>
                                 )}
                             </div>
                             {(firstName.length === 0 || lastName.length === 0 || username.length === 0 || email.length === 0 || password.length === 0 || repeatPassword.length === 0 || profilePic.length === 0) && (
                                 <small className='req-text' >*All fields are required.</small>
                             )}
-                            <small className='req-text' >*A default profile picture will be provided if the link is invalid.</small>
+                            <small className='req-text' >**A default profile picture will be provided if the link is invalid.</small>
                             {profilePic && (
                                 <div className='profile-pic-prev-container'>
                                     <span>Profile Picture Preview:</span>
