@@ -60,7 +60,7 @@ export default function LoginForm () {
                             <input
                                 name='credential'
                                 type='text'
-                                placeholder='Email or Username'
+                                placeholder='Email or Username*'
                                 value={credential}
                                 onChange={e => setCredential(e.target.value)}
                                 className='form-field-input first-field-input'
@@ -74,7 +74,7 @@ export default function LoginForm () {
                             <input
                                 name='password'
                                 type='password'
-                                placeholder='Password'
+                                placeholder='Password*'
                                 value={password}
                                 onChange={e => setPassword(e.target.value)}
                                 className='form-field-input last-field-input'
