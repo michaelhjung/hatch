@@ -10,15 +10,17 @@ import add from '../../assets/icons/add-item.svg';
 import pencil from '../../assets/icons/pencil.svg';
 import trash from '../../assets/icons/trash.svg';
 
-export default function Notes() {
-    const dispatch = useDispatch();
-    const userNotes = useSelector(state => state.notes);
+export default function Notes({ userNotes }) {
+    // const dispatch = useDispatch();
+    // const userNotes = useSelector(state => state.notes);
 
-    useEffect(() => {
-        dispatch(noteActions.readNotes());
+    // useEffect(() => {
+    //     dispatch(noteActions.readNotes());
 
-        return () => dispatch(noteActions.clearData());
-    }, [dispatch]);
+    //     return () => dispatch(noteActions.clearData());
+    // }, [dispatch]);
+
+    if (!userNotes) return null;
 
     return (
         <>
