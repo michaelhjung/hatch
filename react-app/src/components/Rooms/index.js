@@ -88,8 +88,10 @@ export default function Rooms({ user, url, userRooms, userItems, userNotes, user
         setShowIntro(false);
 
         // UPDATE USER LOG HISTORY:
+        const room1log1 = userRooms['1'].Event_Logs[0];
         const room1log1id = userRooms['1'].Event_Logs[0].id;
         dispatch(logActions.updateLog(room1log1id, { user_id: user.id }));
+        console.log("WHEN IS IT HITTING CLOSE INTRO?", room1log1);
     }
     const bottleClick = () => setShowBottleEvent(true);
 
@@ -105,6 +107,7 @@ export default function Rooms({ user, url, userRooms, userItems, userNotes, user
 
         // UPDATE USER LOG HISTORY:
         const room1log2 = userRooms['1'].Event_Logs[1];
+        console.log("WHEN IS IT HITTING CLOSE BOTTLE EVENT?", room1log2);
         if (bottleClicked.current) dispatch(logActions.updateLog(room1log2.id, { user_id: user.id }));
 
         // CREATE NOTE WITH ROOM 2 KEY:
