@@ -108,6 +108,11 @@ export default function Rooms({ user, url, userRooms, userItems, userNotes, user
         dispatch(logActions.updateLog(room1log1id, { user_id: user.id }));
     }
     const bottleClick = () => setShowBottleEvent(true);
+    console.log("ROOM 1 LOG 2", room1log2);
+    console.log("ROOM 1 id:", userRooms['1'].id);
+    console.log("USER ROOMS", userRooms);
+    console.log("USER", user);
+    console.log("USER LOGS", userLogs);
     const closeBottleEvent = async () => {
         // CLOSE MODAL:
         setShowBottleEvent(false);
