@@ -17,6 +17,7 @@
       <a href="#getting-started">Getting Started</a>
     </li>
     <li><a href="#timeline">Timeline</a></li>
+    <li><a href="#future-implementations">Future Implementations</a></li>
     <li><a href="#contact-michael">Contact Michael</a></li>
   </ol>
 </details>
@@ -140,6 +141,13 @@ To get a local copy up and running follow these simple example steps.
 | Wed, 11/2/2022 | create enter last-entered room button, create countdown timer, create 404 not found page |
 
 
+<!-- Future Implementations -->
+## Future Implementations:
+* The following are a list of potential future updates:
+  * Room "Scenes" (A carousel of room images per room)
+  * Other "Games" (a collection of related rooms) that users can choose to play
+  * Color themes (light/dark mode)
+  * Multi-player mode
 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
