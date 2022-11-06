@@ -66,9 +66,6 @@ export default function Game() {
                 <Rooms
                     user={user} url={url}
                     userRooms={userRooms}
-                    userNotes={userNotes}
-                    useItems={userItems}
-                    userLogs={userLogs}
                     showIntro={showIntro}
                     setShowIntro={setShowIntro}
                 />

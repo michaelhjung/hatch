@@ -1,7 +1,7 @@
 import './Rooms.css';
 import { useEffect, useState, useRef } from 'react';
 import { useHistory } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Modal } from '../../context/Modal';
 // import * as roomActions from '../../store/rooms';
 import * as logActions from '../../store/logs';
@@ -19,9 +19,11 @@ import trash from '../../assets/icons/trash-dark.svg';
 import matrix from '../../assets/imgs/9-matrix.gif';
 
 
-export default function Rooms({ user, url, userRooms, userItems, userNotes, userLogs, showIntro, setShowIntro }) {
+export default function Rooms({ user, url, userRooms, showIntro, setShowIntro }) {
     const dispatch = useDispatch();
     const history = useHistory();
+    const userNotes = useSelector(state => state.notes);
+    const userItems = useSelector(state => state.items);
 
     const [showBottleEvent, setShowBottleEvent] = useState(false);
     const [showRoom2Intro, setShowRoom2Intro] = useState(true);
@@ -42,6 +44,16 @@ export default function Rooms({ user, url, userRooms, userItems, userNotes, user
     const [showRoom7CorrectKey, setShowRoom7CorrectKey] = useState(false);
     const [showRoom8Intro, setShowRoom8Intro] = useState(true);
     const [showRoom9Intro, setShowRoom9Intro] = useState(true);
+
+    useEffect(() => {
+        dispatch(noteActions.readNotes());
+        dispatch(itemActions.readItems());
+
+        return () => {
+            dispatch(noteActions.clearData());
+            dispatch(itemActions.clearData());
+        }
+    }, [dispatch]);
 
 
 
