@@ -88,27 +88,20 @@ export default function Rooms({ user, url, userRooms, userItems, userNotes, user
         setShowIntro(false);
 
         // UPDATE USER LOG HISTORY:
-        const room1log1 = userRooms['1'].Event_Logs[0];
-        const room1log1id = userRooms['1'].Event_Logs[0].id;
-        dispatch(logActions.updateLog(room1log1id, { user_id: user.id }));
-        console.log("WHEN IS IT HITTING CLOSE INTRO?", room1log1);
+        const room1logs = userRooms['1'].Event_Logs;
+        const introLog = room1logs.find(log => log.title === "The Cave - Waking Up");
+        dispatch(logActions.updateLog(introLog.id, { user_id: user.id }));
     }
     const bottleClick = () => setShowBottleEvent(true);
 
-    console.log("USER", user);
-    console.log("USER LOGS", userLogs);
-
-    const bottleClicked = useRef(false);
-    console.log("USE REF BOTTLE CLICKED:", bottleClicked.current);
     const closeBottleEvent = () => {
         // CLOSE MODAL:
         setShowBottleEvent(false);
-        bottleClicked.current = true;
 
         // UPDATE USER LOG HISTORY:
-        const room1log2 = userRooms['1'].Event_Logs[1];
-        console.log("WHEN IS IT HITTING CLOSE BOTTLE EVENT?", room1log2);
-        if (bottleClicked.current) dispatch(logActions.updateLog(room1log2.id, { user_id: user.id }));
+        const room1logs = userRooms['1'].Event_Logs;
+        const bottleLog = room1logs.find(log => log.title === "The Cave - Found Item");
+        dispatch(logActions.updateLog(bottleLog.id, { user_id: user.id }));
 
         // CREATE NOTE WITH ROOM 2 KEY:
         (async () => {
@@ -145,8 +138,9 @@ export default function Rooms({ user, url, userRooms, userItems, userNotes, user
         footerUpdatedSnake.current = false;
 
         // UPDATE USER LOG HISTORY:
-        const room2log1id = userRooms['2'].Event_Logs[0].id;
-        dispatch(logActions.updateLog(room2log1id, { user_id: user.id }));
+        const room2logs = userRooms['2'].Event_Logs;
+        const room2introLog = room2logs.find(log => log.title === "The Sewer - Observing New Room");
+        dispatch(logActions.updateLog(room2introLog.id, { user_id: user.id }));
     }
     const snakeClick = () => setShowFooterEvent(true);
     const closeFooterEvent = () => {
@@ -154,8 +148,9 @@ export default function Rooms({ user, url, userRooms, userItems, userNotes, user
         setShowFooterEvent(false);
 
         // UPDATE USER LOG HISTORY:
-        const room2log2id = userRooms['2'].Event_Logs[1].id;
-        dispatch(logActions.updateLog(room2log2id, { user_id: user.id }));
+        const room2logs = userRooms['2'].Event_Logs;
+        const room2footerLog = room2logs.find(log => log.title === "The Sewer - Creepy Thing in Water");
+        dispatch(logActions.updateLog(room2footerLog.id, { user_id: user.id }));
 
         if (!footerUpdatedSnake.current) {
             // CREATE LINK IN FOOTER:
@@ -178,8 +173,9 @@ export default function Rooms({ user, url, userRooms, userItems, userNotes, user
         setShowRoom2Note(false);
 
         // UPDATE USER LOG HISTORY:
-        const room2log3id = userRooms['2'].Event_Logs[2].id;
-        dispatch(logActions.updateLog(room2log3id, { user_id: user.id }));
+        const room2logs = userRooms['2'].Event_Logs;
+        const room2noteLog = room2logs.find(log => log.title === "The Sewer - Found Note");
+        dispatch(logActions.updateLog(room2noteLog.id, { user_id: user.id }));
     }
 
 
@@ -190,8 +186,9 @@ export default function Rooms({ user, url, userRooms, userItems, userNotes, user
         setShowRoom3Intro(false);
 
         // UPDATE USER LOG HISTORY:
-        const room3log1id = userRooms['3'].Event_Logs[0].id;
-        dispatch(logActions.updateLog(room3log1id, { user_id: user.id }));
+        const room3logs = userRooms['3'].Event_Logs;
+        const room3introLog = room3logs.find(log => log.title === "The Locked Door - Observing New Room");
+        dispatch(logActions.updateLog(room3introLog.id, { user_id: user.id }));
     }
     useEffect(() => {
         // RUN FOR ROOM 3 ONLY:
@@ -215,13 +212,15 @@ export default function Rooms({ user, url, userRooms, userItems, userNotes, user
         setShowRoom3Note(false);
 
         // UPDATE USER LOG HISTORY:
-        const room3log2id = userRooms['3'].Event_Logs[1].id;
-        dispatch(logActions.updateLog(room3log2id, { user_id: user.id }));
+        const room3logs = userRooms['3'].Event_Logs;
+        const room3noteLog = room3logs.find(log => log.title === "The Locked Door - Found Note");
+        dispatch(logActions.updateLog(room3noteLog.id, { user_id: user.id }));
     }
     const closeRoom3CorrectKey = () => {
         // UPDATE USER LOG HISTORY:
-        const room3log3id = userRooms['3'].Event_Logs[2].id;
-        dispatch(logActions.updateLog(room3log3id, { user_id: user.id }));
+        const room3logs = userRooms['3'].Event_Logs;
+        const room3keyLog = room3logs.find(log => log.title === "The Locked Door - Key");
+        dispatch(logActions.updateLog(room3keyLog.id, { user_id: user.id }));
 
         // REDIRECT USER TO NEW ROOM:
         history.push('/play/nwgjJHTaYys');
@@ -237,8 +236,9 @@ export default function Rooms({ user, url, userRooms, userItems, userNotes, user
         footerUpdatedRabbit.current = false;
 
         // UPDATE USER LOG HISTORY:
-        const room4log1id = userRooms['4'].Event_Logs[0].id;
-        dispatch(logActions.updateLog(room4log1id, { user_id: user.id }));
+        const room4logs = userRooms['4'].Event_Logs;
+        const room4introLog = room4logs.find(log => log.title === "The Empty Room - Observing New Room");
+        dispatch(logActions.updateLog(room4introLog.id, { user_id: user.id }));
     }
     useEffect(() => {
         // RUN FOR ROOM 4 ONLY:
@@ -275,8 +275,9 @@ export default function Rooms({ user, url, userRooms, userItems, userNotes, user
         setShowRoom4ConsoleEvent(false);
 
         // UPDATE USER LOG HISTORY:
-        const room4log2id = userRooms['4'].Event_Logs[1].id;
-        dispatch(logActions.updateLog(room4log2id, { user_id: user.id }));
+        const room4logs = userRooms['4'].Event_Logs;
+        const room4consoleLog = room4logs.find(log => log.title === "The Empty Room - Game Console?");
+        dispatch(logActions.updateLog(room4consoleLog.id, { user_id: user.id }));
     }
     const room4RabbitClick = () => setShowRoom4RabbitEvent(true);
     const closeRoom4RabbitEvent = () => {
@@ -284,8 +285,9 @@ export default function Rooms({ user, url, userRooms, userItems, userNotes, user
         setShowRoom4RabbitEvent(false);
 
         // UPDATE USER LOG HISTORY:
-        const room4log3id = userRooms['4'].Event_Logs[2].id;
-        dispatch(logActions.updateLog(room4log3id, { user_id: user.id }));
+        const room4logs = userRooms['4'].Event_Logs;
+        const room4rabbitLog = room4logs.find(log => log.title === "The Empty Room - Random Rabbit");
+        dispatch(logActions.updateLog(room4rabbitLog.id, { user_id: user.id }));
 
         if (!footerUpdatedRabbit.current) {
             // CREATE LINK IN FOOTER:
@@ -305,8 +307,9 @@ export default function Rooms({ user, url, userRooms, userItems, userNotes, user
     }
     const closeRoom4CorrectKey = () => {
         // UPDATE USER LOG HISTORY:
-        const room4log4id = userRooms['4'].Event_Logs[3].id;
-        dispatch(logActions.updateLog(room4log4id, { user_id: user.id }));
+        const room4logs = userRooms['4'].Event_Logs;
+        const room4successLog = room4logs.find(log => log.title === "The Empty Room - The Right Tool");
+        dispatch(logActions.updateLog(room4successLog.id, { user_id: user.id }));
 
         // REDIRECT USER TO NEW ROOM:
         history.push('/play/cSI7QDhHLW8');
@@ -325,29 +328,31 @@ export default function Rooms({ user, url, userRooms, userItems, userNotes, user
         setShowRoom5Intro(false);
 
         // UPDATE USER LOG HISTORY:
-        const room5log1id = userRooms['5'].Event_Logs[0].id;
-        dispatch(logActions.updateLog(room5log1id, { user_id: user.id }));
+        const room5logs = userRooms['5'].Event_Logs;
+        const room5introLog = room5logs.find(log => log.title === "The Bat Cave - Observing New Room");
+        dispatch(logActions.updateLog(room5introLog.id, { user_id: user.id }));
     }
     const room5BatClick = () => setShowRoom5BatEvent(true);
     const closeRoom5BatEvent = () => {
         // CLOSE MODAL:
         batCount.current = batCount.current + 1;
         setShowRoom5BatEvent(false);
+        const room5logs = userRooms['5'].Event_Logs;
 
         if (batCount.current === 1) {
             // UPDATE USER LOG HISTORY:
-            const room5log2id = userRooms['5'].Event_Logs[1].id;
-            dispatch(logActions.updateLog(room5log2id, { user_id: user.id }));
+            const room5bat1Log = room5logs.find(log => log.title === "The Bat Cave - Bat 1");
+            dispatch(logActions.updateLog(room5bat1Log.id, { user_id: user.id }));
         }
         if (batCount.current === 2) {
             // UPDATE USER LOG HISTORY:
-            const room5log3id = userRooms['5'].Event_Logs[2].id;
-            dispatch(logActions.updateLog(room5log3id, { user_id: user.id }));
+            const room5bat2Log = room5logs.find(log => log.title === "The Bat Cave - Bat 2");
+            dispatch(logActions.updateLog(room5bat2Log.id, { user_id: user.id }));
         }
         if (batCount.current === 3) {
             // UPDATE USER LOG HISTORY:
-            const room5log4id = userRooms['5'].Event_Logs[3].id;
-            dispatch(logActions.updateLog(room5log4id, { user_id: user.id }));
+            const room5bat3Log = room5logs.find(log => log.title === "The Bat Cave - Bat 3");
+            dispatch(logActions.updateLog(room5bat3Log.id, { user_id: user.id }));
 
             // CREATE NOTE WITH ROOM 5 HINT:
             if (userNotes) {
@@ -375,8 +380,9 @@ export default function Rooms({ user, url, userRooms, userItems, userNotes, user
         setShowRoom6Intro(false);
 
         // UPDATE USER LOG HISTORY:
-        const room6log1id = userRooms['6'].Event_Logs[0].id;
-        dispatch(logActions.updateLog(room6log1id, { user_id: user.id }));
+        const room6logs = userRooms['6'].Event_Logs;
+        const room6introLog = room6logs.find(log => log.title === "The Telegraph - Observing New Room");
+        dispatch(logActions.updateLog(room6introLog.id, { user_id: user.id }));
 
         // CREATE LINK IN FOOTER:
         const footerContacts = document.querySelector('.footer-contact');
@@ -521,8 +527,9 @@ export default function Rooms({ user, url, userRooms, userItems, userNotes, user
     }, [url]);
     const closeRoom6CorrectKey = () => {
         // UPDATE USER LOG HISTORY:
-        const room6log2id = userRooms['6'].Event_Logs[1].id;
-        dispatch(logActions.updateLog(room6log2id, { user_id: user.id }));
+        const room6logs = userRooms['6'].Event_Logs;
+        const room6successLog = room6logs.find(log => log.title === "The Telegraph - Success");
+        dispatch(logActions.updateLog(room6successLog.id, { user_id: user.id }));
 
         // REDIRECT USER TO NEW ROOM:
         history.push('/play/jhNmKd74tEA');
@@ -540,8 +547,9 @@ export default function Rooms({ user, url, userRooms, userItems, userNotes, user
         setShowRoom7Intro(false);
 
         // UPDATE USER LOG HISTORY:
-        const room7log1id = userRooms['7'].Event_Logs[0].id;
-        dispatch(logActions.updateLog(room7log1id, { user_id: user.id }));
+        const room7logs = userRooms['7'].Event_Logs;
+        const room7introLog = room7logs.find(log => log.title === "The Dead End - Observing New Room");
+        dispatch(logActions.updateLog(room7introLog.id, { user_id: user.id }));
 
         // CREATE LINK IN FOOTER:
         const footerContacts = document.querySelector('.footer-contact');
@@ -574,8 +582,9 @@ export default function Rooms({ user, url, userRooms, userItems, userNotes, user
     }, [dispatch, userNotes, url, userRooms]);
     const closeRoom7CorrectKey = () => {
         // UPDATE USER LOG HISTORY:
-        const room7log2id = userRooms['7'].Event_Logs[1].id;
-        dispatch(logActions.updateLog(room7log2id, { user_id: user.id }));
+        const room7logs = userRooms['7'].Event_Logs;
+        const room7successLog = room7logs.find(log => log.title === "The Dead End - Success");
+        dispatch(logActions.updateLog(room7successLog.id, { user_id: user.id }));
 
         // REDIRECT USER TO NEW ROOM:
         history.push('/play/gUpht2fDiqo');
@@ -589,8 +598,9 @@ export default function Rooms({ user, url, userRooms, userItems, userNotes, user
         setShowRoom8Intro(false);
 
         // UPDATE USER LOG HISTORY:
-        const room8log1id = userRooms['8'].Event_Logs[0].id;
-        dispatch(logActions.updateLog(room8log1id, { user_id: user.id }));
+        const room8logs = userRooms['8'].Event_Logs;
+        const room8introLog = room8logs.find(log => log.title === "Game Over?");
+        dispatch(logActions.updateLog(room8introLog.id, { user_id: user.id }));
     }
 
 
@@ -601,8 +611,9 @@ export default function Rooms({ user, url, userRooms, userItems, userNotes, user
         setShowRoom9Intro(false);
 
         // UPDATE USER LOG HISTORY:
-        const room9log1id = userRooms['9'].Event_Logs[0].id;
-        dispatch(logActions.updateLog(room9log1id, { user_id: user.id }));
+        const room9logs = userRooms['9'].Event_Logs;
+        const room9introLog = room9logs.find(log => log.title === "The Real Final Room - The Reality");
+        dispatch(logActions.updateLog(room9introLog.id, { user_id: user.id }));
 
         // CREATE ITEM REWARD:
         if (userItems) {
