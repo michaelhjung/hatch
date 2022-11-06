@@ -10,18 +10,39 @@ import RoomTitle from '../Rooms/RoomTitle';
 import EventLogs from '../EventLogs';
 import Timer from '../Timer';
 import * as roomActions from '../../store/rooms';
+import * as logActions from '../../store/logs';
+// import * as sessionActions from '../../store/session';
+import * as noteActions from '../../store/notes';
+import * as itemActions from '../../store/items';
 
 export default function Game() {
     const dispatch = useDispatch();
     const user = useSelector(state => state.session.user);
     const userRooms = useSelector(state => state.rooms);
+    const userNotes = useSelector(state => state.notes);
+    const userItems = useSelector(state => state.items);
+    const userLogs = useSelector(state => state.logs);
     const [showIntro, setShowIntro] = useState(false);
     const url = useLocation().pathname;
 
+    // useEffect(() => {
+    //     dispatch(roomActions.readRooms());
+
+    //     return () => dispatch(roomActions.clearData());
+    // }, [dispatch]);
+
     useEffect(() => {
         dispatch(roomActions.readRooms());
+        dispatch(noteActions.readNotes());
+        dispatch(itemActions.readItems());
+        dispatch(logActions.readLogs());
 
-        return () => dispatch(roomActions.clearData());
+        return () => {
+            dispatch(roomActions.clearData());
+            dispatch(noteActions.clearData());
+            dispatch(itemActions.clearData());
+            dispatch(logActions.clearData());
+        }
     }, [dispatch]);
 
 
@@ -34,16 +55,30 @@ export default function Game() {
                 <ProfileButton user={user} showIntro={showIntro} setShowIntro={setShowIntro} />
             </section>
             <section className='notes'>
-                <Notes />
+                <Notes
+                    userNotes={userNotes}
+                />
             </section>
             <section className='rooms'>
-                <Rooms user={user} url={url} userRooms={userRooms} showIntro={showIntro} setShowIntro={setShowIntro} />
+                <Rooms
+                    user={user} url={url}
+                    userRooms={userRooms}
+                    userNotes={userNotes}
+                    useItems={userItems}
+                    userLogs={userLogs}
+                    showIntro={showIntro}
+                    setShowIntro={setShowIntro}
+                />
             </section>
             <section className='items'>
-                <Items />
+                <Items
+                    userItems={userItems}
+                />
             </section>
             <section className='logs'>
-                <EventLogs />
+                <EventLogs
+                    userLogs={userLogs}
+                />
             </section>
         </main>
     )

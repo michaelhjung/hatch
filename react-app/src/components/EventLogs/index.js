@@ -3,15 +3,15 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import * as logActions from '../../store/logs';
 
-export default function EventLogs({ user }) {
-    const dispatch = useDispatch();
-    const userLogs = useSelector(state => state.logs);
+export default function EventLogs({ user, userLogs }) {
+    // const dispatch = useDispatch();
+    // const userLogs = useSelector(state => state.logs);
 
-    useEffect(() => {
-        dispatch(logActions.readLogs());
+    // useEffect(() => {
+    //     dispatch(logActions.readLogs());
 
-        return () => dispatch(logActions.clearData());
-    }, [dispatch]);
+    //     return () => dispatch(logActions.clearData());
+    // }, [dispatch]);
 
     if (!userLogs) return null;
 
