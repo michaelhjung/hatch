@@ -112,7 +112,7 @@ export default function Rooms({ user, url, userRooms, userItems, userNotes, user
     console.log("USER", user);
     console.log("USER LOGS", userLogs);
 
-    const closeBottleEvent = async () => {
+    const closeBottleEvent = () => {
         // CLOSE MODAL:
         setShowBottleEvent(false);
 
@@ -127,26 +127,28 @@ export default function Rooms({ user, url, userRooms, userItems, userNotes, user
         dispatch(logActions.updateLog(room1log2.id, { user_id: user.id }));
 
         // CREATE NOTE WITH ROOM 2 KEY:
-        if (userNotes) {
-            let hasNote = false;
-            Object.values(userNotes).forEach(note => {
-                if (note.body === "room 2 url: https://escape-hatch.herokuapp.com/play/sewer") hasNote = true;
-            })
-            if (!hasNote) {
-                await dispatch(noteActions.createNote({ title: "A Back Door", body: "room 2 url: https://escape-hatch.herokuapp.com/play/sewer" }));
-                const notesContainer = document.querySelector('.all-notes-container');
-                const lastNoteMade = notesContainer.lastElementChild;
-                const noteCardOnly = lastNoteMade.firstElementChild;
-                noteCardOnly.setAttribute('id', 'backdoor-card');
-                const updateDeleteIcons = lastNoteMade.lastElementChild;
-                lastNoteMade.removeChild(updateDeleteIcons);
-                const room1key = document.createElement('a');
-                room1key.setAttribute('href', 'https://escape-hatch.herokuapp.com/play/sewer');
-                room1key.setAttribute('id', 'backdoor');
-                room1key.appendChild(lastNoteMade);
-                notesContainer.appendChild(room1key);
+        (async () => {
+            if (userNotes) {
+                let hasNote = false;
+                Object.values(userNotes).forEach(note => {
+                    if (note.body === "room 2 url: https://escape-hatch.herokuapp.com/play/sewer") hasNote = true;
+                })
+                if (!hasNote) {
+                    await dispatch(noteActions.createNote({ title: "A Back Door", body: "room 2 url: https://escape-hatch.herokuapp.com/play/sewer" }));
+                    const notesContainer = document.querySelector('.all-notes-container');
+                    const lastNoteMade = notesContainer.lastElementChild;
+                    const noteCardOnly = lastNoteMade.firstElementChild;
+                    noteCardOnly.setAttribute('id', 'backdoor-card');
+                    const updateDeleteIcons = lastNoteMade.lastElementChild;
+                    lastNoteMade.removeChild(updateDeleteIcons);
+                    const room1key = document.createElement('a');
+                    room1key.setAttribute('href', 'https://escape-hatch.herokuapp.com/play/sewer');
+                    room1key.setAttribute('id', 'backdoor');
+                    room1key.appendChild(lastNoteMade);
+                    notesContainer.appendChild(room1key);
+                }
             }
-        }
+        })();
     }
 
 
