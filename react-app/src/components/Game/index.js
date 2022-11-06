@@ -11,7 +11,6 @@ import EventLogs from '../EventLogs';
 import Timer from '../Timer';
 import * as roomActions from '../../store/rooms';
 import * as logActions from '../../store/logs';
-// import * as sessionActions from '../../store/session';
 import * as noteActions from '../../store/notes';
 import * as itemActions from '../../store/items';
 
@@ -24,12 +23,6 @@ export default function Game() {
     const userLogs = useSelector(state => state.logs);
     const [showIntro, setShowIntro] = useState(false);
     const url = useLocation().pathname;
-
-    // useEffect(() => {
-    //     dispatch(roomActions.readRooms());
-
-    //     return () => dispatch(roomActions.clearData());
-    // }, [dispatch]);
 
     useEffect(() => {
         dispatch(roomActions.readRooms());
@@ -50,9 +43,19 @@ export default function Game() {
     return (
         <main className='game-container'>
             <section className='top'>
-                <Timer user={user} url={url} />
-                <RoomTitle url={url} userRooms={userRooms} />
-                <ProfileButton user={user} showIntro={showIntro} setShowIntro={setShowIntro} />
+                <Timer
+                    user={user}
+                    url={url}
+                />
+                <RoomTitle
+                    url={url}
+                    userRooms={userRooms}
+                />
+                <ProfileButton
+                    user={user}
+                    showIntro={showIntro}
+                    setShowIntro={setShowIntro}
+                />
             </section>
             <section className='notes'>
                 <Notes

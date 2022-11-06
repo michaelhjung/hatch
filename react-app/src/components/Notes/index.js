@@ -1,7 +1,4 @@
 import './Notes.css'
-import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import * as noteActions from '../../store/notes';
 import CreateNoteForm from './CreateNoteForm';
 import ReadNote from './ReadNote';
 import UpdateNoteForm from './UpdateNoteForm';
@@ -11,14 +8,6 @@ import pencil from '../../assets/icons/pencil.svg';
 import trash from '../../assets/icons/trash.svg';
 
 export default function Notes({ userNotes }) {
-    // const dispatch = useDispatch();
-    // const userNotes = useSelector(state => state.notes);
-
-    // useEffect(() => {
-    //     dispatch(noteActions.readNotes());
-
-    //     return () => dispatch(noteActions.clearData());
-    // }, [dispatch]);
 
     if (!userNotes) return null;
 

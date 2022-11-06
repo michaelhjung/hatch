@@ -1,17 +1,6 @@
 import './EventLogs.css';
-import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import * as logActions from '../../store/logs';
 
-export default function EventLogs({ user, userLogs }) {
-    // const dispatch = useDispatch();
-    // const userLogs = useSelector(state => state.logs);
-
-    // useEffect(() => {
-    //     dispatch(logActions.readLogs());
-
-    //     return () => dispatch(logActions.clearData());
-    // }, [dispatch]);
+export default function EventLogs({ userLogs }) {
 
     if (!userLogs) return null;
 

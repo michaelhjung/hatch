@@ -1,7 +1,4 @@
 import './Items.css'
-import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import * as itemActions from '../../store/items';
 import CreateItemForm from './CreateItemForm';
 import ReadItem from './ReadItem';
 import UpdateItemForm from './UpdateItemForm';
@@ -11,14 +8,6 @@ import pencil from '../../assets/icons/pencil.svg';
 import trash from '../../assets/icons/trash.svg';
 
 export default function Items({ userItems }) {
-    // const dispatch = useDispatch();
-    // const userItems = useSelector(state => state.items);
-
-    // useEffect(() => {
-    //     dispatch(itemActions.readItems());
-
-    //     return () => dispatch(itemActions.clearData());
-    // }, [dispatch]);
 
     if (!userItems) return null;
 

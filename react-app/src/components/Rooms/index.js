@@ -1,7 +1,7 @@
 import './Rooms.css';
 import { useEffect, useState, useRef } from 'react';
 import { useHistory } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { Modal } from '../../context/Modal';
 // import * as roomActions from '../../store/rooms';
 import * as logActions from '../../store/logs';
@@ -22,9 +22,7 @@ import matrix from '../../assets/imgs/9-matrix.gif';
 export default function Rooms({ user, url, userRooms, userItems, userNotes, userLogs, showIntro, setShowIntro }) {
     const dispatch = useDispatch();
     const history = useHistory();
-    // const userItems = useSelector(state => state.items);
-    // const userNotes = useSelector(state => state.notes);
-    // const [showIntro, setShowIntro] = useState(true);
+
     const [showBottleEvent, setShowBottleEvent] = useState(false);
     const [showRoom2Intro, setShowRoom2Intro] = useState(true);
     const [showFooterEvent, setShowFooterEvent] = useState(false);
@@ -44,20 +42,6 @@ export default function Rooms({ user, url, userRooms, userItems, userNotes, user
     const [showRoom7CorrectKey, setShowRoom7CorrectKey] = useState(false);
     const [showRoom8Intro, setShowRoom8Intro] = useState(true);
     const [showRoom9Intro, setShowRoom9Intro] = useState(true);
-
-    // useEffect(() => {
-    //     dispatch(noteActions.readNotes());
-    //     dispatch(itemActions.readItems());
-    //     dispatch(logActions.readLogs());
-    //     dispatch(roomActions.readRooms());
-
-    //     return () => {
-    //         dispatch(noteActions.clearData());
-    //         dispatch(itemActions.clearData());
-    //         dispatch(logActions.clearData());
-    //         dispatch(roomActions.clearData());
-    //     }
-    // }, [dispatch]);
 
 
 
@@ -88,7 +72,7 @@ export default function Rooms({ user, url, userRooms, userItems, userNotes, user
     // -------------------- ROOM 1 GAME LOGIC: -------------------- //
     useEffect(() => {
         if (url === "/play") setShowIntro(true);
-    }, [url]);
+    }, [url, setShowIntro]);
     const vizHandler = async (e) => {
         e.preventDefault();
         const roomImg = document.querySelector('.room-img');
@@ -112,19 +96,16 @@ export default function Rooms({ user, url, userRooms, userItems, userNotes, user
     console.log("USER", user);
     console.log("USER LOGS", userLogs);
 
+    const bottleClicked = useRef(false);
+    console.log("USE REF BOTTLE CLICKED:", bottleClicked.current);
     const closeBottleEvent = () => {
         // CLOSE MODAL:
         setShowBottleEvent(false);
+        bottleClicked.current = true;
 
         // UPDATE USER LOG HISTORY:
         const room1log2 = userRooms['1'].Event_Logs[1];
-        console.log("ROOM 1 LOG 2", room1log2);
-        console.log("ROOM 1 id:", userRooms['1'].id);
-        console.log("USER ROOMS", userRooms);
-        console.log("USER", user);
-        console.log("USER LOGS", userLogs);
-        // if (room1log2.room_id === userRooms['1'].id)
-        dispatch(logActions.updateLog(room1log2.id, { user_id: user.id }));
+        if (bottleClicked.current) dispatch(logActions.updateLog(room1log2.id, { user_id: user.id }));
 
         // CREATE NOTE WITH ROOM 2 KEY:
         (async () => {
