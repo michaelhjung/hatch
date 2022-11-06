@@ -3,7 +3,7 @@ import { useEffect, useState, useRef } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { Modal } from '../../context/Modal';
-// import * as roomActions from '../../store/rooms';
+import * as roomActions from '../../store/rooms';
 import * as logActions from '../../store/logs';
 import * as sessionActions from '../../store/session';
 import * as noteActions from '../../store/notes';
@@ -24,6 +24,7 @@ export default function Rooms({ user, url, userRooms, showIntro, setShowIntro })
     const history = useHistory();
     const userItems = useSelector(state => state.items);
     const userNotes = useSelector(state => state.notes);
+    const userRooms2 = useSelector(state => state.rooms);
     // const [showIntro, setShowIntro] = useState(true);
     const [showBottleEvent, setShowBottleEvent] = useState(false);
     const [showRoom2Intro, setShowRoom2Intro] = useState(true);
@@ -49,11 +50,13 @@ export default function Rooms({ user, url, userRooms, showIntro, setShowIntro })
         dispatch(noteActions.readNotes());
         dispatch(itemActions.readItems());
         dispatch(logActions.readLogs());
+        dispatch(roomActions.readRooms());
 
         return () => {
             dispatch(noteActions.clearData());
             dispatch(itemActions.clearData());
             dispatch(logActions.clearData());
+            dispatch(roomActions.clearData());
         }
     }, [dispatch]);
 
@@ -114,7 +117,10 @@ export default function Rooms({ user, url, userRooms, showIntro, setShowIntro })
         const room1log2 = userRooms['1'].Event_Logs[1];
         console.log("ROOM 1 LOG 2", room1log2);
         console.log("ROOM 1 id:", userRooms['1'].id);
-        if (room1log2.room_id === userRooms['1'].id) await dispatch(logActions.updateLog(room1log2.id, { user_id: user.id }));
+        console.log("USER ROOMS", userRooms);
+        console.log("USER ROOMS 2", userRooms2);
+        // if (room1log2.room_id === userRooms['1'].id)
+        await dispatch(logActions.updateLog(room1log2.id, { user_id: user.id }));
 
         // CREATE NOTE WITH ROOM 2 KEY:
         if (userNotes) {
