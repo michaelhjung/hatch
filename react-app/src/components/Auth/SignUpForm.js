@@ -51,7 +51,9 @@ export default function SignUpForm () {
         if (email.length) {
             const lastDotIndex = email.lastIndexOf('.');
             const atSymbolIndex = email.indexOf('@');
-            const middleSection = email.slice(atSymbolIndex + 1, lastDotIndex)
+            const frontSection = email.slice(0, atSymbolIndex);
+            const middleSection = email.slice(atSymbolIndex + 1, lastDotIndex);
+            const endSection = email.slice(lastDotIndex + 1);
             const SYMBOLS = ['!', '@', "#", "$", "%", "^", "&", "*", "(", ")", "-", "_", "+", "=", ".", ":", ";", "'", '"', "?", ",", "<", ">", "?", "/", "\\", "|", "{", "}", "[", "]", "`", "~"];
             if (!email.includes('@') ||
                 !email.includes('.') ||
@@ -59,11 +61,16 @@ export default function SignUpForm () {
                 email.slice(lastDotIndex).length < 3 ||
                 email.slice(atSymbolIndex).length < 5) errors.push("Please provide a valid email address.");
 
+
             if (middleSection) {
                 Object.values(middleSection).forEach(char => {
                     if (!errors.includes("Please provide a valid email address.") && SYMBOLS.includes(char)) errors.push("Please provide a valid email address.");
                 });
             }
+
+            if (!frontSection.trim().length && !errors.includes("Please provide a valid email address.")) errors.push("Please provide a valid email address.");
+            if (!middleSection.trim().length && !errors.includes("Please provide a valid email address.")) errors.push("Please provide a valid email address.");
+            if (!endSection.trim().length && !errors.includes("Please provide a valid email address.")) errors.push("Please provide a valid email address.");
 
             if (email.length > 100) errors.push("Maximum email character limit is 100.");
         }

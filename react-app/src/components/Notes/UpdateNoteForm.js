@@ -25,8 +25,10 @@ export default function UpdateNoteForm({ note, pencil }) {
     useEffect(() => {
         const errors = [];
 
-        if (title.length && (title.length < 2 || title.length > 16)) errors.push("Note title must be between 2-16 characters.");
-        if (body.length && (body.length < 2 || body.length > 250)) errors.push("Note body must be between 2-250 characters.");
+        if (title.length && (title.length < 2)) errors.push("Note title must be between 2-16 characters.");
+        if (title.length && !title.trim().length) errors.push("Note title cannot be pure whitespace.");
+        if (body.length && (body.length < 2)) errors.push("Note body must be between 2-250 characters.");
+        if (body.length && !body.trim().length) errors.push("Note body cannot be pure whitespace.");
 
         setValidationErrors(errors);
     }, [title, body]);

@@ -29,9 +29,10 @@ export default function UpdateItemForm({ item, pencil }) {
         const errors = [];
 
         if (name.length && (name.length < 2 || name.length > 12)) errors.push("Item name must be between 2-12 characters.");
-        if (serialId.length && (serialId.length < 2 || serialId.length > 20)) errors.push("Item serialId must be between 2-20 characters.");
-
-
+        if (name.length && !name.trim().length) errors.push("Item name cannot be pure whitespace.");
+        if (serialId.length && (serialId.length < 2 || serialId.length > 20)) errors.push("Item serial ID must be between 2-20 characters.");
+        if (serialId.length && !serialId.trim().length) errors.push("Item serial ID cannot be pure whitespace.");
+        if (img.length && !img.trim().length) errors.push("Item image url is required. Pure whitespace does not count.");
 
         setValidationErrors(errors);
     }, [name, serialId, img]);
