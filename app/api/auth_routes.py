@@ -63,6 +63,8 @@ def login():
         login_val_error["errors"]["credential"] = "Email or username is required"
     if not form.data['password']:
         login_val_error["errors"]["password"] = "Password is required"
+    if (len(form.data['credential']) and not len(form.data['credential'].strip())) or (len(form.data['password']) and not len(form.data['password'].strip())):
+        login_val_error["errors"]["credential"] = "Invalid credentials."
     if len(login_val_error["errors"]) > 0:
         return jsonify(login_val_error), 400
 
@@ -116,16 +118,28 @@ def sign_up():
 
     if not form.data['first_name']:
         login_val_error["errors"]["first_name"] = "First name is required"
+    if len(form.data['first_name']) and not len(form.data['first_name'].strip()):
+        login_val_error["errors"]["first_name"] = "First name must have characters other than just whitespace"
     if not form.data['last_name']:
         login_val_error["errors"]["last_name"] = "Last name is required"
+    if len(form.data['last_name']) and not len(form.data['last_name'].strip()):
+        login_val_error["errors"]["last_name"] = "Last name must have characters other than just whitespace"
     if not form.data['username']:
         login_val_error["errors"]["username"] = "Username is required"
+    if len(form.data['username']) and not len(form.data['username'].strip()):
+        login_val_error["errors"]["username"] = "Username must have characters other than just whitespace"
     if not form.data['email']:
         login_val_error["errors"]["email"] = "Email is required"
+    if len(form.data['email']) and not len(form.data['email'].strip()):
+        login_val_error["errors"]["email"] = "Email must have characters other than just whitespace"
     if not form.data['password']:
         login_val_error["errors"]["password"] = "Password is required"
+    if len(form.data['password']) and not len(form.data['password'].strip()):
+        login_val_error["errors"]["password"] = "Password must have characters other than just whitespace"
     if not form.data['profile_pic']:
         login_val_error["errors"]["profile_pic"] = "Profile picture is required"
+    if len(form.data['profile_pic']) and not len(form.data['profile_pic'].strip()):
+        login_val_error["errors"]["profile_pic"] = "Profile picture url must have characters other than just whitespace"
     if len(login_val_error["errors"]) > 0:
         return jsonify(login_val_error), 400
 
