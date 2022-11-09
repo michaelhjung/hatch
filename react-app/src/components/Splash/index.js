@@ -102,7 +102,7 @@ export default function Splash() {
             await dispatch(logActions.createLog({ room_id: room9.id, title: "The Real Final Room - The Reality", body: `Congratulations. You found the real final room. This world is not what it seems... Do you want to stay in this fantasy world and believe whatever you want? Or do you want me to show you how deep the rabbit hole goes...?` }));
         }
 
-        await dispatch(sessionActions.updateUser(user.id, { current_room: 1 }));
+        await dispatch(sessionActions.updateUser(user.id, { current_room: 1, won: false }));
     }, [dispatch]);
     // NOTES SETUP LOGIC:
     const notesSetup = useCallback((user) => {
@@ -226,11 +226,13 @@ export default function Splash() {
             itemsSetup(user);
 
             // UPDATE CURRENT ROOM & REMOVE ENTER LAST ROOM BUTTON:
-            dispatch(sessionActions.updateUser(user.id, { current_room: 1 }));
+            dispatch(sessionActions.updateUser(user.id, { current_room: 1, won: false }));
             setShowLastRoom(false);
 
             // REMOVE SESSION STORAGE:
             sessionStorage.removeItem(`${user.id}_savedEndDate`);
+            localStorage.removeItem(`${user.id}_savedEndDate`);
+            localStorage.removeItem(`${user.id}_savedPausedNow`);
 
             alert("Data has been reset.");
         }
