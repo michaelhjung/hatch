@@ -15,7 +15,11 @@ export default function ProfileMenu({ user, showProfileMenu, setShowProfileMenu,
         <div className="profile-menu-container">
             <div>
                 <div className='x' onClick={closeMenu}><img src={x} alt="x" width={25} height={25} /></div>
-                <div className="profile-username">{user.username}</div>
+                {user.won ? (
+                    <div className="profile-username">🏆{user.username}</div>
+                ) : (
+                    <div className="profile-username">{user.username}</div>
+                )}
                 <div className="instructions-button" onClick={() => setShowIntro(true)}>instructions</div>
                 <div className="game-logout-button" onClick={onLogout}>log out</div>
             </div>

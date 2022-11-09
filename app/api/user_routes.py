@@ -63,7 +63,7 @@ def update_user(id):
     if form.validate_on_submit():
         if form.data['viz']:
             user_query.viz = form.data['viz']
-        if form.data['won']:
+        if form.data['won'] or form.data['won'] == False:
             user_query.won = form.data['won']
         if form.data['current_room']:
             user_query.current_room = form.data['current_room']
