@@ -3,6 +3,7 @@ import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import github from '../../assets/icons/github.svg';
 import linkedin from '../../assets/icons/linkedin.svg';
+import briefcase from '../../assets/icons/portfolio.svg';
 
 export default function Footer() {
     const url = useLocation().pathname;
@@ -18,7 +19,7 @@ export default function Footer() {
         <footer id='footer' >
             <div className='footer-copyright-wrapper'>
                 <span className='footer-copyright'>
-                    Copyright ©2022 Michael Jung. Hatch is an original virtual escape room designed by <a className='michael-linkedin' href='https://www.linkedin.com/in/michael-h-jung/' target='_blank' rel='noreferrer'>Michael Jung</a>.
+                    Copyright ©2022 Michael Jung. Hatch is an original virtual escape room designed by <a className='michael-portfolio' href='https://www.michaelhjung.com/' target='_blank' rel='noreferrer'>Michael Jung</a>.
                 </span>
             </div>
             <div className='footer-resources'>
@@ -28,6 +29,9 @@ export default function Footer() {
                     </a>
                     <a className='github footer-links' href='https://github.com/michaelhjung' target='_blank' rel='noreferrer'>
                         <img className='footer-icons' src={github} alt='github' />
+                    </a>
+                    <a className='portfolio footer-links' href='https://www.michaelhjung.com/' target='_blank' rel='noreferrer'>
+                        <img className='footer-icons' src={briefcase} alt='portfolio' />
                     </a>
                 </div>
                 <div>
