@@ -4,6 +4,8 @@ import { Modal } from '../../context/Modal';
 import { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux'
 import * as itemActions from '../../store/items';
+import { Howl } from 'howler';
+import hammerSfx from '../../assets/sfx/hammer.wav';
 
 export default function UpdateItemForm({ item, pencil }) {
     const [validationErrors, setValidationErrors] = useState([]);
@@ -12,6 +14,15 @@ export default function UpdateItemForm({ item, pencil }) {
     const [img, setImg] = useState(item.img || '');
     const [showModal, setShowModal] = useState(false);
     const dispatch = useDispatch();
+
+    const playSound = (src) => {
+        const sound = new Howl({
+            src,
+            preload: true,
+            volume: 0.4,
+        });
+        sound.play();
+    }
 
     useEffect(() => {
         setName(item.name);
@@ -42,6 +53,7 @@ export default function UpdateItemForm({ item, pencil }) {
         try {
             const newItem = await dispatch(itemActions.updateItem(item.id, { name, serial_id: serialId, img }));
             if (newItem) {
+                playSound(hammerSfx);
                 setName('');
                 setSerialId('');
                 setImg('');
