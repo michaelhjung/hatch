@@ -1,5 +1,5 @@
 # DELETE OLD DATABASE AND VERSIONS FOLDER:
-rm -rf app/dev.db
+rm -rf instance/dev.db
 rm -rf migrations/versions
 echo "==> Finished deleting database"
 

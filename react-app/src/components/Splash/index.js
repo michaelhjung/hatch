@@ -14,7 +14,7 @@ import * as noteActions from '../../store/notes'
 import * as itemActions from '../../store/items';
 import * as logActions from '../../store/logs';
 import * as sessionActions from '../../store/session';
-import { Howl, Howler } from 'howler';
+import { Howl } from 'howler';
 import slideDoorSfx from '../../assets/sfx/slide-door.wav';
 
 export default function Splash() {
@@ -30,6 +30,7 @@ export default function Splash() {
     const playSound = (src) => {
         const sound = new Howl({
             src,
+            preload: true,
         });
         sound.play();
     }

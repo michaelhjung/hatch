@@ -4,6 +4,8 @@ import { Modal } from '../../context/Modal';
 import { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux'
 import * as noteActions from '../../store/notes';
+import { Howl } from 'howler';
+import scribbleSfx from '../../assets/sfx/scribble.wav';
 
 export default function CreateNoteForm({ add }) {
     const [validationErrors, setValidationErrors] = useState([]);
@@ -12,11 +14,21 @@ export default function CreateNoteForm({ add }) {
     const [showModal, setShowModal] = useState(false);
     const dispatch = useDispatch();
 
+    const playSound = (src) => {
+        const sound = new Howl({
+            src,
+            preload: true,
+            volume: 0.5,
+        });
+        sound.play();
+    }
+
     const submitHandler = async (e) => {
         e.preventDefault();
         try {
             const newNote = await dispatch(noteActions.createNote({ title, body }));
             if (newNote) {
+                playSound(scribbleSfx);
                 setTitle('');
                 setBody('');
                 setValidationErrors([]);

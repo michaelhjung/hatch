@@ -17,6 +17,18 @@ import add from '../../assets/icons/add-item-dark.svg';
 import pencil from '../../assets/icons/pencil-dark.svg';
 import trash from '../../assets/icons/trash-dark.svg';
 import matrix from '../../assets/imgs/9-matrix.gif';
+import { Howl } from 'howler';
+import glassBottleSfx from '../../assets/sfx/glass-bottle.wav';
+import doorSfx from '../../assets/sfx/door.wav';
+import snakeSfx from '../../assets/sfx/snake.wav';
+import paperSfx from '../../assets/sfx/paper.wav';
+import nintendoSfx from '../../assets/sfx/nintendo.wav';
+import rabbitSfx from '../../assets/sfx/rabbit.wav';
+import batscreechSfx from '../../assets/sfx/batscreech.wav';
+import morseDotSfx from '../../assets/sfx/morse-dot.wav';
+import morseDashSfx from '../../assets/sfx/morse-dash.wav';
+import beachSfx from '../../assets/sfx/beach.wav';
+import matrixSfx from '../../assets/sfx/matrix.wav';
 
 
 export default function Rooms({ user, url, userRooms, showIntro, setShowIntro }) {
@@ -55,7 +67,24 @@ export default function Rooms({ user, url, userRooms, showIntro, setShowIntro })
         }
     }, [dispatch]);
 
+    const playSound = (src) => {
+        const sound = new Howl({
+            src,
+            preload: true,
+            volume: 0.5,
+        });
+        sound.play();
+    }
 
+    const playLoopSound = (src) => {
+        const sound = new Howl({
+            src,
+            preload: true,
+            volume: 0.5,
+            loop: true,
+        });
+        sound.play();
+    }
 
     // --------------- USER CURRENT ROOM UPDATING LOGIC: ------------- //
     useEffect(() => {
@@ -124,6 +153,7 @@ export default function Rooms({ user, url, userRooms, showIntro, setShowIntro })
                 })
                 if (!hasNote) {
                     await dispatch(noteActions.createNote({ title: "A Back Door", body: "room 2 url: https://escape-hatch.herokuapp.com/play/sewer" }));
+                    playSound(doorSfx);
                     const notesContainer = document.querySelector('.all-notes-container');
                     const lastNoteMade = notesContainer.lastElementChild;
                     const noteCardOnly = lastNoteMade.firstElementChild;
@@ -158,6 +188,7 @@ export default function Rooms({ user, url, userRooms, showIntro, setShowIntro })
     const closeFooterEvent = () => {
         // CLOSE MODAL:
         setShowFooterEvent(false);
+        playSound(doorSfx);
 
         // UPDATE USER LOG HISTORY:
         const room2logs = userRooms['2'].Event_Logs;
@@ -277,6 +308,7 @@ export default function Rooms({ user, url, userRooms, showIntro, setShowIntro })
         }
     }, [dispatch, userItems, url, userRooms]);
     const room4ConsoleClick = () => {
+        playSound(nintendoSfx);
         setShowRoom4ConsoleEvent(true);
 
         // CONSOLE LOG THE HINT:
@@ -373,6 +405,7 @@ export default function Rooms({ user, url, userRooms, showIntro, setShowIntro })
                     if (note.body === "#antman") hasNote = true;
                 })
                 if (!hasNote) {
+                    playSound(paperSfx);
                     dispatch(noteActions.createNote({ title: "find me", body: "#antman" }));
                 }
             }
@@ -418,6 +451,9 @@ export default function Rooms({ user, url, userRooms, showIntro, setShowIntro })
 
             const detectMorseCode = (e) => {
                 const key = e.key;
+
+                if (key === '.') playSound(morseDotSfx);
+                if (key === '-') playSound(morseDashSfx);
 
                 if (key === '.' || key === '-' || key === ' ') {
                     if (morseCode.current.slice(0).join('') === '' && key === '.') {
@@ -607,6 +643,7 @@ export default function Rooms({ user, url, userRooms, showIntro, setShowIntro })
     // -------------------- ROOM 8 GAME LOGIC: -------------------- //
     const closeRoom8Intro = () => {
         // CLOSE MODAL:
+        playLoopSound(beachSfx);
         setShowRoom8Intro(false);
 
         // UPDATE USER LOG HISTORY:
@@ -620,6 +657,7 @@ export default function Rooms({ user, url, userRooms, showIntro, setShowIntro })
     // -------------------- ROOM 9 GAME LOGIC: -------------------- //
     const closeRoom9Intro = () => {
         // CLOSE MODAL:
+        playLoopSound(matrixSfx);
         setShowRoom9Intro(false);
 
         // UPDATE USER LOG HISTORY:
@@ -698,7 +736,7 @@ export default function Rooms({ user, url, userRooms, showIntro, setShowIntro })
                 <>
                     <img className='room-img' id='blurry' src={userRooms['1']?.Images[0]?.img} alt="room1" />
                     <button className='rub-eyes-button' onClick={vizHandler}>Rub Eyes</button>
-                    <div className='bottle' onClick={bottleClick}>
+                    <div className='bottle' onClick={bottleClick} onMouseEnter={() => playSound(glassBottleSfx)}>
                         <img className='bottle-img' src="https://i.imgur.com/MxqBtSE.png" alt="bottle" />
                     </div>
                     {showBottleEvent && (
@@ -719,8 +757,8 @@ export default function Rooms({ user, url, userRooms, showIntro, setShowIntro })
             {url === '/play/sewer' && userRooms['2'] && (
                 <>
                     <img className='room-img' src={userRooms['2']?.Images[0]?.img} alt="room2" />
-                    <div className='room-2-note' onClick={room2NoteClick}></div>
-                    <div className='snake' onClick={snakeClick}>
+                    <div className='room-2-note' onClick={room2NoteClick} onMouseEnter={() => playSound(paperSfx)}></div>
+                    <div className='snake' onClick={snakeClick} onMouseEnter={() => playSound(snakeSfx)}>
                         <img className='snake-img' src='https://i.imgur.com/ixNino2.png' alt="snake" />
                     </div>
                     {showRoom2Intro && (
@@ -761,7 +799,7 @@ export default function Rooms({ user, url, userRooms, showIntro, setShowIntro })
             {url === '/play/AKDzZV7xMuQ' && userRooms['3'] && (
                 <>
                     <img className='room-img' src={userRooms['3']?.Images[0]?.img} alt="room3" />
-                    <div className='room-3-note' onClick={room3NoteClick}></div>
+                    <div className='room-3-note' onClick={room3NoteClick} onMouseEnter={() => playSound(paperSfx)}></div>
                     {showRoom3Intro && (
                         <Modal
                             className='room-3-intro-modal'
@@ -803,7 +841,7 @@ export default function Rooms({ user, url, userRooms, showIntro, setShowIntro })
                     <div className='room-4-console' onClick={room4ConsoleClick}>
                         <img className='room-4-console-img' src="https://i.imgur.com/Aky9pGi.png" alt="console" />
                     </div>
-                    <div className='room-4-rabbit' onClick={room4RabbitClick}>
+                    <div className='room-4-rabbit' onClick={room4RabbitClick} onMouseEnter={() => playSound(rabbitSfx)}>
                         <img className='room-4-rabbit-img' src="https://i.imgur.com/ujM26Nw.png" alt="rabbit" />
                     </div>
                     {showRoom4Intro && (
@@ -854,7 +892,7 @@ export default function Rooms({ user, url, userRooms, showIntro, setShowIntro })
             {url === '/play/cSI7QDhHLW8' && userRooms['5'] && (
                 <>
                     <img className='room-img' src={userRooms['5']?.Images[0]?.img} alt="room5" />
-                    <div className='room-5-bat' onClick={room5BatClick}>
+                    <div className='room-5-bat' onClick={room5BatClick} onMouseEnter={() => playSound(batscreechSfx)}>
                         <img className='room-5-bat-img bat1' src="https://i.imgur.com/R2EUztL.png" alt="bat" />
                         <img className='room-5-bat-img bat2' src="https://i.imgur.com/R2EUztL.png" alt="bat" />
                         <img className='room-5-bat-img bat3' src="https://i.imgur.com/R2EUztL.png" alt="bat" />
