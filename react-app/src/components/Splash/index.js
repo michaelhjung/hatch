@@ -14,7 +14,8 @@ import * as noteActions from '../../store/notes'
 import * as itemActions from '../../store/items';
 import * as logActions from '../../store/logs';
 import * as sessionActions from '../../store/session';
-
+import { Howl, Howler } from 'howler';
+import slideDoorSfx from '../../assets/sfx/slide-door.wav';
 
 export default function Splash() {
     const user = useSelector(state => state.session.user);
@@ -26,6 +27,12 @@ export default function Splash() {
     const dispatch = useDispatch();
     const history = useHistory();
 
+    const playSound = (src) => {
+        const sound = new Howl({
+            src,
+        });
+        sound.play();
+    }
 
     // ----- NEW USER SIGN UP: AUTO-GENERATE ROOMS ----- //
     // ROOMS SETUP LOGIC:
@@ -154,6 +161,7 @@ export default function Splash() {
         hatchLogo.setAttribute('class', 'hero-logo fade-out');
         userButtons.setAttribute('class', 'user-buttons fade-out');
 
+        playSound(slideDoorSfx);
 
         setTimeout(() => {
             history.push('/play');
@@ -169,6 +177,7 @@ export default function Splash() {
         hatchLogo.setAttribute('class', 'hero-logo fade-out');
         userButtons.setAttribute('class', 'user-buttons fade-out');
 
+        playSound(slideDoorSfx);
 
         setTimeout(() => {
             if (user.current_room === 1) history.push('/play');
