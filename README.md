@@ -1,4 +1,4 @@
-<div align="center">
+<div align="center" id="readme-top">
 
 ![hatch-logo](./assets/hatch-logo.png)
 </div>
@@ -12,7 +12,7 @@
 - [🔍 Sample Features](#-sample-features)
 - [🚀 Getting Started](#-getting-started)
 - [💬 Contact](#-contact)
-- [📆 Project Timeline](#-project-timeline)
+- [📆 Capstone Project Timeline](#-capstone-project-timeline)
 </details>
 
 
@@ -20,7 +20,7 @@
 
 <div align="center">
 
-Hatch is an original virtual escape room designed by Michael Jung. This project utilizes various topics and concepts learned throughout the App Academy bootcamp program and implements them as clues to advance in the game.
+[Hatch](https://escape-hatch.herokuapp.com/) is an original virtual escape room designed by Michael Jung. This project utilizes various concepts learned throughout the App Academy bootcamp program and implements them as clues to advance in the game.
 
 [Github](https://github.com/michaelhjung/hatch) | [Live Link](https://escape-hatch.herokuapp.com/)
 
@@ -144,7 +144,7 @@ Hatch is an original virtual escape room designed by Michael Jung. This project 
 <p align="right"><a href="#readme-top">⬆ back to top</a></p>
 
 
-## 📆 Project Timeline
+## 📆 Capstone Project Timeline
 
 <table>
   <thead>
