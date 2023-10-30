@@ -9,34 +9,34 @@ import Game from './components/Game';
 import NotFound from './components/NotFound';
 
 export default function App() {
-    const [loaded, setLoaded] = useState(false);
-    const dispatch = useDispatch();
+  const [loaded, setLoaded] = useState(false);
+  const dispatch = useDispatch();
 
-    useEffect(() => {
-        (async () => {
-            await dispatch(authenticate());
-            setLoaded(true);
-        })();
-    }, [dispatch]);
+  useEffect(() => {
+    (async () => {
+      await dispatch(authenticate());
+      setLoaded(true);
+    })();
+  }, [dispatch]);
 
-    if (!loaded) {
-        return null;
-    }
+  if (!loaded) {
+    return null;
+  }
 
-    return (
-        <BrowserRouter>
-            <Switch>
-                <Route exact path='/'>
-                    <Splash />
-                </Route>
-                <Route path='/play'>
-                    <Game />
-                </Route>
-                <Route>
-                    <NotFound />
-                </Route>
-            </Switch>
-            <Footer />
-        </BrowserRouter>
-    );
+  return (
+    <BrowserRouter>
+      <Switch>
+        <Route exact path="/">
+          <Splash />
+        </Route>
+        <Route path="/play">
+          <Game />
+        </Route>
+        <Route>
+          <NotFound />
+        </Route>
+      </Switch>
+      <Footer />
+    </BrowserRouter>
+  );
 }
