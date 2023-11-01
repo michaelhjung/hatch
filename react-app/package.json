@@ -6,7 +6,6 @@
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^11.2.7",
     "@testing-library/user-event": "^12.8.3",
-    "browserify-sign": "^4.2.2",
     "howler": "^2.2.3",
     "http-proxy-middleware": "^1.0.5",
     "js-cookie": "^3.0.1",
@@ -41,5 +40,9 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "http://localhost:5000"
+  "proxy": "http://localhost:5000",
+  "devDependencies": {
+    "prettier": "^3.0.3",
+    "sass": "^1.69.5"
+  }
 }
