@@ -43,6 +43,6 @@
   "proxy": "http://localhost:5000",
   "devDependencies": {
     "prettier": "^3.0.3",
-    "sass": "^1.69.5"
+    "sass": "^1.104.0"
   }
 }
